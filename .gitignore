@@ -1,0 +1,3 @@
+# Windows junctions to .agents/, recreated by setup.ps1
+.claude/agents
+.claude/skills
