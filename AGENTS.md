@@ -21,8 +21,9 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 ```
 
 1. **Need**: the lead (main session) writes `docs/team/<feature>/need.md`: who, what, why, acceptance criteria, open questions.
-2. **Design**: `designer` asks `front` for the current screens of the app, then proposes **at least 3 mockups**; the lead (or the
-   user when the choice is theirs) picks one. Output in `docs/team/<feature>/design/`.
+2. **Design**: `designer` asks `front` for the current screens of the app, then proposes **at least 3 mockups** with rendered
+   desktop and mobile PNG screenshots. The designer shows the screenshots inline before the lead (or the user when the choice is
+   theirs) picks one. Output in `docs/team/<feature>/design/`.
 3. **Contract**: `front` reads the chosen mockup, agrees the interface contract with `back`; output
    `docs/team/<feature>/contract.md` (+ `openapi.yaml` / schema when relevant). A mockup element that cannot be built goes back to
    `designer` with the reason and a proposal.
@@ -44,8 +45,18 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 - **Ask instead of guessing.** A question goes to the agent who owns the answer (table above) through `SendMessage` (`to: "<agent>"`),
   short and with the context needed; the answer is written back into the feature folder (`need.md`, `contract.md`, ...) so that
   nobody asks twice. Only questions no agent can answer (business choice, budget, credentials) go to the user, grouped.
-- **Modular code**: one folder per page / feature, a shared `core` sorted by kind of feature, layered back end
-  (controller → service → repository), dependencies only pointing downward, nothing copied twice.
+- **Empty-directory cleanup**: before handing off repository changes, check directories affected by files you added, moved, or
+  deleted. Remove directories left empty by your changes; do not remove unrelated or pre-existing empty directories unless the
+  task explicitly asks for a repository-wide cleanup.
+- **Feature-first code and tests**: keep front-end and back-end production code grouped by business functionality, with technical
+  layers scoped inside each feature rather than global layer-only directories. Within each module, count files by architectural
+  role (component, service, controller, helper, validator, repository, exception, DTO, etc.), not by extension. Keep one file of
+  a role directly in the module root; when there are multiple files of that role, move all of them into a module-local
+  role-named directory. Apply this independently to every role and feature; never mix root-level and nested files of the same
+  role. Keep page-specific front-end code inside its page feature; front-end `core` contains only code shared by every page.
+  Organize unit and end-to-end tests by feature; unit tests mirror the production module and role directories, and E2E specs live
+  in feature-specific subdirectories under the test runner's configured test root. Shared back-end modules and test helpers are
+  only for behavior reused by multiple features; dependencies point downward and code is never copied.
 - **Choose the technology on purpose**: when a project has none yet, `front` and `back` each propose the most adequate stack with
   2-3 lines of reasons (needs, team, hosting, performance), the lead decides; an existing project keeps its stack.
 - **Load only the skills of the stack you work in** (see "Skill selection" below): never the skills of other languages.

@@ -17,7 +17,7 @@ Based on `D:\projects\kotlin\spring-libraries` (its `CLAUDE.md` and `spring-*` s
   modular starters, built-in API versioning (`spring.mvc.apiversion.*`), HTTP service clients (`@HttpExchange` interfaces +
   `@ImportHttpServices`) instead of Feign/hand-written `RestTemplate`, native resilience (`@Retryable`, `@ConcurrencyLimit`,
   `@EnableResilientMethods` from `org.springframework.resilience`), OpenTelemetry starter for traces/metrics.
-- Configuration in YAML (`application.yaml`), profiles per environment, secrets from Vault (Spring Cloud Vault / env), never in the repo.
+- Store Spring Boot configuration in YAML only: use `application.yaml` and `application-<profile>.yaml`; do not use `.properties` configuration files. Keep profiles per environment and load secrets from Vault (Spring Cloud Vault / env), never from the repository.
 
 ## 2. Application layering
 

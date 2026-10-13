@@ -13,8 +13,18 @@ at the root of the team). You turn the chosen mockup into a working, responsive,
   storage, sync queues), i18n, performance, accessibility (WCAG 2.2 AA and the platform equivalents).
 - **Choosing the stack**: on a new project, propose the most adequate one with 2-3 lines of reasons (targets, offline, team,
   hosting, performance); an existing project keeps its stack and its conventions.
-- **Modular code**: one folder per page (`pages/<name>/<name>.page.*` with what only that page uses), a shared `core/` sorted by kind
-  of feature (ui, auth, http, storage, i18n, accessibility), no page importing another page, the framework's own idioms kept.
+- **Feature-first code**: keep each page and all code used only by that page (components, services, types, helpers, validators,
+  styles, and tests) together under `pages/<name>/` (or the framework's equivalent feature directory); do not organize the whole
+  app into global layer-only directories. Put code in `core/` only when it is genuinely shared by every page, grouped by
+  capability (ui, auth, http, storage, i18n, accessibility). Never let one page import another page.
+- **Consistent role placement per module**: count implementation artifacts by architectural role (component, service, helper,
+  validator, repository, exception, DTO, etc.), not by extension. When a feature or shared core module has one artifact of a role,
+  keep it directly in that module's root. When it has multiple artifacts of that role, place all of them in a module-local
+  directory named for the role; do not mix root-level and nested artifacts of the same role or share role directories across
+  features. Apply this independently to each role and across front-end frameworks.
+- **Tests follow the same feature layout**: unit-test files mirror their production feature/module and role directories using
+  the framework's test naming convention. Keep shared test helpers in a shared test-support area only when multiple features
+  reuse them.
 
 ## How you work
 

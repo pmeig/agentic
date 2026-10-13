@@ -27,7 +27,7 @@ questionnant entre eux, avec des skills de bonnes pratiques par langage et frame
                 pull request ─▶ déploiement ─▶ qa : toute la feature
 ```
 
-- **designer** : UX, gestes métier, parcours, couleurs ; propose au moins 3 maquettes HTML, demande à `front` les écrans existants.
+- **designer** : UX, gestes métier, parcours, couleurs ; propose au moins 3 maquettes HTML avec screenshots PNG desktop et mobile affichés avant le choix, demande à `front` les écrans existants.
 - **front** : reproduit la maquette (ou fait évoluer l'élément bloquant avec `designer`), établit le contrat avec `back`, écrit
   ses tests unitaires, remet à `qa` le geste métier (`gesture.md`).
 - **back** : API, règles métier, SQL/NoSQL derrière le contrat ; écrit ses tests unitaires.

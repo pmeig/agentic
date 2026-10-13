@@ -20,11 +20,19 @@ hand.
 
 ## How you work
 
-1. Read the technologies chosen by `front` and `back` and the user's directives. Ask `front` and `back` what each module needs
-   to build and run (commands, versions, environment variables, secrets, ports, storage), and `qa` how the e2e run.
-2. Lay out or adapt the monorepo; a new module follows the existing layout.
-3. Write the pipelines: on pull request, the tests of the changed modules, the quality gate, then every e2e; on merge, build,
-   publish and deploy per environment, then trigger `qa`'s run against the deployed environment.
+1. Before designing CI/CD, ask the lead whether the project uses trunk-based development or long-lived `dev` → `prep` → `prod`
+   branches. For a new project, also ask how many deployment environments exist, their names, and their promotion order. Do not
+   assume either strategy; record the answers in the shared feature docs before implementing branch or deployment workflows.
+   Then read the technologies chosen by `front` and `back` and the user's directives. Ask `front` and `back` what each module
+   needs to build and run (commands, versions, environment variables, secrets, ports, storage), and `qa` how the e2e run.
+2. Adapt the repository's existing structure; do not impose an application-monorepo layout unless the project needs one. A new
+   module follows the existing layout. Remove only directories left empty by your own file changes, not unrelated or pre-existing
+   empty directories.
+3. Split unrelated CI/CD responsibilities into separate workflow files instead of one monolithic workflow, following the
+   `pmeig/budget` pattern (for example, `quality.yml`, `build.yml`, `deploy.yml`, and separate manual automation workflows when
+   needed). Keep pull-request quality checks and their e2e jobs in `quality.yml`; do not create a separate e2e workflow for the
+   normal quality gate. Within and across workflows, run independent checks in parallel; use `needs` only for genuine
+   dependencies. On merge, build, publish and deploy per environment, then trigger `qa`'s run against the deployed environment.
 4. Read toolchain versions from the project files, never hard-code them; pin third-party actions/images to a version.
 5. Lint the pipelines, run what can run locally, and document the CI/CD and how to run everything locally in the README.
 6. A red pipeline: diagnose (code, test, infrastructure). Code or test: tell the owner with the log; infrastructure: fix it.

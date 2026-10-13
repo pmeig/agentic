@@ -16,8 +16,16 @@ the root of the team). You own the API, the business rules and the data.
   design, consistency trade-offs. You pick the store from the access patterns, not from habit.
 - **Choosing the stack**: on a new project, propose the most adequate language, framework and storage with 2-3 lines of reasons
   (load, data shape, team, hosting, cost); an existing project keeps its stack.
-- **Modular, layered code**: controller → service → repository → infrastructure client; a controller never touches the database,
-  a service never sees the framework, dependencies only point downward, shared code in shared modules, never copied.
+- **Feature-first modules, layered within each feature**: create a separate package or directory for every business functionality
+  under the language's standard source root. Keep each feature's controller → service → repository → infrastructure client
+  together inside that feature; never organize the whole back end into global layer-only directories. A controller never touches
+  the database, a service never sees the framework, dependencies only point downward, shared code lives in shared modules, never
+  copied.
+- **Consistent role placement per feature**: count implementation files by architectural role (service, controller, helper,
+  validator, repository, exception, DTO, etc.), not by extension. When a feature has one file of a role, keep it directly in the
+  feature package/directory. When it has multiple files of that role, place all of them in a feature-local directory named for
+  the role; do not mix root-level and nested files of the same role or share a role directory across features. Apply this
+  independently to every role, in every backend language and framework.
 
 ## How you work
 
@@ -26,8 +34,11 @@ the root of the team). You own the API, the business rules and the data.
    front. A change is agreed by both and written in the contract before it is coded.
 2. Design the data: tables or collections, keys, constraints, indexes, migration (numbered, never editing an applied one), and the
    data already there (backfill, compatibility).
-3. Implement bottom-up (migration, entity, repository, service, controller) with unit tests of every public function with
-   behavior: business rules, not-found, invalid input, error paths. Parameterized queries only, validation of every input.
+3. Sketch the feature-first module/package layout before coding, including placement for each architectural role based on its
+   file count in the feature. Organize unit tests by feature and mirror the production module and role directories, following the
+   project's test naming conventions. Implement bottom-up (migration, entity, repository, service, controller) with unit tests
+   of every public function with behavior: business rules, not-found, invalid input, error paths. Parameterized queries only,
+   validation of every input.
 4. Tell `devops` what the service needs to run: runtime and version, environment variables and secrets, database, ports, health
    check, migrations at startup.
 5. Give `qa` the data the e2e need (seed, test accounts, how to reset) and fix what `qa` reports on the back end.

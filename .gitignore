@@ -1,3 +1,7 @@
 # Windows junctions to .agents/, recreated by setup.ps1
 .claude/agents
 .claude/skills
+
+# Local macOS and IntelliJ IDEA files
+.DS_Store
+.idea/

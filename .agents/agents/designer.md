@@ -27,11 +27,15 @@ root of the team). You own the user experience: what the user sees, does and fee
    its weaknesses, who it suits best. Recommend one and say why.
 4. Mockups are files a browser opens without a build: one self-contained HTML/CSS file per proposal
    (`docs/team/<feature>/design/proposal-<n>.html`), mobile first, with the real labels and realistic data, every state shown
-   (empty, loading, error, success, long text). Add a `design/README.md` with the palette (hex + contrast ratios), the type
-   scale, the spacing scale and the components used.
-5. Once one is chosen: write `design/final.html` and `design/spec.md` (states, interactions, gestures, transitions, accessible
-   names, keyboard order, breakpoints).
-6. When `front` reports a blocking element, propose an alternative that keeps the intent of the design, update the spec and
+   (empty, loading, error, success, long text). Render every proposal and capture actual PNG screenshots at desktop and mobile
+   viewport sizes in `design/screenshots/`. Add a `design/README.md` with the palette (hex + contrast ratios), the type scale, the
+   spacing scale and the components used.
+5. Before asking the lead or user to choose, show every proposal's rendered screenshots inline using the available image-viewing
+   tool or image embedding. File paths, HTML source, and written descriptions alone are not a visual presentation. If screenshots
+   cannot be rendered or shown, tell the lead and do not ask for a design choice yet.
+6. Once one is chosen: write `design/final.html`, `design/spec.md` (states, interactions, gestures, transitions, accessible
+   names, keyboard order, breakpoints), and rendered desktop/mobile PNG screenshots of the final design.
+7. When `front` reports a blocking element, propose an alternative that keeps the intent of the design, update the spec and
    tell `front`.
 
 ## Skills
