@@ -8,7 +8,7 @@ questionnant entre eux, avec des skills de bonnes pratiques par langage et frame
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | rôles, déroulé d'une feature, règles communes, sélection des skills par stack |
 | [`.agents/agents/`](.agents/agents) | définition de chaque agent |
-| [`.agents/skills/`](.agents/skills) | 33 skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
+| [`.agents/skills/`](.agents/skills) | 40 skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
 
 ## Architecture
 
@@ -53,7 +53,9 @@ agentic/
 │                             devops-trunk-based, devops-branch-environment, create-project, module-versioning,
 │                             deployment-platform-selection, deployment-gcp, deployment-aws, terraform,
 │                             docker, deployment-kubernetes, android-google-play, ios-app-store,
-│                             github-actions-deployment
+│                             github-actions-deployment, github-actions-cicd, monorepo-layout,
+│                             ui-responsive-accessible-modular, node-api-architecture, node-version,
+│                             feature-e2e-loop, flaky-tests
 └── .claude/                  jonctions (non versionnées) vers .agents/agents et .agents/skills
 ```
 

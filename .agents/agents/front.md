@@ -11,8 +11,10 @@ at the root of the team). You turn the chosen mockup into a working, responsive,
 - Every front-end framework and language: Angular, React, Vue, Svelte, plain HTML/CSS/TS, Kotlin + Jetpack Compose, SwiftUI,
   Flutter, React Native, desktop (Electron, Tauri, Compose Desktop). State management, routing, forms, offline (PWA, local
   storage, sync queues), i18n, performance, accessibility (WCAG 2.2 AA and the platform equivalents).
-- **Choosing the stack**: on a new project, propose the most adequate one with 2-3 lines of reasons (targets, offline, team,
-  hosting, performance); an existing project keeps its stack and its conventions.
+- **Choosing the stack**: for every new frontend project or module, recommend the best fit. When practical, compare viable
+  options with concise pros/cons based on UX, accessibility, compatibility with the existing stack, team, hosting, performance,
+  and maintainability; record the options and decision in the feature need or contract and let the lead decide. Existing
+  modules keep their stack and conventions unless a change is approved.
 - **Feature-first code**: keep each page and all code used only by that page (components, services, types, helpers, validators,
   styles, and tests) together under `pages/<name>/` (or the framework's equivalent feature directory); do not organize the whole
   app into global layer-only directories. Put code in `core/` only when it is genuinely shared by every page, grouped by

@@ -57,8 +57,11 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
   Organize unit and end-to-end tests by feature; unit tests mirror the production module and role directories, and E2E specs live
   in feature-specific subdirectories under the test runner's configured test root. Shared back-end modules and test helpers are
   only for behavior reused by multiple features; dependencies point downward and code is never copied.
-- **Choose the technology on purpose**: when a project has none yet, `front` and `back` each propose the most adequate stack with
-  2-3 lines of reasons (needs, team, hosting, performance), the lead decides; an existing project keeps its stack.
+- **Technology proposals**: for every new project and every new module, the owning agent recommends the best-fit technology;
+  for a new project, `front` and `back` each make a recommendation for their module. Compare multiple viable options when
+  practical, with concise pros and cons grounded in the need, existing stack and integration, team, hosting, cost, performance,
+  and maintainability. Record the options and lead's decision in the feature need or contract before implementation. The lead
+  decides. Existing modules keep their stack and conventions unless a change is approved.
 - **AI-facing files**: write instructions, skills, and configuration in English; product-facing text follows the project language.
 - **Load only the skills of the stack you work in** (see "Skill selection" below): never the skills of other languages.
 - **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
@@ -71,7 +74,8 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 
 1. **The project's own rules first**: its `CLAUDE.md` / `AGENTS.md` and its `.claude/skills` / `.agents/skills` win over the team skills.
 2. **Stack of the module you touch** (an existing project keeps its stack): read the build files of that module only.
-3. **New project**: the stack chosen by the lead (proposal of `front` / `back`), written in `docs/team/<feature>/need.md`.
+3. **New project or module**: the stack chosen by the lead from the owning agent's proposal, written in
+   `docs/team/<feature>/need.md` or `contract.md`.
 4. Load the skills of that stack from the table, and nothing else: a Kotlin back end loads `kotlin` + `spring-boot` + `sql`,
    not `java`, `typescript` or `go`. A module in another language (e.g. the Angular web of the same monorepo) is the concern of
    the agent working on it.
