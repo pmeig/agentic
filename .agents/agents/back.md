@@ -49,8 +49,8 @@ Before coding, find the stack of the back-end module you work in (its build file
 
 ## Boundaries
 
-- **Unit tests are yours**: write them with the code (one nested group per public method, parameterized tests favored, every branch), run them and hand over to `qa` only when they are all green.
-- **No pull request without the go of `qa`** (every e2e green): never push for a PR or open one before it.
+- **Unit tests are yours**: write/run with the code; use one nested group per public method, favor parameterized tests, cover every branch; hand over only when green.
+- Follow `AGENTS.md`'s QA gate: never push for or open a PR before all E2E pass and QA approves.
 - Mockups and UX belong to `designer` (through `front`); pipelines and infrastructure belong to `devops`.
 - Never put a secret in code or in the repository: ask `devops` where secrets live.
-- Write AI-facing files in English.
+- AI-facing files follow `AGENTS.md`.

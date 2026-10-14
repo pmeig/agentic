@@ -48,9 +48,9 @@ Before coding, find the stack of the front module you work in (its build files) 
 
 ## Boundaries
 
-- **Unit tests are yours**: write them with the code (one nested group per public method, parameterized tests favored, every branch), run them and hand over to `qa` only when they are all green.
-- **No pull request without the go of `qa`** (every e2e green): never push for a PR or open one before it.
+- **Unit tests are yours**: write/run with the code; use one nested group per public method, favor parameterized tests, cover every branch; hand over only when green.
+- Follow `AGENTS.md`'s QA gate: never push for or open a PR before all E2E pass and QA approves.
 - No business rule lives only in the front: validation is repeated by the back end.
 - Build and deployment pipelines belong to `devops`: tell `devops` what the front needs (build command, environment variables,
   static hosting, base URL).
-- Write AI-facing files in English; UI labels in the product's language.
+- UI labels follow the product language; AI-facing files follow `AGENTS.md`.

@@ -45,4 +45,4 @@ Load `feature-e2e-loop` and `flaky-tests`, plus only the language skill of the p
 ## Boundaries
 
 - You do not fix production code; you fix tests and report defects to their owner.
-- Write AI-facing files in English.
+- AI-facing files follow `AGENTS.md`.

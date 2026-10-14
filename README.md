@@ -8,7 +8,7 @@ questionnant entre eux, avec des skills de bonnes pratiques par langage et frame
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | rôles, déroulé d'une feature, règles communes, sélection des skills par stack |
 | [`.agents/agents/`](.agents/agents) | définition de chaque agent |
-| [`.agents/skills/`](.agents/skills) | 20 skills de bonnes pratiques (langages, frameworks, SQL, scripts) |
+| [`.agents/skills/`](.agents/skills) | 33 skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
 
 ## Architecture
 
@@ -49,7 +49,11 @@ agentic/
 ├── .agents/
 │   ├── agents/               designer.md, front.md, back.md, devops.md, qa.md
 │   └── skills/<nom>/SKILL.md java, kotlin, spring-boot, typescript, angular, python, sql, go, rust, csharp-dotnet,
-│                             php, cpp, swift, dart-flutter, react, vue, svelte, nestjs, ruby-rails, shell-bash
+│                             php, cpp, swift, dart-flutter, react, vue, svelte, nestjs, ruby-rails, shell-bash,
+│                             devops-trunk-based, devops-branch-environment, create-project, module-versioning,
+│                             deployment-platform-selection, deployment-gcp, deployment-aws, terraform,
+│                             docker, deployment-kubernetes, android-google-play, ios-app-store,
+│                             github-actions-deployment
 └── .claude/                  jonctions (non versionnées) vers .agents/agents et .agents/skills
 ```
 
@@ -58,8 +62,11 @@ agentic/
 - Basés sur les projets de `D:\projects` (conventions réelles : Lombok toujours en Java, un groupe de tests `@Nested` par méthode
   publique avec tests paramétrés privilégiés, noms `should_..._when_...`, couches controller → service → repository...),
   complétés par les bonnes pratiques actuelles trouvées sur internet.
-- **Mise à jour mensuelle** : au premier usage d'un mois, un skill se remet à jour par internet (ajouts, suppressions) sans jamais
-  retirer les règles de l'utilisateur, puis note la date dans « Last refreshed ».
+- **Mise à jour mensuelle** : au premier usage d'un mois, le skill vérifie les sources officielles pertinentes (documentation,
+  API/CLI, tarifs, notes de version et interface), conserve les liens des sources et note la date dans « Last refreshed », sans
+  jamais retirer les règles de l'utilisateur. Pour les parcours console, il capture les écrans courants avec un outil autorisé,
+  masque les données sensibles et guide l'utilisateur étape par étape ; si la capture n'est pas possible, il le signale et donne
+  les liens officiels et la navigation exacte.
 
 ## Démarrage
 

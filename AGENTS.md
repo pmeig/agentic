@@ -59,6 +59,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
   only for behavior reused by multiple features; dependencies point downward and code is never copied.
 - **Choose the technology on purpose**: when a project has none yet, `front` and `back` each propose the most adequate stack with
   2-3 lines of reasons (needs, team, hosting, performance), the lead decides; an existing project keeps its stack.
+- **AI-facing files**: write instructions, skills, and configuration in English; product-facing text follows the project language.
 - **Load only the skills of the stack you work in** (see "Skill selection" below): never the skills of other languages.
 - **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
 - The feature folder `docs/team/<feature>/` is the shared memory of the team: keep it short and up to date.
@@ -99,6 +100,9 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 | SQL migrations, schema or queries | `sql-best-practices` |
 | shell / PowerShell scripts, CI `run:` steps | `shell-bash-best-practices` |
 
-Role skills, loaded whatever the language: `designer` and `front` → `ui-responsive-accessible-modular`; `devops` →
-`monorepo-layout`, `github-actions-cicd`, `docker`; `qa` → `feature-e2e-loop`, `flaky-tests` (+ the language skill of the e2e
-tool: `typescript-best-practices` for Playwright).
+Role skills, loaded whatever the language: `designer` and `front` → `ui-responsive-accessible-modular`; `devops` → `create-project`
+for new projects, `module-versioning` for independently versioned modules, `monorepo-layout`, `github-actions-cicd`, `docker`,
+and exactly one branch-strategy skill after asking the lead (`devops-trunk-based` or `devops-branch-environment`). For
+deployment, load `deployment-platform-selection` and only the chosen provider/tool skills (`deployment-gcp`, `deployment-aws`,
+`terraform`, `docker`, `deployment-kubernetes`, `android-google-play`, `ios-app-store`, `github-actions-deployment`); `qa` →
+`feature-e2e-loop`, `flaky-tests` (+ the language skill of the e2e tool: `typescript-best-practices` for Playwright).

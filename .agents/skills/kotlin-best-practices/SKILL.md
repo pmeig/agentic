@@ -69,12 +69,5 @@ class DataContextServiceTest {
 
 Last refreshed: 2026-10
 
-- On the **first use of this skill in a calendar month after the date above**, refresh it before applying it: search the web for
-  what changed since that month (new stable versions, newly recommended practices, deprecated or removed APIs and tools).
-- Update **only the parts that come from the internet**: add the new practices, change outdated versions, remove what is
-  deprecated or removed. Keep it short, prefer official sources (release notes, official docs).
-- **Never remove or weaken the user's rules**: everything taken from the user's projects (`D:\projects\...`) or explicit
-  instructions and the team conventions (layered controller/service/repository, pages/ + core/ modules, one test group per public
-  method with parameterized tests favored, `should_..._when_...` names, mocks built by hand, Lombok always for Java, every branch covered...). When the internet
-  contradicts one of them, keep the rule and tell the user about the conflict.
-- Then set "Last refreshed" to the current month and tell the user in a few bullets what was added, changed or removed (with sources).
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
