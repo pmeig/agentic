@@ -1,14 +1,14 @@
 # agentic
 
-Une équipe de cinq agents IA (designer, front, back, devops, qa) qui produit une feature de bout en bout en autonomie, en se
-questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions des agents sont en anglais
-(`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
+Une équipe de cinq agents IA (designer, front, back, qa, sales ; l'agent devops est désactivé) qui produit une feature de bout en
+bout en autonomie, en se questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions
+des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
 
 | Élément | Rôle |
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | rôles, déroulé d'une feature, règles communes, sélection des skills par stack |
 | [`.agents/agents/`](.agents/agents) | définition de chaque agent |
-| [`.agents/skills/`](.agents/skills) | 40 skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
+| [`.agents/skills/`](.agents/skills) | skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
 
 ## Architecture
 
@@ -17,45 +17,43 @@ questionnant entre eux, avec des skills de bonnes pratiques par langage et frame
                  │
                  ▼
   designer ⇄ front ──(contrat d'interface)──⇄ back
-  (maquettes)  │  code + TU verts               │  code + TU verts
+  (maquettes)  │  code + TU                     │  code + TU
                └───────────────┬────────────────┘
                                ▼
-                 devops (monorepo, CI/CD)
+        qa : TU + Sonar + tous les e2e verts = feu vert
                                ▼
-              qa : tous les e2e verts = feu vert
-                               ▼
-                pull request ─▶ déploiement ─▶ qa : toute la feature
+        pull request ─▶ déploiement ─▶ qa : toute la feature ─▶ sales (optionnel)
 ```
 
-- **designer** : UX, gestes métier, parcours, couleurs ; propose au moins 3 maquettes HTML avec screenshots PNG desktop et mobile affichés avant le choix, demande à `front` les écrans existants.
-- **front** : reproduit la maquette (ou fait évoluer l'élément bloquant avec `designer`), établit le contrat avec `back`, écrit
-  ses tests unitaires, remet à `qa` le geste métier (`gesture.md`).
+- **designer** : UX, gestes métier, parcours, couleurs ; 3 à 5 maquettes HTML vraiment différentes avec screenshots PNG desktop et
+  mobile affichés avant le choix ; demande à `front` les écrans existants.
+- **front** : reproduit la maquette, établit le contrat avec `back`, écrit ses tests unitaires, remet à `qa` le geste métier (`gesture.md`).
 - **back** : API, règles métier, SQL/NoSQL derrière le contrat ; écrit ses tests unitaires.
-- **devops** : monorepo et CI/CD selon les technos choisies.
-- **qa** : écrit et lance les e2e ; **lui seul donne le feu vert de la PR**, quand tous les e2e passent ; reteste toute la feature
-  après déploiement.
-- Les agents se posent leurs questions par `SendMessage`, et partagent leur travail dans `docs/team/<feature>/` du projet
-  (`need.md`, `design/`, `contract.md`, `gesture.md`, `qa.md`).
-- Chaque agent ne charge que les skills de la stack du module où il travaille (tableau « Skill selection » de `AGENTS.md`) ; les
-  règles propres à un projet passent avant.
+- **qa** : écrit et lance les e2e, exécute les TU et le rapport Sonar (100 % de couverture, 0 issue, les corrections reviennent au
+  propriétaire du code) ; **lui seul donne le feu vert de la PR** ; reteste toute la feature après déploiement.
+- **sales** : positionnement, idées de promotion, canaux de diffusion, scripts, textes et vidéos promotionnelles (montage) ; demande
+  maquettes et visuels au `designer`, écrans de démo à `front` ; ne publie rien, le lead valide.
+- Les agents se posent leurs questions par `SendMessage` et partagent leur travail dans `docs/team/<feature>/` du projet.
+- Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
+  propres à un projet passent avant.
 
 ## Arborescence
 
 ```
 agentic/
-├── AGENTS.md                 instructions de l'équipe (lu par tous les outils IA)
+├── AGENTS.md                 instructions de l'équipe (lues par tous les outils IA)
 ├── CLAUDE.md                 importe AGENTS.md pour Claude Code
 ├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone
 ├── .agents/
-│   ├── agents/               designer.md, front.md, back.md, devops.md, qa.md
-│   └── skills/<nom>/SKILL.md java, kotlin, spring-boot, typescript, angular, python, sql, go, rust, csharp-dotnet,
-│                             php, cpp, swift, dart-flutter, react, vue, svelte, nestjs, ruby-rails, shell-bash,
-│                             devops-trunk-based, devops-branch-environment, create-project, module-versioning,
-│                             deployment-platform-selection, deployment-gcp, deployment-aws, terraform,
-│                             docker, deployment-kubernetes, android-google-play, ios-app-store,
-│                             github-actions-deployment, github-actions-cicd, monorepo-layout,
-│                             ui-responsive-accessible-modular, node-api-architecture, node-version,
-│                             feature-e2e-loop, flaky-tests
+│   ├── agents/               designer, front, back, qa, sales (devops.md.disabled)
+│   └── skills/<nom>/SKILL.md
+│       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
+│                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
+│       CI/CD et déploiement      devops-*, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*
+│       design                    ui-responsive-accessible-modular, design-*
+│       qualité                   e2e-run, e2e-live-progress, e2e-parallelism-init, e2e-<outil>-best-practices (17 outils),
+│                                 sonar-report, sonar-<langage>
+│       communication             promo-communication, promo-video
 └── .claude/                  jonctions (non versionnées) vers .agents/agents et .agents/skills
 ```
 
@@ -67,8 +65,9 @@ agentic/
 - **Mise à jour mensuelle** : au premier usage d'un mois, le skill vérifie les sources officielles pertinentes (documentation,
   API/CLI, tarifs, notes de version et interface), conserve les liens des sources et note la date dans « Last refreshed », sans
   jamais retirer les règles de l'utilisateur. Pour les parcours console, il capture les écrans courants avec un outil autorisé,
-  masque les données sensibles et guide l'utilisateur étape par étape ; si la capture n'est pas possible, il le signale et donne
-  les liens officiels et la navigation exacte.
+  masque les données sensibles et guide l'utilisateur étape par étape ; sans capture possible, il le signale et donne les liens
+  officiels et la navigation exacte.
+- Les skills `sonar-<langage>` ne sont chargés que sur demande.
 
 ## Démarrage
 
