@@ -1,6 +1,6 @@
 ---
 name: svelte-best-practices
-description: MANDATORY when writing, reviewing or testing Svelte or SvelteKit code: the team's conventions transposed to Svelte 5 - runes ($state, $derived, $effect, $props), shared state in .svelte.ts classes, snippets instead of slots, SvelteKit load functions and form actions, typed API layer, Vitest with one describe per public function - plus current Svelte 5 practices.
+description: MANDATORY for any Svelte or SvelteKit code: Svelte 5 runes, .svelte.ts state, snippets, load functions and form actions, Vitest.
 ---
 
 # Svelte best practices
@@ -34,7 +34,4 @@ The user has no Svelte project yet: these rules transpose the team's front-end c
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

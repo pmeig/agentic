@@ -1,13 +1,13 @@
 ---
 name: kotlin-best-practices
-description: MANDATORY when writing, reviewing or testing Kotlin code (Spring libraries/apps on Maven, Android): the user's conventions - val and data classes, constructor injection, extension functions, JUnit 5 with one @Nested inner class per public method, should_..._when_... names, mockito-kotlin - plus current Kotlin practices. Use for any .kt file or Kotlin unit test.
+description: MANDATORY for any .kt file or Kotlin unit test (Spring, Android): val and data classes, constructor injection, JUnit 5 @Nested per public method, mockito-kotlin.
 ---
 
 # Kotlin best practices
 
-Based on `D:\projects\kotlin\spring-libraries` (its `CLAUDE.md` and `unit-test-conventions` skill) and the Android app of
-`D:\projects\typescript\budget\android`, plus current Kotlin practice. A project's own rules win. Spring:
-`spring-boot-best-practices`; Android architecture: `android-compose-architecture`; commands: `java-version` / `android-tooling`.
+Based on `spring-libraries` (its `CLAUDE.md` and `unit-test-conventions` skill) and the `budget` Android app, plus current Kotlin
+practice. A project's own rules win. Spring: `spring-boot-best-practices`; Android: `android-compose-architecture`; commands:
+`java-version` / `android-tooling`.
 
 ## 1. Build
 
@@ -37,6 +37,7 @@ Based on `D:\projects\kotlin\spring-libraries` (its `CLAUDE.md` and `unit-test-c
 - Names `should_<expected result>_when_<condition>` in snake_case, **no backtick sentences** (grep-able, consistent).
 - Mocks by hand: `private val dependency: Dependency = mock()`, SUT built explicitly; no `@Mock`/`@InjectMocks`/`@ExtendWith`. Import mockito-kotlin functions one by one (`import org.mockito.kotlin.whenever`), never `Mockito.xxx(...)` inline.
 - Assertions: `kotlin.test` (`assertEquals`, `assertFailsWith`, `assertIs`) consistently in a file.
+- **Favor parameterized tests** inside the nested group: tests of a method that differ only by inputs and expected results become one `@ParameterizedTest` (`@MethodSource` with a `@JvmStatic` function in a `companion object` of the nested class or `@TestInstance(PER_CLASS)`, `@CsvSource`, `@EnumSource`); separate tests stay for genuinely different arrange or verify steps.
 - Coverage of every branch (`if`, `when`, elvis, safe call, `catch`), every lambda forced to run (`doAnswer { it.getArgument<() -> Unit>(0).invoke() }`), async awaited (`runTest`, `StepVerifier`), side effects verified (`verify`).
 - Fixtures: private top-level helpers in the test file or `shared/` test packages; named arguments in fixture builders.
 
@@ -61,13 +62,6 @@ class DataContextServiceTest {
 }
 ```
 
-## Unit test rule: nested groups + parameterized tests
-
-- **Keep the nested group per public method** (above) and, inside it, **favor parameterized tests**: when several tests of a method differ only by their inputs and expected results, write one parameterized test instead of copies, with `@ParameterizedTest` with `@MethodSource` (a `@JvmStatic` function in a `companion object` of the nested class, or `@TestInstance(PER_CLASS)`), `@CsvSource` or `@EnumSource`. Each case keeps a readable `should_..._when_...` name; separate tests stay for genuinely different arrange or verify steps.
-
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

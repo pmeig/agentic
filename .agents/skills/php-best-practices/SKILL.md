@@ -1,6 +1,6 @@
 ---
 name: php-best-practices
-description: MANDATORY when writing, reviewing or testing PHP code (Symfony, Laravel, plain PHP): the team's conventions transposed to PHP - strict types, layered controller/service/repository by feature, constructor injection, readonly classes and enums, PSR-12/PER, PHPStan max, PHPUnit with one nested group per public method and should_..._when_... names - plus PHP 8.5 practices.
+description: MANDATORY for any PHP code (Symfony, Laravel, plain): strict types, layered by feature, DI, readonly/enums, PHPStan max, PHPUnit, PHP 8.5.
 ---
 
 # PHP best practices
@@ -57,7 +57,4 @@ The user has no PHP project yet: these rules transpose the team's conventions to
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

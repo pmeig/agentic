@@ -1,6 +1,6 @@
 ---
 name: dart-flutter-best-practices
-description: MANDATORY when writing, reviewing or testing Dart or Flutter code (mobile, web, desktop): the team's conventions transposed to Flutter - pages/ and core/ feature modules, MVVM with ChangeNotifier/Riverpod view models, repositories behind abstract classes, offline-first, immutable models, very_good/flutter_lints, flutter_test with one group per public method and should_..._when_... names - plus current Flutter/Dart 3 practices.
+description: MANDATORY for any Dart or Flutter code: pages/ and core/ modules, MVVM view models, repositories, offline-first, flutter_test, Dart 3.
 ---
 
 # Dart / Flutter best practices
@@ -58,7 +58,4 @@ The user has no Flutter project yet: these rules transpose the team's Android/An
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
