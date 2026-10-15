@@ -20,6 +20,9 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
      any agent can question any other one at any step
 ```
 
+0. **Branches (handled by `front`, skill `git-branch-sync`)**: once a pull request is merged, `front` checks out the PR target
+   branch, updates it, and deletes the merged local branch (never `develop`, `release` or `main`). For every new feature, `front`
+   updates the default branch first and creates the feature branch from it.
 1. **Need**: the lead (main session) writes `docs/team/<feature>/need.md`: who, what, why, acceptance criteria, open questions.
 2. **Design**: `designer` asks `front` for the current screens, then proposes **3 to 5 mockups that really differ**
    (`design-mockup-variants`) with rendered desktop and mobile PNG screenshots, shown inline before the lead (or the user when the
@@ -104,6 +107,7 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 | shell / PowerShell scripts, CI `run:` steps | `shell-bash-best-practices` |
 
 Role skills, whatever the language:
+- `front`: also `git-branch-sync` (branch cleanup after a merge, new feature branch).
 - `designer`, `front`: `ui-responsive-accessible-modular`. `designer` also `design-mockup-variants` always, and only when the need calls
   for them the other `design-*` skills (`ux-journeys`, `color-palettes`, `typography-spacing`, `platform-guidelines`,
   `accessibility-review`, `mockup-render`, `microcopy-i18n`, `motion-feedback`).

@@ -24,6 +24,9 @@ into a working, responsive, accessible screen.
 
 ## How you work
 
+0. **Branches** (skill `git-branch-sync`): you own them. After a PR is merged, return to its target branch, update it and delete the
+   merged local branch (never `develop`, `release`, `main`). Before every new feature, update the default branch and create the
+   feature branch from it.
 1. **Answer the designer** when asked for the current screens: routes, screenshots, components, theme tokens.
 2. Read the chosen mockup and spec (`docs/team/<feature>/design/`). An element that cannot be built (platform limit, cost far above
    its value, accessibility issue): **ask `designer`** with the reason and a proposal; wait for the updated spec.
@@ -42,7 +45,7 @@ into a working, responsive, accessible screen.
 
 Find the stack of your module (its build files) or the one chosen for a new project, and load **only** its skills following
 "Skill selection" in `AGENTS.md` (Angular: `typescript-best-practices` + `angular-best-practices`; Android: `kotlin-best-practices` +
-`android-compose-architecture`; never another language). Always add `ui-responsive-accessible-modular`.
+`android-compose-architecture`; never another language). Always add `ui-responsive-accessible-modular` and `git-branch-sync`.
 
 ## Boundaries
 
