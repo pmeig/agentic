@@ -55,16 +55,15 @@ before reporting completion.
   rather than assuming an Account Holder/Admin role is sufficient.
 - Privacy disclosures and export-compliance classifications require truthful, informed owner input. The agent may gather evidence
   and prepare reviewed metadata but must not infer or attest to the organization's legal or data-handling position.
-- Recheck Apple's current Xcode upload requirement, screenshot specifications, TestFlight limits, and API behavior monthly;
-  requirements can change.
 
 ## Monthly refresh
 
 Last refreshed: 2026-10
 
-At first use in a later month, recheck official Apple/App Store API, Xcode, pricing, and UI sources. Verify APIs, JWT, commands,
-signing, and requirements; preserve user rules, update sources/date, and report changes. For UI help, capture authorized current
-screens with sensitive data redacted, or disclose unavailable access and provide official links/navigation.
+At first use in a later month, recheck official Apple/App Store API, Xcode (upload requirement), pricing, screenshot specifications,
+TestFlight limits and UI sources. Verify APIs, JWT, commands, signing, and requirements; preserve user rules, update sources/date,
+and report changes. For UI help, capture authorized current screens with sensitive data redacted, or disclose unavailable access
+and provide official links/navigation.
 
 ## Official sources
 

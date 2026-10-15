@@ -55,18 +55,16 @@ recommend an orchestrator only when scale, availability, or multi-host requireme
 
 ## User assistance
 
-Use Docker CLI/API operations when authenticated and authorized. If setup requires Docker Desktop, a registry UI, or cloud
-console access, explain current navigation and capture screenshots with an authorized browser/image tool when available. Redact
-account IDs, endpoints that should remain private, personal data, and credentials. If UI access is unavailable, say so and give
-official links and exact steps.
+Use Docker CLI/API operations when authenticated and authorized. For Docker Desktop, registry UI or cloud console steps, explain
+current navigation (authorized screenshots, redacting account IDs, private endpoints, personal data and credentials); if UI access
+is unavailable, say so and give official links and exact steps.
 
 ## Monthly refresh
 
 Last refreshed: 2026-10
 
 At first use in a later month, recheck official Docker Engine, Dockerfile, Buildx, Compose, registry, security, and licensing
-sources. Verify syntax, flags, attestations, Compose, and terms; preserve user rules, update sources/date, and report changes. For
-UI help, capture authorized current screens with sensitive data redacted, or disclose unavailable access and provide official links/navigation.
+sources. Verify syntax, flags, attestations, Compose, and terms; preserve user rules, update sources/date, and report changes.
 
 ## Official sources
 

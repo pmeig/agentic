@@ -1,6 +1,6 @@
 ---
 name: ruby-rails-best-practices
-description: MANDATORY when writing, reviewing or testing Ruby or Ruby on Rails code: the team's conventions transposed to Rails - thin controllers, service objects for business rules, query objects/scopes for data access, strong parameters, migrations never edited, RuboCop, RSpec with one describe per public method and context/it should ... when ... - plus current Rails 8 practices.
+description: MANDATORY for any Ruby or Rails code: thin controllers, service and query objects, strong params, RuboCop, RSpec, Rails 8.
 ---
 
 # Ruby / Rails best practices
@@ -34,7 +34,4 @@ The user has no Ruby project yet: these rules transpose the team's conventions t
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

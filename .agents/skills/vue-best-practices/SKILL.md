@@ -1,6 +1,6 @@
 ---
 name: vue-best-practices
-description: MANDATORY when writing, reviewing or testing Vue code (Vue 3 SPAs, Nuxt): the team's conventions transposed to Vue - pages/ and core/ modules, Composition API with script setup and TypeScript, composables, Pinia stores, typed API layer, Vitest + Vue Test Utils with one describe per public function - plus Vue 3.5+/Nuxt practices.
+description: MANDATORY for any Vue code (Vue 3, Nuxt): pages/ and core/, script setup + TypeScript, composables, Pinia, typed API layer, Vitest, Vue 3.5+.
 ---
 
 # Vue best practices
@@ -35,7 +35,4 @@ The user has no Vue project yet: these rules transpose the team's Angular conven
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

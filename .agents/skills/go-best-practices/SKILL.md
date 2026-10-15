@@ -1,6 +1,6 @@
 ---
 name: go-best-practices
-description: MANDATORY when writing, reviewing or testing Go code (HTTP APIs, CLIs, workers): the team's conventions transposed to Go - layered handler/service/repository by feature, small interfaces at the consumer, explicit errors wrapped with %w, context everywhere, table-driven tests grouped per public function with should_..._when_... names - plus current Go (1.25+) practices.
+description: MANDATORY for any Go code (HTTP APIs, CLIs, workers): layered by feature, small interfaces, wrapped errors, context, table-driven tests, Go 1.25+.
 ---
 
 # Go best practices
@@ -64,7 +64,4 @@ The user has no Go project yet: these rules transpose the team's conventions (`j
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

@@ -1,6 +1,6 @@
 ---
 name: react-best-practices
-description: MANDATORY when writing, reviewing or testing React code (Vite SPAs, Next.js, React Native): the team's conventions transposed to React - pages/ and core/ modules, function components only, React Compiler instead of manual memo, server components by default in Next.js, data through a typed API layer and TanStack Query, Vitest + Testing Library with one describe per public function - plus React 19 practices.
+description: MANDATORY for any React code (Vite, Next.js, React Native): pages/ and core/, function components, React Compiler, server components, TanStack Query, Vitest, React 19.
 ---
 
 # React best practices
@@ -38,7 +38,4 @@ The user has no React project yet: these rules transpose the team's Angular conv
 
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.

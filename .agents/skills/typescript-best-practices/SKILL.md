@@ -1,13 +1,12 @@
 ---
 name: typescript-best-practices
-description: MANDATORY when writing, reviewing or testing TypeScript or JavaScript (Node apps and CLIs, pnpm libraries/monorepos, scripts): the user's conventions - strict ESM, no enums, satisfies/as const, arrow functions, undefined over null, frozen config, dot-kind file names, Vitest with vi.hoisted mocks and describe per function - plus TypeScript 7 practices. Use for any .ts/.js file, tsconfig or package.json.
+description: MANDATORY for any .ts/.js file, tsconfig or package.json (Node, pnpm, scripts): strict ESM, no enums, satisfies/as const, undefined over null, dot-kind file names, Vitest, TypeScript 7.
 ---
 
 # TypeScript / JavaScript best practices
 
-Based on `D:\projects\typescript\budget\server` (the reference: newest and most careful), `pmeig`, `rpg`, `folderSync`,
-`D:\projects\javascript\camille`, plus TypeScript 7 practice. Server layering (controller/service/repository, `useXxx()`):
-`node-api-architecture`; Angular: `angular-best-practices`; commands: `node-version`; SQL: `sql-best-practices`.
+Based on `budget/server` (the reference: newest and most careful), `pmeig`, `rpg`, `folderSync`, `camille`, plus TypeScript 7
+practice. Server layering: `node-api-architecture`; Angular: `angular-best-practices`; commands: `node-version`; SQL: `sql-best-practices`.
 
 ## 1. Tooling
 
@@ -41,17 +40,10 @@ Based on `D:\projects\typescript\budget\server` (the reference: newest and most 
 ## 4. Unit tests (Vitest)
 
 - `test/` mirrors `src/`, files `<source>.test.ts` (Angular apps: `*.spec.ts` beside the source). Config: `environment: 'node'`, `clearMocks: true`, coverage v8 with `lcov` (Sonar), excludes entry points, entities, DTOs, properties.
-- **One `describe` per public function** (top `describe` = the unit or route, nested `describe` per method); `it` (never `test`) with present-tense behavior sentences (`'generates an id for a new expense instead of sending NULL'`); `it.each` for tables; arrange/act/assert separated by blank lines.
+- **One `describe` per public function** (top `describe` = the unit or route, nested `describe` per method); `it` (never `test`) with present-tense behavior sentences (`'generates an id for a new expense instead of sending NULL'`); arrange/act/assert separated by blank lines. **Favor parameterized tests**: tests of a function that differ only by inputs and expected results become one `it.each` (table of objects, `$name` in the title) inside its `describe`; separate tests stay for genuinely different arrange or verify steps.
 - Mocks: `const mocks = vi.hoisted(() => ({...}))`, `vi.mock('<relative path>.js', () => ({useXxx: () => mocks.xxx}))`, module under test imported after the mocks; small factories with overrides (`const request = (overrides: Partial<X> = {}) => ({...defaults, ...overrides})`); `vi.useFakeTimers()` + `vi.setSystemTime()` for dates; `vi.stubEnv` for the environment.
 - Test every exported function with behavior, including not-found, invalid input and error paths; never types, interfaces, `useXxx()` accessors or plain property files.
 
-## Unit test rule: nested groups + parameterized tests
-
-- **Keep the nested group per public method** (above) and, inside it, **favor parameterized tests**: when several tests of a method differ only by their inputs and expected results, write one parameterized test instead of copies, with `it.each` (table of objects, `$name` in the title) inside the `describe` of the function. Each case keeps a readable `should_..._when_...` name; separate tests stay for genuinely different arrange or verify steps.
-
 ## Monthly refresh
 
-Last refreshed: 2026-10
-
-At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
-guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
+Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
