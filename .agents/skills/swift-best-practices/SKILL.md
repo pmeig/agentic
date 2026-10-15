@@ -1,6 +1,6 @@
 ---
 name: swift-best-practices
-description: MANDATORY for any Swift code (SwiftUI, server Swift, packages): MVVM with @Observable, repositories behind protocols, Swift 6 concurrency, Swift Testing.
+description: MANDATORY when writing, reviewing or testing Swift code (iOS/macOS apps with SwiftUI, server Swift, packages): the team's conventions transposed to Swift - MVVM with @Observable view models, pages/ and core/ modules, repositories behind protocols, offline-first, Swift 6 strict concurrency, Swift Testing with one @Suite per public method and should_..._when_... names - plus current Swift 6.x practices.
 ---
 
 # Swift best practices
@@ -50,4 +50,7 @@ The user has no Swift project yet (the iPhone client is the web PWA): these rule
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

@@ -1,6 +1,6 @@
 ---
 name: spring-boot-best-practices
-description: MANDATORY for any Spring Boot code (Java or Kotlin, apps or starters): Spring Boot 4, auto-configuration, @ConfigurationProperties, constructor injection, ProblemDetail, JPA auditing.
+description: MANDATORY when writing or reviewing Spring Boot code (Java or Kotlin, apps or reusable libraries/starters): Spring Boot 4 conventions of the user - native extension points, conditional auto-configuration, @ConfigurationProperties, constructor injection, ProblemDetail errors, servlet + reactive twins, JPA auditing, layered architecture - plus current Spring practice.
 ---
 
 # Spring Boot best practices
@@ -64,4 +64,7 @@ Based on `D:\projects\kotlin\spring-libraries` (its `CLAUDE.md` and `spring-*` s
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

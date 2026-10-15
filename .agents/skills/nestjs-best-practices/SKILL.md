@@ -1,6 +1,6 @@
 ---
 name: nestjs-best-practices
-description: MANDATORY for any NestJS code: module per feature, controller/service/repository, DTO validation, typed ConfigModule with Vault, exception filters, Jest/Vitest.
+description: MANDATORY when writing, reviewing or testing NestJS code: the team's Node conventions transposed to NestJS - one module per feature with controller/service/repository, constructor DI, DTOs validated with class-validator or zod, typed ConfigModule with Vault values, exception filters returning problem details, Jest/Vitest with one describe per public method and should ... when ... names.
 ---
 
 # NestJS best practices
@@ -34,4 +34,7 @@ and `typescript-best-practices` for the language. These rules adapt them to Nest
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

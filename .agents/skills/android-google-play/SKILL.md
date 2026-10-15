@@ -34,8 +34,8 @@ fees, policies, API behavior, and console screens can change.
 - Google currently lists a one-time US$25 developer-account registration fee; verify the current fee and payment requirements
   before asking the user to approve or pay.
 - Personal developer accounts created after November 13, 2023 currently need a closed test with at least 12 testers opted in
-  continuously for 14 days, then must apply for production access. Confirm whether this account-specific rule applies before
-  promising a production release.
+  continuously for 14 days, then must apply for production access. Recheck this account-specific eligibility rule during monthly
+  refresh and confirm whether it applies before promising a production release.
 
 ## Assist the account holder
 
@@ -45,14 +45,15 @@ give exact, current console steps and official documentation links; tell the use
 keys or identity/payment documents in chat, then continue when they confirm.
 
 Never promote to production without explicit approval. Verify the Play track and release status before reporting completion.
+Recheck current account fees and account-specific production-testing requirements during each monthly refresh; eligibility rules
+can depend on account type and creation date.
 
 ## Monthly refresh
 
 Last refreshed: 2026-10
 
-At first use in a later month, recheck official Android/Play API, auth, policy, pricing (account fee), track, testing-requirement
-(depends on account type and creation date), and UI sources. Verify APIs, upload, credentials, and eligibility; preserve user rules,
-update sources/date, and report changes. For console help, capture authorized
+At first use in a later month, recheck official Android/Play API, auth, policy, pricing, track, and UI sources. Verify APIs, upload,
+credentials, and eligibility; preserve user rules, update sources/date, and report changes. For console help, capture authorized
 current screens with sensitive data redacted, or disclose unavailable access and provide official links/navigation.
 
 ## Official sources

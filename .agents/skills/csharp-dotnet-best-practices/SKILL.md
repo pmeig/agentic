@@ -1,6 +1,6 @@
 ---
 name: csharp-dotnet-best-practices
-description: MANDATORY for any C# / .NET code (ASP.NET Core, workers, libraries, Blazor): layered by feature, DI, options, records, nullable, ProblemDetails, xUnit, .NET 10.
+description: MANDATORY when writing, reviewing or testing C# / .NET code (ASP.NET Core APIs, workers, libraries, Blazor): the team's conventions transposed to .NET - layered controller/service/repository by feature, constructor injection, options pattern, records, nullable enabled, ProblemDetails errors, xUnit with one nested class per public method and should_..._when_... names - plus .NET 10 / C# 14 practices.
 ---
 
 # C# / .NET best practices
@@ -60,4 +60,7 @@ The user has no .NET project yet: these rules transpose the team's conventions (
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

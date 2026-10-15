@@ -1,6 +1,6 @@
 ---
 name: sql-best-practices
-description: MANDATORY for any schema, migration or query (PostgreSQL first, also MySQL/SQL Server/Oracle) and SQL vs NoSQL choices: numbered immutable migrations, naming, constraints, indexes, transactions.
+description: MANDATORY when designing a schema, writing a migration or a query (PostgreSQL first, also MySQL/SQL Server/Oracle) or choosing between SQL and NoSQL: the user's conventions - numbered immutable migrations with a header, singular snake_case tables, audit columns, named constraints (_pk/_uk/_fk/chk_/idx_), UPPER_SNAKE query constants with $n parameters - plus indexing, transaction and NoSQL modeling practices.
 ---
 
 # SQL and NoSQL best practices
@@ -55,4 +55,7 @@ Based on `D:\projects\typescript\budget\server\src\db\migrations` and its reposi
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

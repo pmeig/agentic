@@ -1,6 +1,6 @@
 ---
 name: rust-best-practices
-description: MANDATORY for any Rust code (CLIs, axum/tokio services, libraries): modules by feature, traits, thiserror/anyhow, no unwrap, tests per function, edition 2024.
+description: MANDATORY when writing, reviewing or testing Rust code (CLIs, services with axum/tokio, libraries): the team's conventions transposed to Rust - layered modules by feature, traits at the boundary, Result with thiserror/anyhow, no unwrap in production, tests grouped in one module per public function with should_..._when_... names - plus Rust 2024 edition practices.
 ---
 
 # Rust best practices
@@ -62,4 +62,7 @@ The user has no Rust project yet: these rules transpose the team's conventions t
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

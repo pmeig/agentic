@@ -1,6 +1,6 @@
 ---
 name: cpp-best-practices
-description: MANDATORY for any C or C++ code (apps, libraries, Qt, Unreal): RAII, value semantics, const by default, CMake presets, GoogleTest/Catch2, C++23/26.
+description: MANDATORY when writing, reviewing or testing C or C++ code (applications, libraries, Qt apps, Unreal Engine gameplay code): the team's conventions transposed to modern C++ - RAII and value semantics, no raw owning pointers, const by default, layered modules, CMake presets, GoogleTest/Catch2 with one group per public method and should_..._when_... names - plus C++23/26, Qt 6 and Unreal Engine 5 practices.
 ---
 
 # C / C++ best practices
@@ -61,4 +61,7 @@ folders but no C++ sources: these rules transpose the team's conventions to mode
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

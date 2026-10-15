@@ -1,6 +1,6 @@
 ---
 name: python-best-practices
-description: MANDATORY for any .py file, pyproject.toml or Python test: Python 3.13, uv, type hints, ruff, pydantic, pytest, runs in WSL.
+description: MANDATORY when writing, reviewing or testing Python code (scripts, CLIs, APIs with FastAPI/Django, data processing): modern Python 3.13 practices - uv/venv, pyproject.toml, type hints checked by mypy/pyright, ruff, dataclasses/pydantic, pathlib, pytest with one class per public function - and the user's environment (Python runs in WSL). Use for any .py file, pyproject.toml or Python test.
 ---
 
 # Python best practices
@@ -53,4 +53,7 @@ class TestSolve:
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

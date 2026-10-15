@@ -1,6 +1,6 @@
 ---
 name: shell-bash-best-practices
-description: MANDATORY for any shell or PowerShell script (bash, CI run steps, Docker entrypoints): strict mode, quoting, until-loops, no echoed secrets, traps, ShellCheck, WSL specifics.
+description: MANDATORY when writing or reviewing shell scripts (bash scripts, CI run steps, Docker entrypoints, PowerShell scripts): the user's conventions from the budget CI and e2e scripts - strict mode, quoted variables, functions in lib files, until-loops instead of fixed sleeps, secrets never echoed, cleanup traps - plus ShellCheck practices and Windows/WSL specifics.
 ---
 
 # Shell scripting best practices
@@ -31,4 +31,7 @@ Based on the user's scripts (`budget/.github/workflows/*.yml` run steps, `e2e/*/
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.

@@ -1,6 +1,6 @@
 ---
 name: angular-best-practices
-description: MANDATORY for any Angular code (apps, PWAs, libraries): standalone, zoneless, signals, inject(), lazy pages, t pipe i18n, Vitest helpers, Angular 21/22 practices.
+description: MANDATORY when writing, reviewing or testing Angular code (apps, PWAs, component libraries): the user's conventions - standalone, zoneless, signals everywhere, inject(), functional guards/interceptors, lazy loadComponent pages, Promise-based HTTP, custom t pipe i18n, pure helpers tested with Vitest - plus current Angular (21/22) practices. Use for any Angular component, service, template, route or spec.
 ---
 
 # Angular best practices
@@ -56,4 +56,7 @@ accessibility: `ui-responsive-accessible-modular`; language: `typescript-best-pr
 
 ## Monthly refresh
 
-Last refreshed: 2026-10. At first use in a later month: re-check the official sources, update only internet-derived guidance, keep user/project rules, add source URLs, update this date, report changes.
+Last refreshed: 2026-10
+
+At first use in a later month, check official sources for version, practice, and deprecation changes. Update only internet-derived
+guidance; preserve user/project rules. Add source URLs, update this date, and briefly report changes.
