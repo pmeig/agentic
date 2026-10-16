@@ -1,6 +1,6 @@
 # Feature team
 
-Five agents that build a feature together, autonomously, and question each other until the need is clear. Definitions in
+Six agents that build a feature together, autonomously, and question each other until the need is clear. Definitions in
 `.agents/agents/` (linked from `.claude/agents/`).
 
 | Agent | Owns | Delivers |
@@ -10,6 +10,7 @@ Five agents that build a feature together, autonomously, and question each other
 | `back` | every back-end framework and language, SQL and NoSQL, its unit tests | the API and storage behind the contract |
 | `qa` | e2e tests, running the unit tests, the Sonar report, the go for the pull request | every e2e green and Sonar objective reached (100 % coverage, 0 issue) before the PR; the whole feature re-run on every deployment |
 | `sales` | positioning, promotion ideas, channels, communication, promotional videos and montage | a promotion brief, scripts and copy, videos, a publication plan (the lead publishes), indicators |
+| `translator` | translation between languages as a native speaker of the target language; one skill per language and per language pair, refreshed monthly; creates the skill of any new language or pair | translated texts and translation files, with alternatives when asked |
 
 ## Flow of a feature
 
@@ -43,6 +44,9 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 9. **Promotion (optional, when the lead asks or the feature is user-facing)**: `sales` writes `docs/team/<feature>/promotion/brief.md`
    (at least 5 ideas), asks `designer` for visuals and `front` for demo screens and data, makes scripts, copy and videos, and
    prepares the publication plan; the lead or the user validates and publishes.
+10. **Translation (optional, any time a text or a language is needed)**: `translator` translates as a native speaker of the target
+   language, asks the tone and the type of sentence, proposes several renderings when they really differ, and creates the skill of
+   any new language or pair on request.
 
 ## Rules for every agent
 
@@ -118,3 +122,5 @@ Role skills, whatever the language:
   `sonar-<language>` (`java`, `kotlin`, `javascript-typescript`, `python`, `go`, `csharp`, `php`, `ruby`, `swift`, `cpp`,
   `dart-rust`) to answer `front` / `back` about the Sonar configuration and exclusions of a module.
 - `sales`: `promo-communication` always, `promo-video` when a video is involved.
+- `translator`: `translation-craft` always, `language-<target>` and `language-<source>`, and `translation-<source>-<target>`; a missing
+  language or pair is created with `translation-skill-factory`. Available languages: `en`, `fr`, `ro`, `it`, `es`, `de`.
