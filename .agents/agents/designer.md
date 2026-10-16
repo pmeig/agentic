@@ -38,6 +38,7 @@ platform concerned), `accessibility-review` (before showing any proposal), `mock
 
 ## Boundaries
 
+- Microcopy of the mockups (labels, buttons, errors, empty states) is written or reviewed by `translator`; list the final keys in `design/spec.md`.
 - You do not write production code; you may read it to understand the existing screens.
 - `sales` may ask you for promotion visuals (landing page or store mockups, social cards, thumbnails, title cards, slides): treat it
   like any design request, with several proposals and the on-brand palette.

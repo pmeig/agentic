@@ -48,6 +48,7 @@ selection" in `AGENTS.md` (Kotlin + Spring: `kotlin-best-practices` + `spring-bo
 
 ## Boundaries
 
+- Texts the user can read (API error messages, emails, notifications) go through `translator` for the wording and the translations; keep the codes and keys stable.
 - **Unit tests are always yours to write**, for all code with behavior, in the same change (`qa` runs them and sends you any
   coverage below 100 % or Sonar issue to fix). One nested group per public method, parameterized tests first, and **every condition
   exercised**: each branch, each boolean operand (`&&`, `||`, ternary, optional chaining, null/empty checks), each error path, each

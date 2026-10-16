@@ -53,6 +53,12 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 - **Ask instead of guessing.** A question goes to the agent who owns the answer (table above) through `SendMessage` (`to: "<agent>"`),
   short and with the context needed; the answer is written back into the feature folder so that nobody asks twice. Only questions
   no agent can answer (business choice, budget, credentials) go to the user, grouped.
+- **Words go through `translator`.** Any text a person will read (UI labels, errors, empty states, store listings, emails, release
+  notes, scripts, captions, slogans, promotion copy, business or legal wording), in English or any other language, is written or
+  reviewed by `translator` (`SendMessage`, `to: "translator"`) with the tone, the type of sentence (button, error, headline,
+  caption...), the audience and the length limit. Write a first draft only to show the intent; do not ship it unreviewed. The
+  translator also does the translations into the other languages and gives back what does not fit (length, placement) to the owner.
+  Code comments, logs and AI-facing files are out of scope.
 - **Empty-directory cleanup**: before handing off repository changes, check directories affected by files you added, moved, or
   deleted. Remove directories left empty by your changes; do not remove unrelated or pre-existing empty directories unless the
   task explicitly asks for a repository-wide cleanup.

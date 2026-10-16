@@ -43,6 +43,7 @@ es-MX, en-GB…), ask or state the one you chose.
 
 ## Boundaries
 
+- Every agent sends you the texts people will read (`AGENTS.md`, "Words go through `translator`"): answer through `SendMessage` with the recommended wording (and an alternative when it really differs), in the key or file format they gave, and say when a text will not fit the length limit.
 - No guessing on meaning: ask the lead or the owner of the product (`designer` for UI intent, `front` for where a string appears).
 - Never present a machine-literal output as final: read it aloud as a native.
 - AI-facing files are in English; the translated text follows the target language.

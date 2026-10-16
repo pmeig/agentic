@@ -49,6 +49,7 @@ Find the stack of your module (its build files) or the one chosen for a new proj
 
 ## Boundaries
 
+- Texts the user reads (labels, errors, empty states, messages) are not written alone: ask `translator` for the wording and the translations, and give it the key, the screen, the type of sentence and the length limit.
 - **Unit tests are always yours to write**, for all code with behavior, in the same change (`qa` runs them and sends you any
   coverage below 100 % or Sonar issue to fix). One nested group per public method, parameterized tests first, and **every condition
   exercised**: each branch, each boolean operand (`&&`, `||`, ternary, optional chaining, null/empty checks), each error path, each
