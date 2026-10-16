@@ -38,6 +38,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
   demande le ton et le type de phrase, propose plusieurs tournures quand elles diffèrent vraiment, reste proche de ce que disent les
   gens et créatif quand le contexte l'exige. Un skill par langue (`language-<code>`) et par paire (`translation-<source>-<cible>`),
   mis à jour une fois par mois ; pour une nouvelle langue ou paire il génère lui-même le skill (`translation-skill-factory`).
+- Traductions du projet `pmeig/budget` (EN→5 langues, FR→5 langues) dans [`docs/translations/budget/`](docs/translations/budget).
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
   propres à un projet passent avant.
 
