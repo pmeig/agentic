@@ -49,7 +49,7 @@ agentic/
 │   └── skills/<nom>/SKILL.md
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
 │                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
-│       CI/CD et déploiement      devops-*, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*
+│       CI/CD et déploiement      git-branch-sync, devops-*, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*
 │       design                    ui-responsive-accessible-modular, design-*
 │       qualité                   e2e-run, e2e-live-progress, e2e-parallelism-init, e2e-<outil>-best-practices (17 outils),
 │                                 sonar-report, sonar-<langage>
@@ -67,6 +67,8 @@ agentic/
   jamais retirer les règles de l'utilisateur. Pour les parcours console, il capture les écrans courants avec un outil autorisé,
   masque les données sensibles et guide l'utilisateur étape par étape ; sans capture possible, il le signale et donne les liens
   officiels et la navigation exacte.
+- `git-branch-sync` (géré par `front`) : après le merge d'une PR, retour sur la branche cible mise à jour et suppression de la branche
+  locale (sauf `develop`/`release`/`main`) ; avant toute nouvelle feature, mise à jour de la branche par défaut puis création de la branche.
 - Les skills `sonar-<langage>` ne sont chargés que sur demande.
 
 ## Démarrage
