@@ -1,6 +1,6 @@
 # agentic
 
-Une équipe de six agents IA (designer, front, back, qa, sales, translator ; l'agent devops est désactivé) qui produit une feature de bout en
+Une équipe de sept agents IA (designer, front, back, qa, sales, translator, documentalist ; l'agent devops est désactivé) qui produit une feature de bout en
 bout en autonomie, en se questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions
 des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
 
@@ -38,6 +38,13 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
   demande le ton et le type de phrase, propose plusieurs tournures quand elles diffèrent vraiment, reste proche de ce que disent les
   gens et créatif quand le contexte l'exige. Un skill par langue (`language-<code>`) et par paire (`translation-<source>-<cible>`),
   mis à jour une fois par mois ; pour une nouvelle langue ou paire il génère lui-même le skill (`translation-skill-factory`).
+- **documentalist** : rend un projet compréhensible, d'abord pour une IA (`docs/ai/` : arborescence annotée, features par couche, API,
+  schéma de base de données, flux, conventions, commandes, glossaire, pièges, avec le format adapté : Mermaid, OpenAPI, DBML, C4,
+  `AGENTS.md`, graphe de connaissances Graphify pour les gros codes), puis pour les humains (`README.md` avec l'architecture, guides
+  selon Diátaxis, ADR, site de documentation). Les autres agents lui demandent « comment marche X, où est Y » par `SendMessage` ; il
+  met la doc à jour après chaque feature mergée. Deux skills principaux (`documentation-ai`, `documentation-human`) et des skills
+  de technologie mis à jour une fois par mois : `doc-code-analysis`, `doc-mermaid`, `doc-openapi-asyncapi`, `doc-database-schema`,
+  `doc-architecture-c4-adr`, `doc-ai-context-files`, `doc-sites-markdown`, `doc-graphify` (licence à vérifier avant usage).
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
   propres à un projet passent avant.
 
@@ -49,7 +56,7 @@ agentic/
 ├── CLAUDE.md                 importe AGENTS.md pour Claude Code
 ├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone
 ├── .agents/
-│   ├── agents/               designer, front, back, qa, sales, translator (devops.md.disabled)
+│   ├── agents/               designer, front, back, qa, sales, translator, documentalist (devops.md.disabled)
 │   └── skills/<nom>/SKILL.md
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
 │                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
@@ -60,6 +67,8 @@ agentic/
 │       communication             promo-communication, promo-video
 │       langues et traduction     language-<code> (en, fr, ro, it, es, de), translation-<source>-<cible>, translation-craft,
 │                                 translation-skill-factory
+│       documentation             documentation-ai, documentation-human, doc-code-analysis, doc-mermaid, doc-openapi-asyncapi,
+│                                 doc-database-schema, doc-architecture-c4-adr, doc-ai-context-files, doc-sites-markdown, doc-graphify
 └── .claude/                  jonctions (non versionnées) vers .agents/agents et .agents/skills
 ```
 
