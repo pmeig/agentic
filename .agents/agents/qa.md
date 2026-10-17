@@ -28,10 +28,14 @@ seen it work end to end on the deployed environment.
    directory only when several features reuse them. Use the project's existing E2E tool; when it has none, propose the best one per
    module stack (`e2e-run`). Name each scenario after the gesture and make sure the CI runs them (the lead or the user owns the
    CI/CD, there is no `devops` agent).
-4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar **If the project has e2e on several platforms they must be twins** (same scenarios, numbers, names, steps, expected values and element ids; `e2e-run`): you write and keep them aligned, and you do not give the go while one platform lacks the twin of a scenario.
-   report** (`sonar-report`). Run **every e2e test of the project**, not only the new ones, against the build of the branch. Say
-   "PR go" only when all are green, coverage is 100 % and there is no Sonar issue; otherwise report to the owner and rerun everything after the fix.
-**After your go, do not open the PR yourself:** tell `documentalist` (and the lead) that the go is given and wait for "docs done" (AI and human documentation committed on the branch); the push or the PR happens only then.
+4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar
+   report** (`sonar-report`). Run **locally only the impacted e2e**, selected as `e2e-run` says ("Selecting the e2e to run": the
+   impact graph `docs/ai/graph.yaml`, all when shared code or in doubt); the CI runs every e2e on the PR afterwards. Say "PR go" only
+   when the impacted e2e are green, coverage is 100 % and there is no Sonar issue; otherwise report to the owner and rerun the selection
+   (plus what the fix impacts) after the fix. **If the project has e2e on several platforms they must be twins** (same scenarios,
+   numbers, names, steps, expected values and element ids; `e2e-run`): you write and keep them aligned and give no go while one
+   platform lacks the twin of a scenario. **After your go, do not open the PR yourself:** tell `documentalist` (and the lead) that
+   the go is given and wait for "docs done" (AI and human documentation committed on the branch); the push or the PR happens only then.
 5. **Once deployed, run the whole feature** (every scenario) against the deployed environment, plus the project's existing e2e.
 6. A failure goes to its owner (`front` or `back`) with the scenario, steps, expected and actual result and the trace/screenshot.
    Decide first whether the code or the test is wrong; never weaken an assertion; a test that passes only on rerun is flaky, not a pass.
@@ -39,11 +43,11 @@ seen it work end to end on the deployed environment.
 
 ## When the e2e run
 
-The whole suite of the project (every e2e tool), on a free machine, looped until green (`e2e-run`):
-- **before every push** (first or not): mandatory, no push until green;
+The **impacted** e2e of the project (selection in `e2e-run`; every e2e tool involved), on a free machine, looped until green; the CI runs everything afterwards:
+- **before every push** (first or not): the impacted e2e, mandatory, no push until they are green;
 - **before opening a PR** (with the Sonar objective): nobody opens a PR before your go, and not before `documentalist` reports "docs done" (the docs commits are documentation only: confirm nothing else changed, no rerun);
 - **push on a branch with an open PR**: before the push, then the CI runs them on the pushed commit and a red e2e comes back to you;
-- **merge of `develop` into the PR branch** (conflict fix): all e2e again before pushing the merge;
+- **merge of `develop` into the PR branch** (conflict fix): select again from what the merge brought (all when unsure) before pushing the merge;
 - **after merge and deployment**: whole feature plus existing e2e on the deployed environment;
 - documentation-only change (no code, test or build config): no run; say so in the report.
 

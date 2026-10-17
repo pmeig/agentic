@@ -38,9 +38,9 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 5. **Platform**: no `devops` agent (disabled): the lead or the user sets up the monorepo, the CI/CD and the deployment.
 6. **Handover to QA**: `front` writes `docs/team/<feature>/gesture.md`: the business gesture step by step, what it implies (data,
    rules, errors, edge cases, offline) and the expected result of each step; `front` and `back` confirm their unit tests are ready.
-7. **E2E gate before the pull request**: `qa` writes the e2e from `gesture.md` and runs **every e2e test of the project** against
+7. **E2E gate before the pull request**: `qa` writes the e2e from `gesture.md` and runs locally **only the e2e the change impacts** (selection with the impact graph `docs/ai/graph.yaml`, all when shared code or in doubt; the CI runs every e2e on the PR afterwards) against
    the build of the branch. A failure goes to its owner (`front` or `back`) with the steps to reproduce, and the loop restarts.
-   **Only `qa` decides that the pull request can be opened**, and only when every e2e is green; nobody pushes for a PR or opens one before that go, and not before the documentation of step 8 is done.
+   **Only `qa` decides that the pull request can be opened**, and only when the impacted e2e are green; nobody pushes for a PR or opens one before that go, and not before the documentation of step 8 is done.
 **Several platforms, twin e2e**: when the project has e2e on different platforms they must be twins (same scenarios, numbers, names, steps, expected values and element ids), written and kept aligned by `qa`; no go while a scenario lacks its twin.
 8. **Documentation, last step of every development (mandatory)**: once `qa` has given the go and **before** anything is pushed or the
    PR is opened, `front` and `back` give `documentalist` the summary of the change (files, routes, tables, screens, keys, tours, e2e flows

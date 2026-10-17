@@ -17,12 +17,23 @@ Before any local e2e run, test build, push, PR creation or CI rerun (runners and
 3. Once both are free, **wait 30 seconds and check again**; launch only if still clean, otherwise start over.
 4. Your own run writes `e2e.pid` at start and removes it at the end, even on failure.
 
+## Selecting the e2e to run (local gate)
+
+Locally run **only the scenarios the change impacts**; once they are green the push or the PR may happen, and the CI then runs **every** e2e. This skill is self-contained: the selection input is the project's impact graph, `docs/ai/graph.yaml`, kept by `documentalist`.
+1. Changed files: `git diff --name-only <base>...HEAD` plus uncommitted files.
+2. For each file, take the longest matching prefix in `paths` of the graph -> features -> their `e2e` scenario numbers. Add the scenarios created or edited in this change, and the cross-screen scenarios (`tours` key: guided tours, every-page walks) when a screen, an element id/anchor or a text changed.
+3. **Run all instead** when: a file is under `shared`, no prefix matches, the graph is missing or older than the code (its `commit` stamp against `git log`), the change is a merge bringing unknown content, or you doubt. A selection is never a guess.
+4. No graph: read the diff and the test names, select the same way, say it in the report and lean towards running more; ask `documentalist` to build the graph.
+5. Several platforms: select by scenario number on every platform; run the reference platform first, then its twins (twin rule below).
+6. A red scenario outside the selection, or a regression only the CI finds, means the graph is wrong: report it to `documentalist` to fix `graph.yaml`, and rerun with the corrected selection.
+7. Report which scenarios ran and why.
+
 ## 2. Loop until green
 
-1. Run **the whole suite** (every e2e tool) with the workers of `e2e-parallelism-init`, steps shown live (`e2e-live-progress`).
+1. Run **the selected scenarios** (every e2e tool involved; all when the selection says so) with the workers of `e2e-parallelism-init`, steps shown live (`e2e-live-progress`).
 2. On a failure, decide first **whether the code or the test is wrong** (trace, screenshot, steps). Code wrong: report to its owner
    (`front` or `back`) with scenario, steps, expected and actual result, trace. Test wrong: fix the test; **never weaken an assertion**.
-3. After every fix, rerun the **whole suite** until all is green; only then do the push, the PR or the deployment check go on.
+3. After every fix, rerun the selection (plus what the fix impacts) until all is green; only then do the push or the PR go on (the CI runs the whole suite). The deployment check runs the whole feature.
 4. The same failure after two fixes: stop and report to the lead with what was tried.
 
 **A test that passes only on rerun is flaky, not a pass.** No automatic retries to hide it (a retry setting only detects

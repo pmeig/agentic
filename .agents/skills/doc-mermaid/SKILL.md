@@ -46,7 +46,7 @@ it. It is the default; mermaid v11 supports 20+ diagram types. Fenced block with
 ## Validate and render
 
 ```bash
-# validate / render one block or file (Node; run through the project's node-version rules)
+# validate / render one block or file (Node; as the project runs Node commands)
 npx -y @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.svg      # also .png / .pdf
 npx -y @mermaid-js/mermaid-cli -i README.md -o out.md             # renders every mermaid block of a Markdown file
 ```

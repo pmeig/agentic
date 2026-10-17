@@ -132,7 +132,7 @@ The AI must know **what a change touches** before editing and which tests to run
 - `features.<id>`: `routes`, `tables`, `unit` (test folders/files), `e2e` (scenario numbers), `note` for traps.
 - `e2e`: scenario number -> feature ids (reverse index).
 - Header comment = usage: match each changed path to its longest prefix, take the features, then their e2e (run those first), then the cross-screen ones, then the rest.
-- **It orders the runs and lists what to edit; it never shrinks the gate.** If the project's rule says "all e2e before a push", keep that gate (a map of "impacted flows" was tried in one project and removed because most changes touch shared code). Use the map for fast feedback while iterating and to know which scenarios and twins to edit.
+- **It defines the local gate**: only the scenarios it selects are run locally before a push or a PR (`qa` and `e2e-run` apply it), and the CI runs every scenario afterwards. A selection is never a guess: shared paths, no matching prefix, a stale graph (its `commit` stamp older than the code) or doubt mean "run all". A red scenario outside the selection, or a regression only the CI finds, means the graph is wrong: fix it the same day.
 - Build it from the code: imports/call chains for `paths`, routes from the controllers, tables from the repositories/migrations, scenarios from each test's content. Verify every prefix exists (script) and re-check it in the end-of-development update (new file or folder -> add its prefix; new scenario -> add its number to the features and to the reverse index).
 
 ## Token budget (AI documentation only)

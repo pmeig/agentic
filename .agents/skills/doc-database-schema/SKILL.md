@@ -29,7 +29,7 @@ truth order: **live database > migrations > ORM models > guesses** (mark guesses
 | Redis / key-value | key patterns, types, TTLs, owner code path |
 | ORM only (no DB reachable) | read entity/model files and migrations; say it is derived |
 
-Local databases: the project's docker rules apply (`docker` skill, WSL aliases); never connect to production without the owner's go,
+Local databases: use the project's own way to start local services (its README/AGENTS.md); never connect to production without the owner's go,
 use a copy; never print credentials.
 
 ## Convert and generate

@@ -8,8 +8,7 @@ description: Use to write or update the files AI agents read first in a reposito
 ## AGENTS.md (the entry point every agent reads)
 
 Plain Markdown at the repository root, read by Claude Code, Codex, Gemini CLI, Copilot, Cursor, OpenCode, Junie and others.
-No schema; short beats complete. **The real file is `AGENTS.md`; `CLAUDE.md` is a link or a one-line pointer to it** (skill
-`ai-config-agents-folder`; do not convert an existing real `CLAUDE.md` without asking). Written in English (`ai-config-in-english`).
+No schema; short beats complete. **The real file is `AGENTS.md`; `CLAUDE.md` contains the single line `@AGENTS.md` (Claude Code import; a symbolic link also works but needs rights on Windows).** Do not convert an existing real `CLAUDE.md` without asking. Written in English.
 
 Put in it (about 60 to 150 lines):
 1. **What the project is** in 3 lines and the module list with folders.

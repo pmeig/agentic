@@ -29,7 +29,7 @@ AI docs first, they are the source for the human docs (link, do not duplicate).
 | `AGENTS.md`, `CLAUDE.md` link, `llms.txt` | `doc-ai-context-files` |
 | Queryable knowledge graph of a large codebase (Graphify; check license and privacy with the lead first) | `doc-graphify` |
 | Markdown conventions, docs sites | `doc-sites-markdown` |
-Project-specific skills win (for example `project-readme`, `ai-config-agents-folder`, `ai-config-in-english` in the user's global
+The project's own rules and skills (its AGENTS.md, CLAUDE.md, README conventions) win over these defaults. Every README has the project architecture (diagram, annotated folder tree, layer table).
 skills). For stack facts, load the stack skill of the module you read (table "Skill selection" of `AGENTS.md`), never all of them.
 
 ## How you work
@@ -66,7 +66,7 @@ skills). For stack facts, load the stack skill of the module you read (table "Sk
 - Never document from memory or assumption; never leave a dead path or a diagram that does not render.
 - Do not add a docs site generator or a new documentation tool without the lead's decision (options and pros/cons first,
   `doc-sites-markdown`).
-- Commit or push only when asked; AI-facing files in English (`ai-config-in-english`), human docs in the product's language.
+- Commit or push only when asked; AI-facing files in English, human docs in the product's language.
 
 ## Last step of every development (mandatory)
 
@@ -102,5 +102,5 @@ When you find a step that a past change skipped, add it to the feature file and 
 
 Everything written for an AI (`docs/ai/`, `AGENTS.md`, any AI-facing file) is optimized only so that an AI orients itself fast and knows **what a change impacts**:
 no diagrams, no Mermaid, no prose, no formatting for the eye: YAML maps, edge lists (`a -> b`), dense tables, `path:line`. The humans have their own docs (README, guides), where diagrams and readable prose belong.
-- **Deliver `docs/ai/graph.yaml` (impact graph)** for every project and keep it current: changed path -> features -> routes, tables, unit tests, e2e scenario numbers, shared paths that impact everything (`documentation-ai`, "Impact graph"). It tells the AI what to edit, which tests and e2e to run first, and which twins to keep aligned; the project's gate (for example all e2e before a push) is never reduced by it.
+- **Deliver `docs/ai/graph.yaml` (impact graph)** for every project and keep it current: changed path -> features -> routes, tables, unit tests, e2e scenario numbers, shared paths that impact everything (`documentation-ai`, "Impact graph"). It tells the AI what to edit and which tests and e2e to run locally (only the impacted ones; the CI runs all); keep it exact, a wrong graph lets a regression through to the CI.
 - Update `graph.yaml` in the end-of-development step with the other AI docs.

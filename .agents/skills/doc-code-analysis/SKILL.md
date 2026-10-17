@@ -52,7 +52,7 @@ Record `METHOD path | file:line | auth | feature`; `doc-openapi-asyncapi` turns 
 | Go | `go list -deps ./...`, `go mod graph`, `go mod why` |
 | Rust | `cargo tree`, `cargo modules` |
 | .NET | `dotnet list package`, `dotnet sln list` |
-Run Java/Kotlin and Node commands through the user's version wrappers (skills `java-version`, `node-version`); Docker only through WSL (`docker`).
+Run language commands the way the project requires (version managers, wrappers, containers) as written in its AGENTS.md/README; never assume a global tool.
 Turn the result into a Mermaid `flowchart` (`doc-mermaid`) limited to meaningful edges (layer rules, cross-feature imports).
 
 ## 5. Other useful extractions
