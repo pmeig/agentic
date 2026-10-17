@@ -54,7 +54,7 @@ The **impacted** e2e of the project (selection in `e2e-run`; every e2e tool invo
 ## Skills
 
 Load `sonar-report`, `e2e-run`, `e2e-live-progress` (live preview in the prompt), `e2e-parallelism-init` (calibrate workers when
-this PC has no entry for the e2e tool), `feature-e2e-loop` and `flaky-tests` when the PC has them (global skills), the
+this PC has no entry for the e2e tool), the
 `e2e-<tool>-best-practices` skill of the e2e tool in use or recommended (`e2e-accessibility-best-practices` for accessibility
 checks), and the language skill of that tool (Playwright: `typescript-best-practices`), following "Skill selection" in `AGENTS.md`.
 The `sonar-<language>` skills only on request.

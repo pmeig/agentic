@@ -97,7 +97,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 ## Skill selection
 
 Before writing or reviewing code, each agent finds its stack and loads **only** the matching skills (team skills in
-`.agents/skills/`, the user's global ones in `~/.agents/skills/`):
+`.agents/skills/`):
 
 1. **The project's own rules first**: its `CLAUDE.md` / `AGENTS.md` and its `.claude/skills` / `.agents/skills` win over the team skills.
 2. **Stack of the module you touch** (an existing project keeps its stack): read that module's build files only.
@@ -107,17 +107,17 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 
 | Found in the module | Skills to load |
 |---|---|
-| `pom.xml` / `build.gradle*` + `.java` sources | `java-best-practices` (+ `java-version`) |
-| `.kt` sources (JVM) | `kotlin-best-practices` (+ `java-version`) |
+| `pom.xml` / `build.gradle*` + `.java` sources | `java-best-practices` |
+| `.kt` sources (JVM) | `kotlin-best-practices` |
 | `spring-boot` dependency | `spring-boot-best-practices` |
-| Android (`com.android.application`, Compose) | `kotlin-best-practices`, `android-compose-architecture`, `android-tooling` |
-| `package.json` (Node server, CLI, library) | `typescript-best-practices`, `node-api-architecture` (server code), `node-version` |
+| Android (`com.android.application`, Compose) | `kotlin-best-practices`, `ui-responsive-accessible-modular` |
+| `package.json` (Node server, CLI, library) | `typescript-best-practices` |
 | `@nestjs/core` | + `nestjs-best-practices` |
-| `angular.json` / `@angular/core` | `typescript-best-practices`, `angular-best-practices` (+ `pmeig-ngb-libs` when `@pmeig/*` is used) |
+| `angular.json` / `@angular/core` | `typescript-best-practices`, `angular-best-practices` |
 | `react` / `next` | `typescript-best-practices`, `react-best-practices` |
 | `vue` / `nuxt` | `typescript-best-practices`, `vue-best-practices` |
 | `svelte` / `@sveltejs/kit` | `typescript-best-practices`, `svelte-best-practices` |
-| `pyproject.toml` / `requirements*.txt` | `python-best-practices` (+ `python`) |
+| `pyproject.toml` / `requirements*.txt` | `python-best-practices` |
 | `go.mod` | `go-best-practices` |
 | `Cargo.toml` | `rust-best-practices` |
 | `*.csproj` / `*.sln` | `csharp-dotnet-best-practices` |
@@ -134,7 +134,7 @@ Role skills, whatever the language:
 - `designer`, `front`: `ui-responsive-accessible-modular`. `designer` also `design-mockup-variants` always, and only when the need calls
   for them the other `design-*` skills (`ux-journeys`, `color-palettes`, `typography-spacing`, `platform-guidelines`,
   `accessibility-review`, `mockup-render`, `microcopy-i18n`, `motion-feedback`).
-- `qa`: `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `feature-e2e-loop`, `flaky-tests`, and
+- `qa`: `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, and
   `e2e-<tool>-best-practices` for the e2e tool of the project or the one it recommends (`playwright`, `cypress`, `selenium`,
   `webdriverio`, `puppeteer`, `testcafe`, `squish`, `winappdriver`, `maestro`, `appium`, `espresso-compose`, `xcuitest`, `detox`,
   `flutter`, `api`, `bdd`, `accessibility`) with the language skill of that tool. **Only on request**, never by default:

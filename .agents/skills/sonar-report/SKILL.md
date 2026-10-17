@@ -14,7 +14,7 @@ review, no duplication, quality gate `OK`.
 1. Machine free first (`e2e-run` rule 1).
 2. For each changed module (the whole project before a PR), run the unit tests **with coverage** with the module's own command
    (Vitest `--coverage`, Gradle/Maven + Jacoco, pytest-cov, `go test -cover`, `cargo llvm-cov`, `dotnet test` + coverlet, Flutter
-   `--coverage`, Xcode coverage...), under `node-version` / `java-version`.
+   `--coverage`, Xcode coverage...), with the language tools as the project runs them.
 3. A failing unit test is not a Sonar matter: send it to its owner (`front` or `back`) with the test, message and stack.
 
 ## 2. Is there a Sonar for this language?
@@ -31,11 +31,7 @@ You need the **SonarQube URL**, a **token** and the **project key**. Take them f
 files, CI configuration, documented secret store). **A missing one: ask the lead** and wait; never guess a URL, look for a token
 elsewhere, print or write one.
 
-**Before asking, look for a global Sonar skill** in `~/.agents/skills/` (e.g. `sonar`): if it exists, follow it and do not ask.
-
-**Once the lead has answered, write the global skill so nobody asks again**: create or update `~/.agents/skills/sonar/SKILL.md`
-(real copy in `~/.agents`, link in `~/.claude/skills/` per `ai-config-agents-folder` when it exists; English; frontmatter `name`,
-`description`). It states how to get the quality gate:
+**Before asking, look in the project** (`AGENTS.md`, `docs/ai/commands.md`, `docs/`) for a "Sonar access" section: if it exists, follow it and do not ask.**Once the lead has answered, write that section in the project's `AGENTS.md` (or `docs/ai/commands.md`) so nobody asks again**. It states how to get the quality gate:
 - the SonarQube URL (from the PC and from CI runners if different);
 - **where the token is read from** (Vault path and field, or environment variable) and how to read it in the same command that
   uses it. **Never write the token value** in the skill, the report or a repo;
@@ -44,7 +40,7 @@ elsewhere, print or write one.
   (`pullRequest=<n>` or `branch=<name>`), and those refused for lack of privileges, with what to ask for;
 - the up-check and how to start Sonar when it is down.
 
-Keep it short, update it when the access changes, read it first next time.
+Keep it short, update it when the access changes, read it first next time. Never write secret values in it.
 
 Once connected, read for the branch or PR: quality gate, coverage (overall and new code), uncovered lines per file, issues,
 vulnerabilities, hotspots, duplication. Print `rule`, `file:line`, `message`, `severity`, never the raw answer. A read refused for

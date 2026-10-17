@@ -5,8 +5,7 @@ description: Whenever e2e tests are about to run (before push or PR, after mergi
 
 # E2E run
 
-Rules for every e2e run, local or against a deployed environment, with or without the user's global skills (`feature-e2e-loop`,
-`flaky-tests`; follow them too when loaded).
+Rules for every e2e run, local or against a deployed environment.
 
 ## 1. The machine must be free
 
@@ -38,8 +37,7 @@ Locally run **only the scenarios the change impacts**; once they are green the p
 
 **A test that passes only on rerun is flaky, not a pass.** No automatic retries to hide it (a retry setting only detects
 flakiness and the run is reported flaky). Find the cause (fixed sleep instead of a state, shared data or order dependency, port or
-resource conflict between workers, machine load: try fewer workers, time or locale) and fix it; add the case to `flaky-tests`
-when available.
+resource conflict between workers, machine load: try fewer workers, time or locale) and fix it; record the case in the project's docs so it is not rediscovered.
 
 ## Rules for every e2e test (all tools)
 

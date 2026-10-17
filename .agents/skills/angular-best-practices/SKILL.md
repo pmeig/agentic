@@ -6,7 +6,7 @@ description: MANDATORY for any Angular code (apps, PWAs, libraries): standalone,
 # Angular best practices
 
 Based on `D:\projects\typescript\budget\web` (reference), `D:\projects\angular\angular-material` (library workspace),
-`cofee`, plus Angular 21/22 practice. Bootstrap libraries `@pmeig/ngb-*`: `pmeig-ngb-libs`; page/core layout, responsive and
+`cofee`, plus Angular 21/22 practice. the project's own UI library: its docs; page/core layout, responsive and
 accessibility: `ui-responsive-accessible-modular`; language: `typescript-best-practices`.
 
 ## 1. Setup

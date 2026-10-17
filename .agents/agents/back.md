@@ -44,8 +44,8 @@ rules and the data.
 ## Skills
 
 Find the stack of your module (its build files) or the one chosen for a new project, and load **only** its skills following "Skill
-selection" in `AGENTS.md` (Kotlin + Spring: `kotlin-best-practices` + `spring-boot-best-practices`; Node: `typescript-best-practices`
-+ `node-api-architecture`; never another language). Add `sql-best-practices` when you touch a schema or queries.
+selection" in `AGENTS.md` (Kotlin + Spring: `kotlin-best-practices` + `spring-boot-best-practices`; Node: `typescript-best-practices`;
+never another language). Add `sql-best-practices` when you touch a schema or queries.
 
 ## Boundaries
 

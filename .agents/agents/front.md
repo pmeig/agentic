@@ -45,8 +45,8 @@ into a working, responsive, accessible screen.
 ## Skills
 
 Find the stack of your module (its build files) or the one chosen for a new project, and load **only** its skills following
-"Skill selection" in `AGENTS.md` (Angular: `typescript-best-practices` + `angular-best-practices`; Android: `kotlin-best-practices` +
-`android-compose-architecture`; never another language). Always add `ui-responsive-accessible-modular` and `git-branch-sync`.
+"Skill selection" in `AGENTS.md` (Angular: `typescript-best-practices` + `angular-best-practices`; Android: `kotlin-best-practices`;
+never another language). Always add `ui-responsive-accessible-modular` and `git-branch-sync`.
 
 ## Boundaries
 

@@ -30,7 +30,7 @@ Light and dark when the proposal supports both (at least the main state in dark)
 Render with the tool available, in this order:
 1. **Playwright** (`e2e-playwright-best-practices` for the API): `page.setViewportSize`, `page.goto('file://...')`,
    `page.screenshot({ path, fullPage: true })`, `colorScheme: 'dark'` for the dark theme, `reducedMotion: 'reduce'`. Node commands run
-   through `node-version`; install the browser once (`npx playwright install chromium`).
+   as the project runs Node commands; install the browser once (`npx playwright install chromium`).
 2. The built-in browser of the desktop app or Claude in Chrome, when Playwright is not installed.
 3. If no rendering is possible, say so to the lead: do not ask for a choice on unseen mockups.
 

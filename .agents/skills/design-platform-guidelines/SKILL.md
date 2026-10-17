@@ -14,7 +14,7 @@ the platform's native pattern. Several platforms in one project: each proposal f
 - Window size classes (compact, medium, expanded) with navigation bar → rail → drawer; edge-to-edge with insets; predictive back.
 - Components: top app bar, FAB, bottom sheet, snackbar, dialogs, chips, cards, segmented buttons, search bar. Expressive adds
   spring-based motion, shape morphing, emphasized type and color, and new components: use at the "excellent" level, not everywhere.
-- Touch targets 48 dp; Compose component names help `front` (`android-compose-architecture`).
+- Touch targets 48 dp; Compose component names help `front`.
 
 ## iOS / macOS: Human Interface Guidelines
 
@@ -32,7 +32,7 @@ the platform's native pattern. Several platforms in one project: each proposal f
 ## Web
 
 - Responsive and progressive: semantic landmarks, the project's CSS framework (Bootstrap 5: grid, utilities, components; the
-  `@pmeig/ngb-*` libraries when used, `pmeig-ngb-libs`), system font stack, `prefers-color-scheme` and `prefers-reduced-motion`,
+  the project's UI libraries when used), system font stack, `prefers-color-scheme` and `prefers-reduced-motion`,
   hover is never the only way to reveal an action, URLs for states.
 - Keyboard, focus order and visible focus; forms with native inputs first.
 

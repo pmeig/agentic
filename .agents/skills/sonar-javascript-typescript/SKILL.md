@@ -17,7 +17,7 @@ Model: `pmeig/github-actions/actions/node/sonar/setup` (generates the file only 
 - `sonar.typescript.tsconfigPaths=tsconfig.json`, `sonar.javascript.lcov.reportPaths=coverage/lcov.info`.
 - `sonar.exclusions=jest.config.ts,vitest.config.ts,**/*.spec.ts,**/*.test.ts,**/*.js` (compiled output and tests are not analysed as sources).
 - Coverage side: Vitest `coverage.provider: 'v8'`, `reporter: ['text', 'lcov']`, `reportsDirectory: 'coverage'` (Jest: `--coverage` with `lcov`);
-  `include: ['src/**']`. The command runs under `node-version`.
+  `include: ['src/**']`.
 
 ## Out of the analysis
 

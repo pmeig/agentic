@@ -5,8 +5,7 @@ description: MANDATORY for any .java file, pom.xml or Java unit test: Lombok alw
 
 # Java best practices
 
-Based on the user's projects (`pmeig-core`, `MyController`, `spring-libraries`) and current Java practice. A project's own
-`CLAUDE.md` / skills win; otherwise apply everything below. Spring: `spring-boot-best-practices`. Commands: `java-version`.
+Based on current Java practice. A project's own `CLAUDE.md` / skills win; otherwise apply everything below. Spring: `spring-boot-best-practices`.
 
 ## 1. Build (Maven)
 
@@ -24,7 +23,7 @@ Based on the user's projects (`pmeig-core`, `MyController`, `spring-libraries`) 
   ```
   (`addLombokGeneratedAnnotation` keeps generated code out of JaCoCo/Sonar coverage.)
 - Tests: JUnit Jupiter (5/6), Mockito (+ `-javaagent` for inline mocking on recent JDKs), AssertJ. Never JUnit 4.
-- Publishing goes through the shared CI (`github-actions-cicd` skill: Sonatype/JFrog, secrets from Vault); no credentials in poms.
+- Publishing goes through the project's CI (artifact repository, secrets from its secret store); no credentials in poms.
 
 ## 2. Lombok: never write boilerplate by hand
 
@@ -53,7 +52,7 @@ Based on the user's projects (`pmeig-core`, `MyController`, `spring-libraries`) 
 - Naming: classes by role (`AnnotationScanner`, `MojoService`, `OrderController`), verb-first methods, `UPPER_SNAKE` `private static final` constants, enum constants UPPER_SNAKE (PascalCase only when mirroring external names), no placeholder names (`MyMojo`, `toto`).
 - Concurrency: use concurrent collections only when shared between threads; `synchronized` sparingly, prefer `java.util.concurrent` locks/atomics.
 - Javadoc on public API (what and why, one or two sentences); no commented-out code.
-- Layering for applications: controller → service → repository (`node-api-architecture` principles apply): no repository in a controller, no web objects in a service.
+- Layering for applications: controller → service → repository: no repository in a controller, no web objects in a service.
 
 ## 4. Unit tests (JUnit 5)
 
