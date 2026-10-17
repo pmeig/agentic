@@ -1,6 +1,6 @@
 # agentic
 
-Une équipe de cinq agents IA (designer, front, back, qa, sales ; l'agent devops est désactivé) qui produit une feature de bout en
+Une équipe de six agents IA (designer, front, back, qa, sales, translator ; l'agent devops est désactivé) qui produit une feature de bout en
 bout en autonomie, en se questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions
 des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
 
@@ -34,6 +34,10 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - **sales** : positionnement, idées de promotion, canaux de diffusion, scripts, textes et vidéos promotionnelles (montage) ; demande
   maquettes et visuels au `designer`, écrans de démo à `front` ; ne publie rien, le lead valide.
 - Les agents se posent leurs questions par `SendMessage` et partagent leur travail dans `docs/team/<feature>/` du projet.
+- **translator** : traduit comme un natif de la langue cible (anglais → français : un Français ; italien → allemand : un Allemand),
+  demande le ton et le type de phrase, propose plusieurs tournures quand elles diffèrent vraiment, reste proche de ce que disent les
+  gens et créatif quand le contexte l'exige. Un skill par langue (`language-<code>`) et par paire (`translation-<source>-<cible>`),
+  mis à jour une fois par mois ; pour une nouvelle langue ou paire il génère lui-même le skill (`translation-skill-factory`).
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
   propres à un projet passent avant.
 
@@ -45,7 +49,7 @@ agentic/
 ├── CLAUDE.md                 importe AGENTS.md pour Claude Code
 ├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone
 ├── .agents/
-│   ├── agents/               designer, front, back, qa, sales (devops.md.disabled)
+│   ├── agents/               designer, front, back, qa, sales, translator (devops.md.disabled)
 │   └── skills/<nom>/SKILL.md
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
 │                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
@@ -54,6 +58,8 @@ agentic/
 │       qualité                   e2e-run, e2e-live-progress, e2e-parallelism-init, e2e-<outil>-best-practices (17 outils),
 │                                 sonar-report, sonar-<langage>
 │       communication             promo-communication, promo-video
+│       langues et traduction     language-<code> (en, fr, ro, it, es, de), translation-<source>-<cible>, translation-craft,
+│                                 translation-skill-factory
 └── .claude/                  jonctions (non versionnées) vers .agents/agents et .agents/skills
 ```
 

@@ -56,5 +56,6 @@ The `sonar-<language>` skills only on request.
 
 ## Boundaries
 
+- Texts you write for people (bug reports to the lead, the PR summary, release notes, test names the user reads) are reviewed by `translator` when they are user-facing; expected texts in e2e come from the final wording given by `translator`.
 - You do not fix production code; you fix tests and report defects to their owner.
 - AI-facing files follow `AGENTS.md`.
