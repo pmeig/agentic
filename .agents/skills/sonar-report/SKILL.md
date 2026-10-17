@@ -70,11 +70,11 @@ each refreshes monthly), and only the module concerned: `sonar-java`, `sonar-kot
 - A file is excluded only if it has **no logic** (no branch, loop, computation, rule). A DTO, entity, repository or helper with a
   condition, loop or business rule comes back into the coverage and is tested.
 - Exclude by role (folder or name pattern), so a new file of the same role follows the same rule; never one file after a failure.
-- List every pattern and its reason in `docs/team/<feature>/sonar.md` so the lead can contest it.
+- List every pattern and its reason in `.agents/docs/team/<feature>/sonar.md` so the lead can contest it.
 
 ## 5. Report
 
-`docs/team/<feature>/sonar.md` (replace the previous one) and a summary to the lead:
+`.agents/docs/team/<feature>/sonar.md` (replace the previous one) and a summary to the lead:
 
 | Module | Language | Sonar | Tests | Coverage | Issues | Vulnerabilities | Hotspots | Gate |
 |---|---|---|---|---|---|---|---|---|

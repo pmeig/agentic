@@ -31,7 +31,7 @@ Protected branches, never deleted locally: `develop`, `release`, `main`.
 3. Create the feature branch from it: `git checkout -b <type>/<feature>` (name from `need.md`, kebab-case, the repository's own
    prefix convention first, for example `feat/`, `fix/`).
 4. Never start a feature on top of an old feature branch or an out-of-date default branch.
-5. Write the branch name in `docs/team/<feature>/need.md` for the other agents.
+5. Write the branch name in `.agents/docs/team/<feature>/need.md` for the other agents.
 
 ## Boundaries
 

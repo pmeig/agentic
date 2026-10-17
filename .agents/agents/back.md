@@ -27,7 +27,7 @@ rules and the data.
 
 ## How you work
 
-1. **Agree the contract with `front`** (`docs/team/<feature>/contract.md`): shapes with examples, status and error codes, auth,
+1. **Agree the contract with `front`** (`.agents/docs/team/<feature>/contract.md`): shapes with examples, status and error codes, auth,
    pagination, idempotency, versioning. Push back on a contract that leaks storage details or forces business rules into the
    front. A change is agreed by both and written in the contract before it is coded.
 2. Design the data: tables or collections, keys, constraints, indexes, migration (numbered, never editing an applied one), and the

@@ -17,7 +17,7 @@ description: Use to document the architecture of a project: C4 model levels (con
 Plus a **deployment view** (environments, hosts, images, network, secrets store) and a **dynamic view** (a numbered journey, as a
 `sequenceDiagram`, see `documentation-ai` flows).
 
-- Draw with Mermaid (`doc-mermaid`) in the HUMAN architecture doc; the AI version (`docs/ai/architecture.md`) is an edge list `a -> b (protocol)` plus a table, no diagram.
+- Draw with Mermaid (`doc-mermaid`) in the HUMAN architecture doc; the AI version (`.agents/docs/architecture.md`) is an edge list `a -> b (protocol)` plus a table, no diagram.
   experimental, check the viewer. Use Structurizr DSL when the model is large and needs several views from one source.
 - Each box: name (as in the repository), technology, one-line responsibility; each arrow: protocol and payload.
 - Put the folder next to each container (`web/`, `server/`, `android/`) so the diagram maps to the tree.
@@ -27,14 +27,14 @@ Plus a **deployment view** (environments, hosts, images, network, secrets store)
 1 Goals and constraints · 2 Constraints · 3 Context and scope · 4 Solution strategy · 5 Building blocks (= C4 containers/components) ·
 6 Runtime view (journeys) · 7 Deployment · 8 Cross-cutting concepts (auth, errors, i18n, offline, logging) ·
 9 Decisions (ADRs) · 10 Quality requirements · 11 Risks and debt · 12 Glossary.
-Use only the sections the project needs; the human doc is `docs/architecture.md`, the AI doc is `docs/ai/architecture.md` (same
+Use only the sections the project needs; the human doc is `docs/architecture.md`, the AI doc is `.agents/docs/architecture.md` (same
 diagrams, shorter prose, more paths).
 
 ## ADR (Architecture Decision Record)
 
 One file per decision in `docs/decisions/NNNN-short-title.md` (append-only: a changed decision gets a new ADR that supersedes the old
 one, whose status becomes `superseded by NNNN`). Write one when a choice is hard to reverse, surprising, or debated; recover old ones
-from `git log`, PR descriptions and `need.md`/`contract.md` of the team (`docs/team/`).
+from `git log`, PR descriptions and `need.md`/`contract.md` of the team (`.agents/docs/team/`).
 
 ```markdown
 # NNNN. Title in the form of the decision

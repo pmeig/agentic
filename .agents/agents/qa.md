@@ -18,9 +18,9 @@ seen it work end to end and the CI is green.
 
 ## How you work
 
-1. Read `docs/team/<feature>/gesture.md` (from `front`), the need and the contract. Unclear expected result: **ask `front`**
+1. Read `.agents/docs/team/<feature>/gesture.md` (from `front`), the need and the contract. Unclear expected result: **ask `front`**
    (screen behavior) or **`back`** (rule, data, error); ask `back` for seed data and test accounts.
-2. Write the test plan in `docs/team/<feature>/qa.md`: one scenario per path of the gesture (happy path, each business rule, each
+2. Write the test plan in `.agents/docs/team/<feature>/qa.md`: one scenario per path of the gesture (happy path, each business rule, each
    error shown, edge cases, permissions, offline when supported, accessibility of the screens).
 3. Write the E2E tests in the project's configured test root, grouped in a directory per feature (e.g. `e2e/tests/<feature>/` for
    Playwright). A single spec stays directly in the feature test directory; with several, put all of them in a feature-local
@@ -30,7 +30,7 @@ seen it work end to end and the CI is green.
    CI/CD, there is no `devops` agent).
 4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar
    report** (`sonar-report`). Run **locally only the impacted e2e**, selected as `e2e-run` says ("Selecting the e2e to run": the
-   impact graph `docs/ai/graph.yaml`, all when shared code or in doubt); the CI runs every e2e on the PR afterwards. Say "PR go" only
+   impact graph `.agents/docs/graph.yaml`, all when shared code or in doubt); the CI runs every e2e on the PR afterwards. Say "PR go" only
    when the impacted e2e are green, coverage is 100 % and there is no Sonar issue; otherwise report to the owner and rerun the selection
    (plus what the fix impacts) after the fix. **If the project has e2e on several platforms they must be twins** (same scenarios,
    numbers, names, steps, expected values and element ids; `e2e-run`): you write and keep them aligned and give no go while one
