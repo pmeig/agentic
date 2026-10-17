@@ -14,7 +14,7 @@ Put in it (about 60 to 150 lines):
 1. **What the project is** in 3 lines and the module list with folders.
 2. **Where to look first**: `docs/ai/INDEX.md`, then `features/<feature>.md` for a feature, `api/endpoints.md` for routes,
    `data/schema.md` for tables, `conventions.md` before writing code.
-3. **Exact commands**: install, run, test (unit and e2e), lint, build; the version wrappers the project mandates.
+3. **Which skill to load to run or connect** (name only): the commands themselves never go in AGENTS.md; they live in a global skill for generic tools or in a repo skill for repo-specific things (`run-and-access-skills`).
 4. **Rules that differ from the defaults**: layering, naming, folder rules, test rules, language rules, forbidden things.
 5. **Workflow rules**: branches, PRs, CI, who may merge or deploy, what to ask first.
 6. **Traps**: generated files, secrets handling (names only), flaky tests.

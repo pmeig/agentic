@@ -92,6 +92,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 - **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
 - **Documentation is part of done**: every development ends with `documentalist` updating the AI and the human documentation after `qa`'s go and before the push or the PR (step 8). The AI documentation (`docs/ai/`, `AGENTS.md`) is kept cheap to read (token budget of `documentation-ai`); the human documentation is written for people and is not shortened.
 - **AI documentation is machine-first**: everything written for an AI (`docs/ai/`, `AGENTS.md`, AI-facing files) is built only so that an AI orients itself and knows what a change impacts (maps, edge lists, tables; no diagrams or prose for the eye; `docs/ai/graph.yaml` maps changed paths to features, tests and e2e). Human documentation (README, guides) keeps diagrams and readable prose.
+- **Blocked on how to run or connect? Skills, never AGENTS.md**: how to execute a command or reach a service goes only in a dedicated skill, global for generic tools (mvn, gradle, vault, sonar, docker, node/java versions) and inside the repo (`.agents/skills/`) for repo-specific things. Look for the skill first; if none, ask the lead once, then write it (`run-and-access-skills`).
 - `docs/team/<feature>/` is the shared memory of the team: keep it short and up to date.
 
 ## Skill selection
@@ -130,6 +131,7 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 | shell / PowerShell scripts, CI `run:` steps | `shell-bash-best-practices` |
 
 Role skills, whatever the language:
+- every agent: `run-and-access-skills` as soon as it is blocked on how to run a command or connect to a service (global skill for generic tools, repo skill for repo-specific things).
 - `front`: also `git-branch-sync` (branch cleanup after a merge, new feature branch).
 - `designer`, `front`: `ui-responsive-accessible-modular`. `designer` also `design-mockup-variants` always, and only when the need calls
   for them the other `design-*` skills (`ux-journeys`, `color-palettes`, `typography-spacing`, `platform-guidelines`,

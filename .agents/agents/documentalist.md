@@ -98,6 +98,10 @@ An agent that read good docs still skipped the e2e flows of a change because the
 - state that writing a test is part of the change even when running it is not possible or forbidden.
 When you find a step that a past change skipped, add it to the feature file and the checklist the same day.
 
+## Run and connect instructions are skills, never docs
+
+How to run a command or reach a service (mvn, gradle, pnpm, java/node versions, vault, sonar, docker, an e2e runner, a deploy, a repo script) is written **only** in a skill: global for generic tools, in the repo (`.agents/skills/`) for repo-specific things; load `run-and-access-skills`. Never put those commands in `AGENTS.md`, `CLAUDE.md`, `docs/ai/` or a README section you write for the AI: the AI docs name the skill to load. When you find such commands scattered in the docs, move them into the right skill and leave a pointer.
+
 ## AI docs are machine-first (human readability is irrelevant)
 
 Everything written for an AI (`docs/ai/`, `AGENTS.md`, any AI-facing file) is optimized only so that an AI orients itself fast and knows **what a change impacts**:

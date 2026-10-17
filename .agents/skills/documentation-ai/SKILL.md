@@ -42,7 +42,7 @@ docs/ai/
   flows/<flow>.md          critical journeys as one-line chains `step -> step -> step` (login, payment, sync...)
   architecture.md          context + containers + deployment as edge lists, boundaries     -> doc-architecture-c4-adr
   conventions.md           naming, layering, error handling, test rules, folder rules (what the project demands, with an example file each)
-  commands.md              exact commands: install, run, test, lint, build, e2e, deploy (with versions and prerequisites)
+  (no commands.md: how to run/connect is a skill, see `run-and-access-skills`; INDEX only names the skill to load)
   glossary.md              domain words -> code names (table, entity, class); French/English pairs when both exist
   gotchas.md               traps, generated files, flaky tests, order dependencies, known debt
   decisions/               ADRs, one per decision (`NNNN-title.md`)
@@ -93,7 +93,7 @@ Invariants, validations, permissions, offline behavior, i18n keys, feature flags
    (`git diff --stat <commit>..HEAD`), never rewrite from scratch.
 3. **Extract** with `doc-code-analysis`: tree, modules, routes, schema, dependencies between modules, tests per feature.
 4. **Write** in the order: `structure.md` → `data/` → `api/` → `features/` → `graph.yaml` → `flows/` → `architecture.md` → `conventions.md`,
-   `commands.md`, `glossary.md`, `gotchas.md` → `INDEX.md` last.
+   `glossary.md`, `gotchas.md` → `INDEX.md` last.
 5. **Verify**: every path exists (`doc-code-analysis` link check), OpenAPI lints,
    commands were run or marked `(not run)`.
 6. **Wire the agents**: add the pointer to `docs/ai/INDEX.md` in the root `AGENTS.md` (`doc-ai-context-files`) so every agent
@@ -120,7 +120,7 @@ Invariants, validations, permissions, offline behavior, i18n keys, feature flags
 
 - After each merged feature the documentalist (or the owner agent, by `SendMessage`) updates that feature file, `endpoints.md`,
   the schema and the `commit` stamp. A stale doc is worse than none: when a file cannot be verified, say so in its header.
-- Prefer generation to hand-editing for API and schema; commit the generator command in `commands.md`.
+- Prefer generation to hand-editing for API and schema; the generator command goes in the project skill that runs it (`run-and-access-skills`), not in the docs.
 
 ## Impact graph (`graph.yaml`, required)
 

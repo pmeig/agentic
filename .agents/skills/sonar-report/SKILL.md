@@ -31,7 +31,9 @@ You need the **SonarQube URL**, a **token** and the **project key**. Take them f
 files, CI configuration, documented secret store). **A missing one: ask the lead** and wait; never guess a URL, look for a token
 elsewhere, print or write one.
 
-**Before asking, look in the project** (`AGENTS.md`, `docs/ai/commands.md`, `docs/`) for a "Sonar access" section: if it exists, follow it and do not ask.**Once the lead has answered, write that section in the project's `AGENTS.md` (or `docs/ai/commands.md`) so nobody asks again**. It states how to get the quality gate:
+**Before asking, load the Sonar skill** (global `sonar` in `~/.agents/skills/`, then a repo skill): if one exists, follow it and do not ask.
+
+**Once the lead has answered, write the skill so nobody asks again** (`run-and-access-skills`): a **global** skill `sonar` for the SonarQube server and where its token is read from, plus, for what is specific to the repo (project key, branch/PR scope), a **repo** skill. Never write it in `AGENTS.md` or the docs. It states how to get the quality gate:
 - the SonarQube URL (from the PC and from CI runners if different);
 - **where the token is read from** (Vault path and field, or environment variable) and how to read it in the same command that
   uses it. **Never write the token value** in the skill, the report or a repo;

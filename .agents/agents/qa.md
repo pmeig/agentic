@@ -52,6 +52,7 @@ The **impacted** e2e of the project (selection in `e2e-run`; every e2e tool invo
 - documentation-only change (no code, test or build config): no run; say so in the report.
 
 ## Skills
+Blocked on how to run a tool or reach a service (emulator, runner, Sonar, secret store)? Load `run-and-access-skills`: find the skill, else ask the lead once and write it; never write it in `AGENTS.md`.
 
 Load `sonar-report`, `e2e-run`, `e2e-live-progress` (live preview in the prompt), `e2e-parallelism-init` (calibrate workers when
 this PC has no entry for the e2e tool), the
