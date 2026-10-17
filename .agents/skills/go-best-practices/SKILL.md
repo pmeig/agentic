@@ -5,8 +5,7 @@ description: MANDATORY for any Go code (HTTP APIs, CLIs, workers): layered by fe
 
 # Go best practices
 
-The user has no Go project yet: these rules transpose the team's conventions (`java-best-practices`, `typescript-best-practices`,
-`node-api-architecture`) to idiomatic Go. A project's own rules win.
+The user has no Go project yet: these rules transpose the team's conventions (`java-best-practices`, `typescript-best-practices`: controller → service → repository) to idiomatic Go. A project's own rules win.
 
 ## 1. Setup
 

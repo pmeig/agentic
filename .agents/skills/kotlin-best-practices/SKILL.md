@@ -5,9 +5,7 @@ description: MANDATORY for any .kt file or Kotlin unit test (Spring, Android): v
 
 # Kotlin best practices
 
-Based on `spring-libraries` (its `CLAUDE.md` and `unit-test-conventions` skill) and the `budget` Android app, plus current Kotlin
-practice. A project's own rules win. Spring: `spring-boot-best-practices`; Android: `android-compose-architecture`; commands:
-`java-version` / `android-tooling`.
+Based on current Kotlin practice. A project's own rules win. Spring: `spring-boot-best-practices`.
 
 ## 1. Build
 
@@ -19,7 +17,7 @@ practice. A project's own rules win. Spring: `spring-boot-best-practices`; Andro
 
 ## 2. Style
 
-- Follow the project's indentation (spring-libraries 2 spaces, Android 4 spaces + trailing commas); `kotlin.code.style=official`, `class X : Y` with a space.
+- Follow the project's indentation (Spring libraries 2 spaces, Android 4 spaces + trailing commas); `kotlin.code.style=official`, `class X : Y` with a space.
 - `val` by default; `var` only for `@ConfigurationProperties`, JPA columns, or local accumulators. Immutable collections (`List`, `Map`) in APIs, `toList()` copies when exposing internal state.
 - `data class` for values, `sealed interface` + data classes/objects for closed results and states (exhaustive `when`, no `else`), `enum class` for fixed sets, `object` for stateless singletons, `fun interface` for single-method strategies, `value class` for typed ids.
 - Nullability: no `!!` (only where an API guarantees non-null, with a comment); `?.let`, elvis with early return (`val token = manager.token(request) ?: return null`), `requireNotNull`/`checkNotNull` with a message, `require(...)` for argument validation. Name unused catch variables `_`.

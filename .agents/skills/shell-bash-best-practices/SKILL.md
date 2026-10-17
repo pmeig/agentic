@@ -5,8 +5,7 @@ description: MANDATORY for any shell or PowerShell script (bash, CI run steps, D
 
 # Shell scripting best practices
 
-Based on the user's scripts (`budget/.github/workflows/*.yml` run steps, `e2e/*/run.sh`, `.agents/skills/demo/scripts/*.sh`,
-`Qt/certification/*.ps1`) and ShellCheck rules. Windows specifics: Docker and Python only in WSL (`docker`, `python` skills).
+Based on ShellCheck rules and common practice. Windows specifics: run Docker and Python the way the project requires.
 
 ## 1. Bash
 

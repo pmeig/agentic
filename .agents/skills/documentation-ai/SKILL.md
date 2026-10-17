@@ -1,129 +1,93 @@
 ---
 name: documentation-ai
-description: MANDATORY for the documentalist when documenting a project FOR AN AI (to fix a bug or add a feature fast): the docs/ai/ layout, what to extract (tree, features by layer, APIs, database schema, flows, conventions), the format to choose for each, freshness stamp and update rules.
+description: MANDATORY for the documentalist when documenting a project FOR AN AI (fix a bug or add a feature fast): the docs/ai/ layout, the impact graph, machine-first formats, token budget, completeness and the end-of-development update. AI docs are always in English.
 ---
 
 # AI documentation (`docs/ai/`)
 
-Goal: an AI that has never seen the project finds **where things are, how they connect, and what a change touches** in a few
-file reads, without scanning the whole repository. Optimize for retrieval, not for prose: tables, trees, diagrams as text, exact
-paths, one fact once. Human-facing docs: `documentation-human`.
+Goal: an AI that has never seen the project finds **where things are, how they connect, what a change touches and which tests to run** in a few reads. Optimize retrieval, not prose. Human docs: `documentation-human`.
 
 ## Principles
+1. **All AI-facing documents are in English** (skill `ai-docs-in-english`), whatever the user's or the product's language (`docs/ai/`, `AGENTS.md`, `docs/team/`, skills, memory, prompts). Domain words keep their original spelling next to the English name (glossary).
+2. **Machine-first formats; human readability is irrelevant**: YAML/JSON maps, edge lists (`a -> b`, `a = b`), dense tables, `path:line`. No Mermaid, ASCII art, diagrams, prose or layout for the eye (Mermaid stays in human docs). Contracts keep their native format (OpenAPI, AsyncAPI, DBML, SQL).
+3. **Index first**: `INDEX.md` routes to everything else; an AI loads it, then only what it needs.
+4. **Exact paths**: every claim points at `path:line` or a folder; a route without its handler is useless.
+5. **Derive from the code**; mark `(unverified)`; generated artifacts beat hand-written copies (`doc-code-analysis`).
+6. **Small files, stable `##` headings**, one concern per file, kebab-case; split when large.
+7. **Say what changes together** (change set), the tests to run, the traps (invariants, generated files, flaky tests, migration order).
+8. **Stamp freshness**: front matter `updated`, `commit` (short SHA); a reader compares with `git log`.
 
-1. **Index first**: one entry file (`docs/ai/INDEX.md`, under 120 lines) that routes to everything else; an AI loads it, then only
-   the file it needs.
-2. **Exact paths, never descriptions alone**: every claim points at `path/to/file.ext:line` or a folder. A route without its
-   handler file is useless.
-3. **Derive from the code, do not invent**: use the extraction tools of `doc-code-analysis`; mark anything you could not verify
-   `(unverified)`. Generated artifacts (OpenAPI from the code, schema from the database) beat hand-written copies.
-4. **Text formats an LLM reads natively**: Markdown tables, fenced Mermaid (`doc-mermaid`), OpenAPI YAML (`doc-openapi-asyncapi`),
-   DBML or SQL (`doc-database-schema`), JSON/YAML for lists. No images as the only source (an image can accompany the text, never replace it).
-5. **Small files, stable names**: one feature or one concern per file, kebab-case, under ~300 lines; split when larger.
-6. **Say what changes together**: for each feature, the files edited together (the "change set") and the tests to run.
-7. **Say the traps**: invariants, generated files not to edit, naming conventions, known flaky tests, order of migrations.
-8. **Stamp freshness**: front matter `updated`, `commit` (short SHA the doc was written at). A reader compares with `git log`.
-
-## Layout
-
+## Layout (create only what exists)
 ```
 docs/ai/
-  INDEX.md                 entry point: product in 3 lines, stack, modules, how to run/test/build, links to the files below
-  structure.md             annotated tree (depth 2-3) + module table (module | purpose | language/framework | entry point | owns data?)
-  features/<feature>.md    one per business feature (template below)
-  api/
-    openapi.yaml           REST contract (generated from code when possible)   -> doc-openapi-asyncapi
-    asyncapi.yaml          events/queues/websocket, only if any
-    endpoints.md           compact table: METHOD path | handler file:line | auth | tables touched | feature
-  data/
-    schema.dbml            tables, columns, keys, indexes, relations         -> doc-database-schema
-    schema.md              ER diagram (Mermaid) + one line per table: meaning, owner feature, lifecycle
-    migrations.md          order, tool, how to add one, rollback rule
-  flows/<flow>.md          sequence diagrams of the critical journeys (login, payment, sync...)   -> doc-mermaid
-  architecture.md          C4 context + container diagrams, deployment, boundaries     -> doc-architecture-c4-adr
-  conventions.md           naming, layering, error handling, test rules, folder rules (what the project demands, with an example file each)
-  commands.md              exact commands: install, run, test, lint, build, e2e, deploy (with versions and prerequisites)
-  glossary.md              domain words -> code names (table, entity, class); French/English pairs when both exist
-  gotchas.md               traps, generated files, flaky tests, order dependencies, known debt
-  decisions/               ADRs, one per decision (`NNNN-title.md`)
+  INDEX.md          product in 3 lines, stack, modules, reading budget with cost per file, first moves per task, names of the skills that run/connect
+  graph.yaml        IMPACT GRAPH (required, below)
+  structure.md      annotated tree (depth 2-3) + module table (module | purpose | stack | entry point | owns data)
+  features/<f>.md  template below
+  api/              openapi.yaml (generated when possible), asyncapi.yaml if events, endpoints.md (METHOD path | handler:line | auth | tables | feature)
+  data/             schema.dbml, schema.md (relations as edge lists FK + logical, one line per table), migrations.md (tool, how to add one, rollback rule)
+  architecture.md   context + containers + deployment as edge lists
+  conventions.md    naming, layering, errors, test and folder rules, workflow, **definition of done**
+  glossary.md       domain word -> code name
+  gotchas.md        traps, generated files, flaky tests, order dependencies, never-open files
+  decisions/        ADRs (NNNN-title.md)
 ```
+No `commands.md`: how to run/connect is a skill (`run-and-access-skills`); INDEX only names it.
 
-Only create what exists in the project (no `asyncapi.yaml` without events); `INDEX.md` lists what is present.
-
-## Feature file template (`features/<feature>.md`)
-
+## Feature file template
 ```markdown
 ---
 feature: <name>
-updated: 2026-10-17
+updated: YYYY-MM-DD
 commit: abc1234
 ---
 # <Feature>
-**What**: one sentence, the user-visible behavior.  **Why**: the business rule that matters.
-
+**What**: user-visible behavior. **Why**: the rule that matters.
 ## Entry points
-| Layer | Path | Role |
-|---|---|---|
-| UI | web/src/app/pages/x/x.page.ts | screen |
-| API | server/src/x/x.controller.ts:42 | POST /x |
-| Service | server/src/x/x.service.ts | rules |
-| Repository | server/src/x/x.repository.ts | SQL |
-| Android | android/.../XScreen.kt | screen + offline queue |
-
+| Layer | Path | Role |   (UI, API route:line, service, repository, client app, offline queue...)
 ## Data
-Tables/collections touched, with columns used. Link to `../data/schema.md#table`.
-
+Tables touched with columns used; link `../data/schema.md`.
 ## API
-Endpoints with request/response shape (or link to `../api/openapi.yaml` operationId).
-
+Routes with shapes, or the openapi operationId.
 ## Flow
-```mermaid
-sequenceDiagram ...
-```
-
+`client -> route -> service -> repository -> table` + offline and error branches
 ## Change set
-Files normally edited together to change this feature, and the tests to run (unit + e2e names).
-
+Files edited together **and every test to update, per layer**: unit tests, e2e scenarios with numbers and their twins on every platform, tour flows, test doubles, persisted stores, strings in each language, release notes, docs.
 ## Rules and traps
-Invariants, validations, permissions, offline behavior, i18n keys, feature flags.
+Invariants, validations, permissions, offline behavior, i18n keys, flags.
 ```
+
+## Impact graph (`graph.yaml`, required)
+One YAML (~2k tokens for a mid-size monorepo) so the AI knows what a change touches:
+- `roots`: aliases for long prefixes. `shared`: paths whose change can break any scenario (app shell, HTTP client, auth, DB layer, test ids, proxy, compose): a hit means "run all".
+- `paths`: prefix -> feature ids (longest prefix wins; shared widgets list every feature using them). `tours`: cross-screen scenarios to run when a screen, an id/anchor or a string changes.
+- `features.<id>`: `routes`, `tables`, `unit` (test folders), `e2e` (scenario numbers), `note`. `e2e`: scenario number -> features.
+- Header comment = usage. **It defines the local gate**: only the selected scenarios run locally before a push or PR (`qa`, `e2e-run`), the CI runs all. Never a guess: shared path, no matching prefix, stale graph (`commit` older than the code) or doubt = run all. A red outside the selection, or a regression only the CI finds, means the graph is wrong: fix it the same day.
+- Build from imports/call chains, controllers, repositories/migrations, test contents; verify every prefix exists (script); in the end-of-development update add new prefixes, routes, tables, scenarios.
+
+## Token budget (AI docs only; human docs are not shortened)
+Reference: a 590-file monorepo, whole folder ~50k tokens, a typical task reads 3-6k.
+1. `INDEX.md` (<= 1.2k tokens) gives the reading order, the cost of each file and the rule "one feature file, never the whole folder".
+2. **One fact, one place** (a route in `endpoints.md`, a table in `data/schema.*`, a feature's layers in `features/<f>.md`); other files link. Module files hold only module specifics, never the per-feature tables.
+3. Caps: feature <= 1.8k tokens, module <= 6k, other <= 2.5k; contract files (OpenAPI, DBML) exempt but "read by section only".
+4. Big files by section: `grep -n '^## '` then Read with offset/limit. Flag giant or generated files (data-only migrations, lock files, build output) as "never open".
+5. Dense: tables, paths, short bullets; no introductions, repeated context or narrative; no copy of source or long lists that `ls`/`grep` gives.
+6. Measure: tokens ~ bytes / 3.6; report total, largest files and typical read path before and after. Remove duplication and prose, never facts, paths or traps.
+
+## Definition of done and completeness
+- `conventions.md` ends with a checklist built from the project's own skills, CONTRIBUTING, CI workflows and README, each step quoted from its source. Writing a test or flow is part of the change even when running it is postponed.
+- A step found skipped in a past change is added to the checklist and the affected feature files at once.
 
 ## Procedure
+1. Scope (project, feature, update); read `AGENTS.md`/`CLAUDE.md`, README, build files. If `docs/ai/` exists compare its `commit` with `git log` and update only the diff, never rewrite.
+2. Extract (`doc-code-analysis`); write in order: structure, data, api, features, `graph.yaml`, flows, architecture, conventions, glossary, gotchas, INDEX last.
+3. Verify: paths exist, OpenAPI lints, commands run or `(not run)`; wire the pointer in the root `AGENTS.md` (`doc-ai-context-files`); report created, unverified, stale.
 
-1. **Scope**: whole project, one feature, or an update after a merge. Read `AGENTS.md`/`CLAUDE.md`, `README.md`, root build files.
-2. **Existing docs**: if `docs/ai/` exists, read `INDEX.md`, compare its `commit` with `git log`, update only what changed
-   (`git diff --stat <commit>..HEAD`), never rewrite from scratch.
-3. **Extract** with `doc-code-analysis`: tree, modules, routes, schema, dependencies between modules, tests per feature.
-4. **Write** in the order: `structure.md` → `data/` → `api/` → `features/` → `flows/` → `architecture.md` → `conventions.md`,
-   `commands.md`, `glossary.md`, `gotchas.md` → `INDEX.md` last.
-5. **Verify**: every path exists (`doc-code-analysis` link check), every Mermaid block renders (`doc-mermaid`), OpenAPI lints,
-   commands were run or marked `(not run)`.
-6. **Wire the agents**: add the pointer to `docs/ai/INDEX.md` in the root `AGENTS.md` (`doc-ai-context-files`) so every agent
-   finds it without being told.
-7. **Report**: what was created or updated, what is unverified, how stale the rest is.
+## Format choice
+tree -> annotated tree + table · impact -> `graph.yaml` · journey -> one-line chain · architecture -> edge list · tables -> DBML + edge list · REST -> OpenAPI · events -> AsyncAPI · states -> `state -[event]-> state` · decisions -> ADR · tool entry -> `AGENTS.md`/`llms.txt` · big codebase queries -> `doc-graphify` (complement only).
 
-## Choosing the format (technology fit)
-
-| To show | Use | Skill |
-|---|---|---|
-| Folder tree, module map | annotated tree in a code fence + table | `doc-code-analysis` |
-| Who calls whom, request journey | Mermaid `sequenceDiagram` | `doc-mermaid` |
-| Layers, containers, deployment | Mermaid flowchart/C4-style or `architecture-beta` | `doc-mermaid`, `doc-architecture-c4-adr` |
-| Tables and relations | DBML + Mermaid `erDiagram` | `doc-database-schema` |
-| REST API | OpenAPI 3.x | `doc-openapi-asyncapi` |
-| Events, queues, WebSocket | AsyncAPI | `doc-openapi-asyncapi` |
-| States of an entity | Mermaid `stateDiagram-v2` | `doc-mermaid` |
-| Decisions | ADR | `doc-architecture-c4-adr` |
-| Entry point for tools | `AGENTS.md`, `llms.txt` | `doc-ai-context-files` |
-| Dependencies and impact across a big codebase, queryable | knowledge graph (`graphify-out/`), complements these docs, never replaces them | `doc-graphify` |
-
-## Keeping it true
-
-- After each merged feature the documentalist (or the owner agent, by `SendMessage`) updates that feature file, `endpoints.md`,
-  the schema and the `commit` stamp. A stale doc is worse than none: when a file cannot be verified, say so in its header.
-- Prefer generation to hand-editing for API and schema; commit the generator command in `commands.md`.
+## Update after a development (last step of every dev)
+After the `qa` go, before the push or PR: `git diff <base>...HEAD --stat` and read the diff; update `graph.yaml`, touched feature files (Change set, rules, traps), `api/*`, `data/*`, `structure.md` if a folder moved, glossary, the `commit` stamp of each touched file and INDEX counts; keep the token budget; verify; commit docs only on the same branch.
 
 ## Monthly refresh
-
-Last refreshed: 2026-10. At first use in a later month: re-check the sources of the technology skills this one routes to, update
-the layout only when a better practice is confirmed, keep the project's rules, update this date, report changes in one line.
+Last refreshed: 2026-10. At first use in a later month: recheck the sources of the technology skills this one routes to; update only on confirmed better practice; keep the project's rules; report in one line.

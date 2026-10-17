@@ -6,7 +6,7 @@ description: MANDATORY for any Swift code (SwiftUI, server Swift, packages): MVV
 # Swift best practices
 
 The user has no Swift project yet (the iPhone client is the web PWA): these rules transpose the team's Android conventions
-(`android-compose-architecture`, `kotlin-best-practices`) to SwiftUI. Layout and accessibility: `ui-responsive-accessible-modular`.
+(`kotlin-best-practices`) to SwiftUI. Layout and accessibility: `ui-responsive-accessible-modular`.
 
 ## 1. Setup
 
@@ -42,7 +42,7 @@ The user has no Swift project yet (the iPhone client is the web PWA): these rule
       }
   }
   ```
-- Hand-written fakes conforming to the protocols, parameterized `@Test(arguments:)`, `#expect(throws:)` for errors, injected clocks; XCUITest or Maestro for e2e (`e2e-android-then-web` logic: same flows on every client).
+- Hand-written fakes conforming to the protocols, parameterized `@Test(arguments:)`, `#expect(throws:)` for errors, injected clocks; XCUITest or Maestro for e2e (twin e2e: the same flows on every client, see `e2e-run`).
 
 ## Unit test rule: nested groups + parameterized tests
 

@@ -5,7 +5,7 @@ description: Only when asked (qa, front, back): SonarQube setup, coverage and ex
 
 # Sonar for Python (on request only)
 
-Python runs in WSL through the `python` alias (see the `python` skill).
+Run Python the way the project requires.
 
 ## Properties
 

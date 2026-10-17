@@ -33,7 +33,7 @@ rebuild; the hand-checked docs carry meaning (business rules, traps, conventions
 ## Install and build (verify flags with `graphify --help` at first use)
 
 ```bash
-uv tool install graphifyy        # or: pip install graphifyy   (Python; on this machine Python runs in WSL, skill `python`)
+uv tool install graphifyy        # or: pip install graphifyy   (Python; use the project's way to run Python)
 graphify install                 # registers the skill/hook with the assistant (Claude Code, Gemini CLI, Codex, Cursor...)
 graphify .                       # run from the project root (in an assistant session: /graphify .)
 ```
@@ -44,7 +44,7 @@ graphify .                       # run from the project root (in an assistant se
 - Query from the terminal: `graphify query "<question>"`, `graphify path <A> <B>` (shortest link between two nodes),
   `graphify explain <node>`.
 - Database schema: `graphify extract --postgres "<dsn>"` introspects PostgreSQL (use a local copy and a read-only user; never put the
-  password in a committed file or in a command that gets logged; secrets from Vault, skill `vault-secrets`).
+  password in a committed file or in a command that gets logged; secrets from the project's secret store).
 - Claude Code and Gemini CLI: a hook nudges the assistant to the graph before search-style tool calls. A git hook can rebuild the
   graph on each commit (AST only, no API cost, union merge on `graph.json`).
 

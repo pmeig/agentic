@@ -9,7 +9,7 @@ description: Writing, reviewing or running Android Espresso and Jetpack Compose 
 - Hermetic: fake or MockWebServer back end, in-memory or test database, Hilt `@TestInstallIn` to swap modules, fixed clock and locale; journeys against the real back end belong to the e2e tool of the whole product.
 - `AndroidJUnitRunner` with the **Android Test Orchestrator** (`clearPackageData`) so every test starts from a clean app; `ActivityScenario` or the compose rule per test.
 - One robot / screen-object class per screen; one test class per gesture in `androidTest/<feature>/`; tests share nothing.
-- Run on Gradle Managed Devices (`./gradlew <device>DebugAndroidTest`) or Firebase Test Lab; shard with the instrumentation arguments `numShards` / `shardIndex`. Gradle runs with the JDK of `java-version`; commands per `android-tooling`.
+- Run on Gradle Managed Devices (`./gradlew <device>DebugAndroidTest`) or Firebase Test Lab; shard with the instrumentation arguments `numShards` / `shardIndex`. Gradle runs with the JDK the project requires.
 - Accessibility: Espresso `AccessibilityChecks.enable()`, Compose semantics checks.
 
 Run through `e2e-run`; workers from `e2e-parallelism-init` (key `espresso`).

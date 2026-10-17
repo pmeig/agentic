@@ -5,8 +5,7 @@ description: MANDATORY for any schema, migration or query (PostgreSQL first, als
 
 # SQL and NoSQL best practices
 
-Based on `D:\projects\typescript\budget\server\src\db\migrations` and its repositories (PostgreSQL), `rpg` (node-pg-migrate TS),
-`spring-libraries` (JPA), plus current practice. Data access layering: `node-api-architecture` / `spring-boot-best-practices`.
+Based on PostgreSQL practice (SQL migrations with node-pg-migrate, Flyway or Liquibase; JPA for Spring) and current practice. Data access layering: controller → service → repository (see `spring-boot-best-practices` for Spring).
 
 ## 1. Migrations
 

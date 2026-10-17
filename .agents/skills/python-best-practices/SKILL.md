@@ -6,13 +6,13 @@ description: MANDATORY for any .py file, pyproject.toml or Python test: Python 3
 # Python best practices
 
 The user's only Python project (`D:\projects\python\sudoku`) is old student code (Python 2, globals, recursion): keep its
-reST docstring habit (`:param x:` / `:return:`), nothing else. Python runs **in WSL** through the `python` alias (`python` skill).
+reST docstring habit (`:param x:` / `:return:`), nothing else. Run Python the way the project requires.
 
 ## 1. Project setup
 
 - Python 3.13, a virtual environment per project (`uv venv` / `python -m venv .venv`), dependencies and tools in `pyproject.toml` (PEP 621), locked (`uv lock` or pinned requirements); never install into the system Python.
 - Layout: `src/<package>/` + `tests/` mirroring it, `__main__.py` or a `[project.scripts]` entry point for CLIs.
-- Tooling: `ruff` (lint + format, line length 120), `mypy --strict` or `pyright` in CI, `pytest` + `pytest-cov`; same commands in the README and the CI (`github-actions-cicd`).
+- Tooling: `ruff` (lint + format, line length 120), `mypy --strict` or `pyright` in CI, `pytest` + `pytest-cov`; same commands in the README and the CI.
 
 ## 2. Code
 
@@ -24,7 +24,7 @@ reST docstring habit (`:param x:` / `:return:`), nothing else. Python runs **in 
 - `pathlib.Path` for files, context managers (`with`) for every resource, `logging` (never `print` in libraries/services), explicit encoding (`encoding="utf-8"`).
 - Errors: specific exceptions (custom ones derived from a project base exception), `raise ... from error`, never bare `except:`; validate inputs at the boundary.
 - Async (`asyncio`, FastAPI): `async def` end to end for I/O, no blocking calls inside, `asyncio.TaskGroup` for concurrency.
-- Layering for APIs: router/controller → service → repository (same principles as `node-api-architecture`); FastAPI dependencies for injection, pydantic schemas at the edge.
+- Layering for APIs: router/controller → service → repository; FastAPI dependencies for injection, pydantic schemas at the edge.
 - Docstrings (reST, the user's habit) on public functions: one summary line, `:param:`/`:return:`/`:raises:` when not obvious from the types.
 
 ## 3. Tests (pytest)

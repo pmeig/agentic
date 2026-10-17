@@ -43,13 +43,13 @@ lead did not approve.
 - Reference pages generated: OpenAPI rendered by the site (Redoc/Scalar plugin) from `docs/ai/api/openapi.yaml`, so there is one source.
 - Mermaid enabled; diagrams stay as text.
 - Search on, dark mode on, mobile layout checked; headings in order; alt text on images; language switch if the docs are translated.
-- Deploy: GitHub Pages workflow or the project's CI/CD (`github-actions-cicd`); the docs build is a CI check (broken links fail it).
+- Deploy: GitHub Pages workflow or the project's CI/CD; the docs build is a CI check (broken links fail it).
 - Public site: add `llms.txt` (`doc-ai-context-files`) and a sitemap.
 
 ## Checks
 
 `npx -y markdown-link-check`, `lychee`, the generator's strict build (`mkdocs build --strict`, Docusaurus `onBrokenLinks: 'throw'`),
-`markdownlint-cli2` for style when the project uses it. Node commands go through the user's version wrapper (`node-version`).
+`markdownlint-cli2` for style when the project uses it. Node commands run as the project requires.
 
 ## Sources
 

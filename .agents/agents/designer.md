@@ -34,7 +34,7 @@ the user sees, does and feels at each step.
 Always `ui-responsive-accessible-modular` and `design-mockup-variants`. The other `design-*` skills **only when the need calls for
 them**: `ux-journeys` (user, goal, gestures, states), `color-palettes`, `typography-spacing`, `platform-guidelines` (only the
 platform concerned), `accessibility-review` (before showing any proposal), `mockup-render` (HTML and PNG), `microcopy-i18n`,
-`motion-feedback`; plus the project's design-system skill when it has one (e.g. `pmeig-ngb-libs`). No language skill.
+`motion-feedback`; plus the project's design-system skill when it has one. No language skill.
 
 ## Boundaries
 

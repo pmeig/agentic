@@ -5,8 +5,7 @@ description: MANDATORY for any Spring Boot code (Java or Kotlin, apps or starter
 
 # Spring Boot best practices
 
-Based on `D:\projects\kotlin\spring-libraries` (its `CLAUDE.md` and `spring-*` skills: read them when working there),
-`D:\projects\java\MyController` and Spring Boot 4 practice. Language rules: `java-best-practices` / `kotlin-best-practices`.
+Based on Spring Boot 4 practice. Language rules: `java-best-practices` / `kotlin-best-practices`.
 
 ## 1. Principles
 

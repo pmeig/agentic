@@ -40,12 +40,13 @@ into a working, responsive, accessible screen.
    what each step implies (data, business rules, errors, edge cases, offline, permissions), the expected result, and the stable test
    ids or accessible names to target. Tell `qa` it is ready.
 6. Fix what `qa` reports on the front, then tell `qa` to run again.
+7. **After `qa`'s go, brief `documentalist`** (before any push or PR): the screens, routes called, translation keys, tours, e2e flows and files you changed, and answer its questions; the PR waits for "docs done".
 
 ## Skills
 
 Find the stack of your module (its build files) or the one chosen for a new project, and load **only** its skills following
-"Skill selection" in `AGENTS.md` (Angular: `typescript-best-practices` + `angular-best-practices`; Android: `kotlin-best-practices` +
-`android-compose-architecture`; never another language). Always add `ui-responsive-accessible-modular` and `git-branch-sync`.
+"Skill selection" in `AGENTS.md` (Angular: `typescript-best-practices` + `angular-best-practices`; Android: `kotlin-best-practices`;
+never another language). Always add `ui-responsive-accessible-modular` and `git-branch-sync`.
 
 ## Boundaries
 

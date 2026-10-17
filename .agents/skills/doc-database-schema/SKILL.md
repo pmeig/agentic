@@ -12,7 +12,7 @@ truth order: **live database > migrations > ORM models > guesses** (mark guesses
 
 1. `schema.dbml`: full structure in DBML (compact, diffable, one read). Tables, column types, `pk`, `not null`, `unique`, `default`,
    `note:`, `Ref:` for every foreign key, `Enum`, `indexes { }`, `Note:` on each table saying the owning feature.
-2. `schema.md`: a Mermaid `erDiagram` per bounded area (10 tables max per diagram) + a dictionary table
+2. `schema.md`: relations as edge lists, no diagram (AI doc): `FK: a.col -> b.col (cascade rule) | ...` and `Logical, no FK: a.col = b.col`, then a dictionary table (table | meaning | owner feature | lifecycle: created by, deleted by | soft delete? | sensitive data?). A Mermaid `erDiagram` belongs only in the human README (`documentation-human`).
    (table | meaning | owner feature | lifecycle: created by, deleted by | soft delete? | sensitive data?).
 3. `migrations.md`: tool (Flyway, Liquibase, Prisma, Drizzle, Alembic, EF, Room `schemas/`), folder, naming, how to add one, rollback rule,
    how migrations run in each environment.
@@ -29,12 +29,12 @@ truth order: **live database > migrations > ORM models > guesses** (mark guesses
 | Redis / key-value | key patterns, types, TTLs, owner code path |
 | ORM only (no DB reachable) | read entity/model files and migrations; say it is derived |
 
-Local databases: the project's docker rules apply (`docker` skill, WSL aliases); never connect to production without the owner's go,
+Local databases: use the project's own way to start local services (its README/AGENTS.md); never connect to production without the owner's go,
 use a copy; never print credentials.
 
 ## Convert and generate
 
-- **DBML from SQL**: `npx -y @dbml/cli sql2dbml schema.sql --postgres -o schema.dbml` (also `--mysql`, `--mssql`); DBML to SQL with `dbml2sql`.
+- **DBML from SQL**: the package ships several binaries, so name the binary: `npx -y -p @dbml/cli sql2dbml schema.sql --postgres -o schema.dbml` (also `--mysql`, `--mssql`; `dbml2sql` for the reverse). Seen on Windows: the CLI crashed on Windows paths; run it in WSL, or validate/convert with the `@dbml/core` API (`Parser.parse(sql, "postgres")` then `ModelExporter`). Always parse the final file to check it.
 - **Browsable docs**: `tbls doc <dsn> docs/ai/data/tbls` (Markdown + Mermaid ER per table, checks with `tbls lint`, `tbls diff`);
   SchemaSpy (Java, JDBC, 12+ databases) for interactive HTML; dbdocs.io for a shared web view of DBML. Pick one generator per project
   and put the command in `commands.md`.

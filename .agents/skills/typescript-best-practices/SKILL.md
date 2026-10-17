@@ -6,7 +6,7 @@ description: MANDATORY for any .ts/.js file, tsconfig or package.json (Node, pnp
 # TypeScript / JavaScript best practices
 
 Based on `budget/server` (the reference: newest and most careful), `pmeig`, `rpg`, `folderSync`, `camille`, plus TypeScript 7
-practice. Server layering: `node-api-architecture`; Angular: `angular-best-practices`; commands: `node-version`; SQL: `sql-best-practices`.
+practice. Server layering: controller → service → repository → infrastructure client; Angular: `angular-best-practices`; SQL: `sql-best-practices`.
 
 ## 1. Tooling
 
@@ -34,7 +34,7 @@ practice. Server layering: `node-api-architecture`; Angular: `angular-best-pract
 ## 3. Libraries and monorepos
 
 - `modules/<name>/{package.json, tsconfig.json, README.md, src/index.ts}`; npm name `@pmeig/<prefix>-<name>`; `src/index.ts` re-exports the public API only.
-- `package.json`: `exports` with `types` + `default` (`"./package.json"` exported), `sideEffects: false`, `files`, `homepage`/`repository`/`bugs`/`license`; versions `x.y.z-SNAPSHOT` in source, stripped and `workspace:*` rewritten at publish (CI, `github-actions-cicd`).
+- `package.json`: `exports` with `types` + `default` (`"./package.json"` exported), `sideEffects: false`, `files`, `homepage`/`repository`/`bugs`/`license`; versions `x.y.z-SNAPSHOT` in source, stripped and `workspace:*` rewritten at publish (CI).
 - Each module's tsconfig extends a shared base (`declaration`, `declarationMap`), `paths` inside `compilerOptions`.
 
 ## 4. Unit tests (Vitest)

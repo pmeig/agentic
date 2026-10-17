@@ -28,7 +28,7 @@ Split any larger documentation into four kinds and never mix them in one page (s
 
 ## README skeleton (project and each module)
 
-The user's rule: **every README has the architecture** (project-readme standard: diagram + annotated folder tree + layer table).
+Every README has the architecture: a diagram, the annotated folder tree and a table of layers.
 
 1. Title, one-sentence purpose, status badges only if they are real and maintained.
 2. **What it does**: 3 to 6 lines, the main features.
