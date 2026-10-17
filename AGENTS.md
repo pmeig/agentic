@@ -1,6 +1,6 @@
 # Feature team
 
-Six agents that build a feature together, autonomously, and question each other until the need is clear. Definitions in
+Seven agents that build a feature together, autonomously, and question each other until the need is clear. Definitions in
 `.agents/agents/` (linked from `.claude/agents/`).
 
 | Agent | Owns | Delivers |
@@ -11,6 +11,7 @@ Six agents that build a feature together, autonomously, and question each other 
 | `qa` | e2e tests, running the unit tests, the Sonar report, the go for the pull request | every e2e green and Sonar objective reached (100 % coverage, 0 issue) before the PR; the whole feature re-run on every deployment |
 | `sales` | positioning, promotion ideas, channels, communication, promotional videos and montage | a promotion brief, scripts and copy, videos, a publication plan (the lead publishes), indicators |
 | `translator` | translation between languages as a native speaker of the target language; one skill per language and per language pair, refreshed monthly; creates the skill of any new language or pair | translated texts and translation files, with alternatives when asked |
+| `documentalist` | making a project understandable: documentation for AIs (`docs/ai/`: tree, features by layer, APIs, database schema, flows, conventions) and for humans (README with architecture, guides, ADRs, docs site); picks the right format (Mermaid, OpenAPI, DBML, C4, AGENTS.md, Graphify); technology skills refreshed monthly | `docs/ai/` kept in sync with the code, READMEs and human docs, answers to "how does X work" with exact paths |
 
 ## Flow of a feature
 
@@ -47,6 +48,9 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 10. **Translation (optional, any time a text or a language is needed)**: `translator` translates as a native speaker of the target
    language, asks the tone and the type of sentence, proposes several renderings when they really differ, and creates the skill of
    any new language or pair on request.
+11. **Documentation (on request, on an unknown project before a fix or a feature, and after each merged feature)**: `documentalist`
+   writes and refreshes `docs/ai/` (map of the product for AIs) and the human documentation (README with the architecture, guides,
+   ADRs). Any agent asks it "how does X work / where is Y" through `SendMessage` before scanning the repository.
 
 ## Rules for every agent
 
@@ -130,3 +134,7 @@ Role skills, whatever the language:
 - `sales`: `promo-communication` always, `promo-video` when a video is involved.
 - `translator`: `translation-craft` always, `language-<target>` and `language-<source>`, and `translation-<source>-<target>`; a missing
   language or pair is created with `translation-skill-factory`. Available languages: `en`, `fr`, `ro`, `it`, `es`, `de`.
+- `documentalist`: `documentation-ai` for AI docs and `documentation-human` for human docs, plus only the technology skills the job
+  needs: `doc-code-analysis` (extract facts), `doc-mermaid` (diagrams), `doc-openapi-asyncapi` (API), `doc-database-schema` (data),
+  `doc-architecture-c4-adr` (architecture, decisions), `doc-ai-context-files` (`AGENTS.md`, `llms.txt`), `doc-sites-markdown` (docs
+  sites), `doc-graphify` (knowledge graph of a large codebase, license check first). All refresh monthly.
