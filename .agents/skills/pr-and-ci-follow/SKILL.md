@@ -5,7 +5,7 @@ description: Use after the documentation is done ("docs done"): push the branch,
 
 # Push, pull request and CI until green
 
-Driven by the lead (main session). The owners fix; the lead dispatches, pushes and follows. Nothing here is skipped because "it is small". Connection or tool problems (git hosting CLI not logged in, runner access): `run-and-access-skills`.
+Driven by the lead (main session) for push and PR; **`qa` watches the CI until green and drives the fixes** (owners fix code, `qa` fixes tests); the lead pushes the fixes. Nothing here is skipped because "it is small". Connection or tool problems (git hosting CLI not logged in, runner access): `run-and-access-skills`.
 
 ## 1. Before every push, PR creation or CI rerun: the machine must be free
 Runners and local tests share the machine. Check **both**: no CI run in progress (any branch) and no e2e pid file of a live local run (`e2e-run`, section 1). Something blocks: wait (a background until-loop), do not kill another run, tell the user what blocks. Free: wait 30 seconds, check again, launch only if still clean.
@@ -32,7 +32,7 @@ After each fix: `qa` reruns the impacted e2e locally (machine free), `documental
 A check that fails then passes on a rerun, or a test that only passes sometimes, is **not** a pass and is never just rerun. `qa` fixes the cause (procedure "Flaky tests" of `e2e-run`), with the owner when the cause is in the code, and shows it stable (several consecutive green runs, in the CI too) before the PR counts as green.
 
 ## 6. Stop conditions (report to the lead and the user instead of looping)
-The same failure after two fixes; more than five rounds; an infrastructure cause; a fix that would change behavior or the public contract (ask first).
+Only: an infrastructure cause (runner offline, secret/cache/network error, same failure on unrelated PRs), or a fix that would change behavior or the public contract (ask first). Otherwise the loop runs until every check is green; no fixed number of rounds.
 
 ## 7. Everything green: ask before merging
 "Green" = every check completed with success or skipped, none pending, no flaky left unaddressed, the PR mergeable and up to date with the base:
