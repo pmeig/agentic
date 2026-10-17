@@ -11,13 +11,13 @@ Seven agents that build a feature together, autonomously, and question each othe
 | `qa` | e2e tests, running the unit tests, the Sonar report, the go for the pull request | every e2e green and Sonar objective reached (100 % coverage, 0 issue) before the PR; the whole feature re-run on every deployment |
 | `sales` | positioning, promotion ideas, channels, communication, promotional videos and montage | a promotion brief, scripts and copy, videos, a publication plan (the lead publishes), indicators |
 | `translator` | translation between languages as a native speaker of the target language; one skill per language and per language pair, refreshed monthly; creates the skill of any new language or pair | translated texts and translation files, with alternatives when asked |
-| `documentalist` | making a project understandable: documentation for AIs (`docs/ai/`: tree, features by layer, APIs, database schema, flows, conventions) and for humans (README with architecture, guides, ADRs, docs site); picks the right format (Mermaid, OpenAPI, DBML, C4, AGENTS.md, Graphify); technology skills refreshed monthly | `docs/ai/` kept in sync with the code, READMEs and human docs, answers to "how does X work" with exact paths |
+| `documentalist` | making a project understandable: documentation for AIs (`docs/ai/`: tree, features by layer, APIs, database schema, flows, conventions) and for humans (README with architecture, guides, ADRs, docs site); picks the right format (Mermaid, OpenAPI, DBML, C4, AGENTS.md, Graphify); technology skills refreshed monthly | `docs/ai/` kept in sync with the code and cheap to read, READMEs and human docs, updated as the last step of every development (after the QA go, before the push or PR), answers to "how does X work" with exact paths |
 
 ## Flow of a feature
 
 ```
 need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + back: code + unit tests
-     ─▶ qa: every e2e green + Sonar objective = go ─▶ pull request ─▶ deploy ─▶ qa: whole feature again ─▶ sales (optional)
+     ─▶ qa: every e2e green + Sonar objective = go ─▶ documentalist: AI + human docs ─▶ pull request ─▶ deploy ─▶ qa: whole feature again ─▶ sales (optional)
 
      any agent can question any other one at any step
 ```
@@ -40,15 +40,21 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
    rules, errors, edge cases, offline) and the expected result of each step; `front` and `back` confirm their unit tests are ready.
 7. **E2E gate before the pull request**: `qa` writes the e2e from `gesture.md` and runs **every e2e test of the project** against
    the build of the branch. A failure goes to its owner (`front` or `back`) with the steps to reproduce, and the loop restarts.
-   **Only `qa` decides that the pull request can be opened**, and only when every e2e is green; nobody pushes for a PR or opens one before that go.
-8. **After deployment**: `qa` runs the whole feature again on the deployed environment and reports.
-9. **Promotion (optional, when the lead asks or the feature is user-facing)**: `sales` writes `docs/team/<feature>/promotion/brief.md`
+   **Only `qa` decides that the pull request can be opened**, and only when every e2e is green; nobody pushes for a PR or opens one before that go, and not before the documentation of step 8 is done.
+8. **Documentation, last step of every development (mandatory)**: once `qa` has given the go and **before** anything is pushed or the
+   PR is opened, `front` and `back` give `documentalist` the summary of the change (files, routes, tables, screens, keys, tours, e2e flows
+   touched) and `documentalist` updates the AI documentation (`docs/ai/`) **and** the human documentation (READMEs, guides, changelog),
+   verifies it and commits it on the same branch, then reports "docs done" to `qa` and the lead. Only then the push or the PR happens, with
+   the docs inside. Documentation-only commits do not make `qa` rerun the e2e (`qa` confirms nothing else changed). A change without its
+   documentation is not done.
+9. **After deployment**: `qa` runs the whole feature again on the deployed environment and reports.
+10. **Promotion (optional, when the lead asks or the feature is user-facing)**: `sales` writes `docs/team/<feature>/promotion/brief.md`
    (at least 5 ideas), asks `designer` for visuals and `front` for demo screens and data, makes scripts, copy and videos, and
    prepares the publication plan; the lead or the user validates and publishes.
-10. **Translation (optional, any time a text or a language is needed)**: `translator` translates as a native speaker of the target
+11. **Translation (optional, any time a text or a language is needed)**: `translator` translates as a native speaker of the target
    language, asks the tone and the type of sentence, proposes several renderings when they really differ, and creates the skill of
    any new language or pair on request.
-11. **Documentation (on request, on an unknown project before a fix or a feature, and after each merged feature)**: `documentalist`
+12. **Documentation (also on request and on an unknown project before a fix or a feature; the end-of-development update is step 8)**: `documentalist`
    writes and refreshes `docs/ai/` (map of the product for AIs) and the human documentation (README with the architecture, guides,
    ADRs). Any agent asks it "how does X work / where is Y" through `SendMessage` before scanning the repository.
 
@@ -83,6 +89,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 - **AI-facing files**: write instructions, skills, and configuration in English; product-facing text follows the project language.
 - **Load only the skills of the stack you work in** ("Skill selection"): never the skills of other languages.
 - **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
+- **Documentation is part of done**: every development ends with `documentalist` updating the AI and the human documentation after `qa`'s go and before the push or the PR (step 8). The AI documentation (`docs/ai/`, `AGENTS.md`) is kept cheap to read (token budget of `documentation-ai`); the human documentation is written for people and is not shortened.
 - `docs/team/<feature>/` is the shared memory of the team: keep it short and up to date.
 
 ## Skill selection

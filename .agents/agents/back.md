@@ -39,6 +39,7 @@ rules and the data.
 4. Tell the lead or the user what the service needs to run (no `devops` agent): runtime and version, environment variables and
    secrets, database, ports, health check, migrations at startup.
 5. Give `qa` the data the e2e need (seed, test accounts, how to reset) and fix what `qa` reports on the back end.
+6. **After `qa`'s go, brief `documentalist`** (before any push or PR): the routes, schemas, tables, migrations, rules and files you changed, and answer its questions; the PR waits for "docs done".
 
 ## Skills
 

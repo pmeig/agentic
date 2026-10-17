@@ -22,6 +22,8 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
                                ▼
         qa : TU + Sonar + tous les e2e verts = feu vert
                                ▼
+        documentalist : doc IA + doc humaine (dernière étape de tout développement)
+                               ▼
         pull request ─▶ déploiement ─▶ qa : toute la feature ─▶ sales (optionnel)
 ```
 
@@ -42,7 +44,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
   schéma de base de données, flux, conventions, commandes, glossaire, pièges, avec le format adapté : Mermaid, OpenAPI, DBML, C4,
   `AGENTS.md`, graphe de connaissances Graphify pour les gros codes), puis pour les humains (`README.md` avec l'architecture, guides
   selon Diátaxis, ADR, site de documentation). Les autres agents lui demandent « comment marche X, où est Y » par `SendMessage` ; il
-  met la doc à jour après chaque feature mergée. Deux skills principaux (`documentation-ai`, `documentation-human`) et des skills
+  met la doc à jour **en dernière étape de tout développement : après le feu vert de `qa` et avant le push ou la PR** (la PR embarque la doc ; un commit de documentation seule ne relance pas les e2e). Optimisation des tokens réservée à la doc IA (budget de lecture, un fait à un seul endroit, fichiers lus par section) ; la doc humaine n'est pas raccourcie. Les « Change set » des fiches nomment les tests à mettre à jour (flows e2e et jumeaux web, doubles de test, stores persistés) et `conventions.md` porte la liste « terminé quand… » du projet. Deux skills principaux (`documentation-ai`, `documentation-human`) et des skills
   de technologie mis à jour une fois par mois : `doc-code-analysis`, `doc-mermaid`, `doc-openapi-asyncapi`, `doc-database-schema`,
   `doc-architecture-c4-adr`, `doc-ai-context-files`, `doc-sites-markdown`, `doc-graphify` (licence à vérifier avant usage).
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles

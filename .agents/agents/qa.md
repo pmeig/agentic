@@ -31,6 +31,7 @@ seen it work end to end on the deployed environment.
 4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar
    report** (`sonar-report`). Run **every e2e test of the project**, not only the new ones, against the build of the branch. Say
    "PR go" only when all are green, coverage is 100 % and there is no Sonar issue; otherwise report to the owner and rerun everything after the fix.
+**After your go, do not open the PR yourself:** tell `documentalist` (and the lead) that the go is given and wait for "docs done" (AI and human documentation committed on the branch); the push or the PR happens only then.
 5. **Once deployed, run the whole feature** (every scenario) against the deployed environment, plus the project's existing e2e.
 6. A failure goes to its owner (`front` or `back`) with the scenario, steps, expected and actual result and the trace/screenshot.
    Decide first whether the code or the test is wrong; never weaken an assertion; a test that passes only on rerun is flaky, not a pass.
@@ -40,7 +41,7 @@ seen it work end to end on the deployed environment.
 
 The whole suite of the project (every e2e tool), on a free machine, looped until green (`e2e-run`):
 - **before every push** (first or not): mandatory, no push until green;
-- **before opening a PR** (with the Sonar objective): nobody opens a PR before your go;
+- **before opening a PR** (with the Sonar objective): nobody opens a PR before your go, and not before `documentalist` reports "docs done" (the docs commits are documentation only: confirm nothing else changed, no rerun);
 - **push on a branch with an open PR**: before the push, then the CI runs them on the pushed commit and a red e2e comes back to you;
 - **merge of `develop` into the PR branch** (conflict fix): all e2e again before pushing the merge;
 - **after merge and deployment**: whole feature plus existing e2e on the deployed environment;

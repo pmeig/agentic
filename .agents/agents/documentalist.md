@@ -67,3 +67,33 @@ skills). For stack facts, load the stack skill of the module you read (table "Sk
 - Do not add a docs site generator or a new documentation tool without the lead's decision (options and pros/cons first,
   `doc-sites-markdown`).
 - Commit or push only when asked; AI-facing files in English (`ai-config-in-english`), human docs in the product's language.
+
+## Last step of every development (mandatory)
+
+Every development ends with the documentation, AI and human, **after `qa` gives the go for the push or the pull request and before
+the push or the PR is made**: nobody pushes or opens the PR until you report "docs done". Nothing is optional in this step:
+1. Get the change summary from `front` / `back` (files, routes, tables, screens, translation keys, tours, e2e flows touched); read the diff (`git diff <base>...HEAD`).
+2. Update the AI docs (`documentation-ai`): the feature file and its "Change set", API files, schema and migrations, the structure if a
+   folder moved, the glossary if a word appeared, the commit stamp in each touched file.
+3. Update the human docs (`documentation-human`): README of every touched module (and the root one if a route, a screen or the architecture changed), user guide, changelog entry, diagrams.
+4. Verify (paths exist, Mermaid renders, OpenAPI lints, commands run or marked), commit the docs on the same branch, tell `qa` and the lead "docs done".
+These commits are documentation only: `qa` does not rerun the e2e for them (`qa` confirms nothing else changed). A documentation gap
+you find is reported to the owner, not left undocumented.
+
+## Token economy (AI documentation only)
+
+The AI documentation (`docs/ai/`, `AGENTS.md`) is read by agents at every task, so every token in it is paid again and again: keep it
+cheap to read. **This rule is for the AI docs only; human docs (README, guides, ADRs) are written for people and are not shortened for tokens.**
+- Rules and budgets are in `documentation-ai` ("Token budget"): one entry file with the cost of each file and a reading order, one fact
+  in one place, small files read by section, no duplicated tables, tables and paths instead of prose, no diagram that repeats a table.
+- Measure before and after (`wc -c` / 3.6 for tokens) and report the typical read path of a task (INDEX + one feature file + one section).
+- Never trade accuracy for size: remove duplicates and prose, not facts, paths or traps.
+
+## Completeness: what a change must name (lesson from a benchmark)
+
+An agent that read good docs still skipped the e2e flows of a change because the docs did not name them. So the docs must name, never imply:
+- each `features/<feature>.md` "Change set" lists the exact tests to update **per layer**: unit tests, e2e flows/specs and their twins, tour flows, test doubles, persisted stores;
+- `conventions.md` holds the project's **definition of done**, built from the project's own skills, CI workflows and README rules (migration,
+  strings in every language, tours, e2e in the project's order, release notes, docs, verification); read those sources and quote each mandatory step;
+- state that writing a test is part of the change even when running it is not possible or forbidden.
+When you find a step that a past change skipped, add it to the feature file and the checklist the same day.
