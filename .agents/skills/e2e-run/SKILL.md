@@ -1,11 +1,11 @@
 ---
 name: e2e-run
-description: Whenever e2e tests are about to run (before push or PR, after merging develop or deploying): wait for a free machine, loop until every e2e is green, treat a rerun-only pass as flaky.
+description: Whenever e2e tests are about to run (before push or PR, after merging the base branch): wait for a free machine, loop until every e2e is green, treat a rerun-only pass as flaky.
 ---
 
 # E2E run
 
-Rules for every e2e run, local or against a deployed environment.
+Rules for every e2e run, local or in the CI.
 
 ## 1. The machine must be free
 
@@ -35,9 +35,15 @@ Locally run **only the scenarios the change impacts**; once they are green the p
 3. After every fix, rerun the selection (plus what the fix impacts) until all is green; only then do the push or the PR go on (the CI runs the whole suite). The deployment check runs the whole feature.
 4. The same failure after two fixes: stop and report to the lead with what was tried.
 
-**A test that passes only on rerun is flaky, not a pass.** No automatic retries to hide it (a retry setting only detects
-flakiness and the run is reported flaky). Find the cause (fixed sleep instead of a state, shared data or order dependency, port or
-resource conflict between workers, machine load: try fewer workers, time or locale) and fix it; record the case in the project's docs so it is not rediscovered.
+## Flaky tests: fix them, never hide them
+
+**A test that passes only on rerun, or only sometimes, is flaky, not a pass.** No automatic retries to hide it (a retry setting only detects flakiness; the run is reported flaky). `qa` fixes the cause, with the owner (`front`/`back`) when the cause is in the code:
+1. **Reproduce**: rerun the single test several times (10) alone, then in parallel with the others, then under load; note the failing step and the trace/screenshot of failures only.
+2. **Find the cause**, most frequent first: a fixed sleep instead of waiting for a state; a transient element (toast, snackbar, animation) the test cannot catch; shared data or order dependency between tests (one account/dataset per test); port, folder or resource conflict between workers; a race (request not finished, element not yet interactive); machine load (try fewer workers); time zone, locale or date at midnight; an external service. A real race in the application is a bug: send it to the owner.
+3. **Fix the cause**: wait for the state (never a long fixed sleep), isolate the data, give each worker its own ports and outputs, assert on the final state, stabilize the clock; do not weaken the assertion or widen a timeout without a cause.
+4. **Prove it**: the test passes repeatedly (the 10 alone, then the whole selection several times, then in the CI), and the result is stated in the report.
+5. **Record the case** (symptom, cause, fix) for `documentalist` to add to the project's gotchas, so it is not rediscovered.
+Two failed fixes on the same flaky test: report to the lead with what was tried instead of looping.
 
 ## Rules for every e2e test (all tools)
 

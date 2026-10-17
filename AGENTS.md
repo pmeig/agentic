@@ -8,7 +8,7 @@ Seven agents that build a feature together, autonomously, and question each othe
 | `designer` | UX, business gestures, journeys, colors, accessibility of the design | 3 to 5 mockups per screen, then the chosen one |
 | `front` | every front-end framework and language, its unit tests | the screen built from the mockup, the contract (with `back`), the business gesture for `qa` |
 | `back` | every back-end framework and language, SQL and NoSQL, its unit tests | the API and storage behind the contract |
-| `qa` | e2e tests, running the unit tests, the Sonar report, the go for the pull request | every e2e green and Sonar objective reached (100 % coverage, 0 issue) before the PR; the whole feature re-run on every deployment |
+| `qa` | e2e tests, running the unit tests, the Sonar report, the go for the pull request | every e2e green and Sonar objective reached (100 % coverage, 0 issue) before the PR |
 | `sales` | positioning, promotion ideas, channels, communication, promotional videos and montage | a promotion brief, scripts and copy, videos, a publication plan (the lead publishes), indicators |
 | `translator` | translation between languages as a native speaker of the target language; one skill per language and per language pair, refreshed monthly; creates the skill of any new language or pair | translated texts and translation files, with alternatives when asked |
 | `documentalist` | making a project understandable: documentation for AIs (`docs/ai/`: tree, features by layer, APIs, database schema, flows, conventions) and for humans (README with architecture, guides, ADRs, docs site); picks the right format (Mermaid, OpenAPI, DBML, C4, AGENTS.md, Graphify); technology skills refreshed monthly | `docs/ai/` kept in sync with the code and cheap to read, READMEs and human docs, updated as the last step of every development (after the QA go, before the push or PR), answers to "how does X work" with exact paths |
@@ -17,7 +17,7 @@ Seven agents that build a feature together, autonomously, and question each othe
 
 ```
 need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + back: code + unit tests
-     ─▶ qa: every e2e green + Sonar objective = go ─▶ documentalist: AI + human docs ─▶ pull request ─▶ deploy ─▶ qa: whole feature again ─▶ sales (optional)
+     ─▶ qa: every e2e green + Sonar objective = go ─▶ documentalist: AI + human docs ─▶ push + PR + CI followed until green (fixes back to qa/back/front, flaky fixed) ─▶ merge on the user's yes ─▶ sales (optional)
 
      any agent can question any other one at any step
 ```
@@ -48,7 +48,13 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
    verifies it and commits it on the same branch, then reports "docs done" to `qa` and the lead. Only then the push or the PR happens, with
    the docs inside. Documentation-only commits do not make `qa` rerun the e2e (`qa` confirms nothing else changed). A change without its
    documentation is not done.
-9. **After deployment**: `qa` runs the whole feature again on the deployed environment and reports.
+9. **Push, pull request and CI until green** (the lead drives it, skill `pr-and-ci-follow`): once `documentalist` reports "docs done", on a free
+   machine the lead pushes the branch, opens the PR against the default branch and **follows the CI of the pushed commit until every check
+   is green**. Every red goes back to its owner: an e2e or a test to `qa` (who decides whether the code or the test is wrong), the code to
+   `front` or `back` with the steps to reproduce, Sonar to the owner of the code, infrastructure (runner, secret, network) to the lead or
+   the user, never looped. After each fix `qa` reruns the impacted e2e locally, `documentalist` updates the docs if the behavior changed, and
+   the lead pushes and follows again. **A flaky test is not green**: `qa` finds its cause and fixes it (with the owner when the cause is in
+   the code) until it passes repeatedly. Merge only on the user's explicit yes.
 10. **Promotion (optional, when the lead asks or the feature is user-facing)**: `sales` writes `docs/team/<feature>/promotion/brief.md`
    (at least 5 ideas), asks `designer` for visuals and `front` for demo screens and data, makes scripts, copy and videos, and
    prepares the publication plan; the lead or the user validates and publishes.
@@ -89,7 +95,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
   decides. Existing modules keep their stack and conventions unless a change is approved.
 - **AI-facing files**: write instructions, skills, and configuration in English; product-facing text follows the project language.
 - **Load only the skills of the stack you work in** ("Skill selection"): never the skills of other languages.
-- **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
+- **Done means verified**: built, unit tested, CI green on the PR. Report what was not verified.
 - **Documentation is part of done**: every development ends with `documentalist` updating the AI and the human documentation after `qa`'s go and before the push or the PR (step 8). The AI documentation (`docs/ai/`, `AGENTS.md`) is kept cheap to read (token budget of `documentation-ai`); the human documentation is written for people and is not shortened.
 - **AI documentation is machine-first**: everything written for an AI (`docs/ai/`, `AGENTS.md`, AI-facing files) is built only so that an AI orients itself and knows what a change impacts (maps, edge lists, tables; no diagrams or prose for the eye; `docs/ai/graph.yaml` maps changed paths to features, tests and e2e). Human documentation (README, guides) keeps diagrams and readable prose.
 - **Blocked on how to run or connect? Skills, never AGENTS.md**: how to execute a command or reach a service goes only in a dedicated skill, global for generic tools (mvn, gradle, vault, sonar, docker, node/java versions) and inside the repo (`.agents/skills/`) for repo-specific things. Look for the skill first; if none, ask the lead once, then write it (`run-and-access-skills`).
@@ -132,6 +138,7 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 
 Role skills, whatever the language:
 - every agent: `run-and-access-skills` as soon as it is blocked on how to run a command or connect to a service (global skill for generic tools, repo skill for repo-specific things).
+- the lead and `qa`: `pr-and-ci-follow` (push, PR, CI followed until green, reds sent back to `qa`/`front`/`back`, flaky tests fixed, merge only on the user's yes); `qa` also the "Flaky tests" procedure of `e2e-run`.
 - `front`: also `git-branch-sync` (branch cleanup after a merge, new feature branch).
 - `designer`, `front`: `ui-responsive-accessible-modular`. `designer` also `design-mockup-variants` always, and only when the need calls
   for them the other `design-*` skills (`ux-journeys`, `color-palettes`, `typography-spacing`, `platform-guidelines`,

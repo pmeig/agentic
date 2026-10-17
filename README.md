@@ -24,7 +24,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
                                ▼
         documentalist : doc IA + doc humaine (dernière étape de tout développement)
                                ▼
-        pull request ─▶ déploiement ─▶ qa : toute la feature ─▶ sales (optionnel)
+        push + PR + CI suivie jusqu'au vert (corrections renvoyées à qa/back/front, flaky corrigés) ─▶ merge sur ton oui ─▶ sales (optionnel)
 ```
 
 - **designer** : UX, gestes métier, parcours, couleurs ; 3 à 5 maquettes HTML vraiment différentes avec screenshots PNG desktop et
@@ -32,7 +32,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - **front** : reproduit la maquette, établit le contrat avec `back`, écrit ses tests unitaires, remet à `qa` le geste métier (`gesture.md`).
 - **back** : API, règles métier, SQL/NoSQL derrière le contrat ; écrit ses tests unitaires.
 - **qa** : écrit et lance les e2e, exécute les TU et le rapport Sonar (100 % de couverture, 0 issue, les corrections reviennent au
-  propriétaire du code) ; **lui seul donne le feu vert de la PR** ; reteste toute la feature après déploiement. Si le projet a des e2e sur plusieurs plateformes, ils doivent être **jumeaux** (mêmes scénarios, numéros, noms, étapes, résultats attendus et identifiants d'éléments) ; pas de feu vert tant qu'un scénario n'a pas son jumeau.
+  propriétaire du code) ; **lui seul donne le feu vert de la PR** . Si le projet a des e2e sur plusieurs plateformes, ils doivent être **jumeaux** (mêmes scénarios, numéros, noms, étapes, résultats attendus et identifiants d'éléments) ; pas de feu vert tant qu'un scénario n'a pas son jumeau.
 - **sales** : positionnement, idées de promotion, canaux de diffusion, scripts, textes et vidéos promotionnelles (montage) ; demande
   maquettes et visuels au `designer`, écrans de démo à `front` ; ne publie rien, le lead valide.
 - Les agents se posent leurs questions par `SendMessage` et partagent leur travail dans `docs/team/<feature>/` du projet.
@@ -47,6 +47,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
   écrit la doc IA pour une machine (aucun souci de lisibilité humaine : cartes, listes de liens, pas de diagrammes) avec une **carte d'impact** `docs/ai/graph.yaml` (chemin modifié → features → tests et e2e impactés : en local on ne lance que les e2e impactés, la CI lance tous les e2e) ; il met la doc à jour **en dernière étape de tout développement : après le feu vert de `qa` et avant le push ou la PR** (la PR embarque la doc ; un commit de documentation seule ne relance pas les e2e). Optimisation des tokens réservée à la doc IA (budget de lecture, un fait à un seul endroit, fichiers lus par section) ; la doc humaine n'est pas raccourcie. Les « Change set » des fiches nomment les tests à mettre à jour (flows e2e et jumeaux web, doubles de test, stores persistés) et `conventions.md` porte la liste « terminé quand… » du projet. Deux skills principaux (`documentation-ai`, `documentation-human`) et des skills
   de technologie mis à jour une fois par mois : `doc-code-analysis`, `doc-mermaid`, `doc-openapi-asyncapi`, `doc-database-schema`,
   `doc-architecture-c4-adr`, `doc-ai-context-files`, `doc-sites-markdown`, `doc-graphify` (licence à vérifier avant usage).
+- **PR et suivi de CI** (étape 9 d'`AGENTS.md`, skill `pr-and-ci-follow`, piloté par le lead) : après « docs done », push et PR, puis la CI du commit poussé est suivie jusqu'à ce que tout soit vert. Chaque rouge repart chez son propriétaire : test ou e2e → `qa` (qui décide si c'est le code ou le test qui a tort), code → `front` ou `back`, Sonar → propriétaire du code, infrastructure → lead (sans boucler). Un test instable (flaky) n'est pas vert : `qa` en trouve la cause et le corrige. Le merge n'a lieu que sur ton oui explicite. L'ancienne étape « après déploiement » est supprimée.
 - **Bloqué sur « comment lancer cette commande / me connecter à ce service » ?** Jamais dans `AGENTS.md` : un skill dédié (`run-and-access-skills`), global pour un outil générique (mvn, gradle, vault, sonar, docker, versions de node/java), dans le dépôt (`.agents/skills/`) pour ce qui est propre au dépôt ; l'agent le cherche d'abord, sinon demande une fois au lead puis l'écrit.
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
   propres à un projet passent avant.
