@@ -22,7 +22,7 @@ AI docs first, they are the source for the human docs (link, do not duplicate).
 | Need | Skill |
 |---|---|
 | Extract tree, modules, routes, dependencies, tests per feature | `doc-code-analysis` |
-| Any diagram as text (flow, sequence, ER, state, architecture) | `doc-mermaid` |
+| Diagram in a HUMAN doc (README, architecture overview) | `doc-mermaid` (AI docs use edge lists, never diagrams) |
 | REST contract, events, GraphQL/gRPC | `doc-openapi-asyncapi` |
 | Database schema (SQL, NoSQL, Room) | `doc-database-schema` |
 | Context diagrams, containers, deployment, ADR | `doc-architecture-c4-adr` |
@@ -44,7 +44,7 @@ skills). For stack facts, load the stack skill of the module you read (table "Sk
    hand-written ones; anything unverified is marked `(unverified)`.
 5. **Write** in the order given by `documentation-ai`: structure, data, api, features, flows, architecture, conventions, commands,
    glossary, gotchas, INDEX last; then the human documents from them.
-6. **Verify**: every path exists, every command ran or is marked `(not run)`, Mermaid renders, OpenAPI lints, links resolve.
+6. **Verify**: every path exists, every command ran or is marked `(not run)`, Mermaid in human docs renders, OpenAPI lints, links resolve.
 7. **Wire it**: add the "Project map (for AI)" pointer to the root `AGENTS.md` (`doc-ai-context-files`); `CLAUDE.md` stays a link.
 8. **Report**: what was created or updated, the commit stamp, what is unverified and what is stale.
 
@@ -76,7 +76,7 @@ the push or the PR is made**: nobody pushes or opens the PR until you report "do
 2. Update the AI docs (`documentation-ai`): the feature file and its "Change set", API files, schema and migrations, the structure if a
    folder moved, the glossary if a word appeared, the commit stamp in each touched file.
 3. Update the human docs (`documentation-human`): README of every touched module (and the root one if a route, a screen or the architecture changed), user guide, changelog entry, diagrams.
-4. Verify (paths exist, Mermaid renders, OpenAPI lints, commands run or marked), commit the docs on the same branch, tell `qa` and the lead "docs done".
+4. Verify (paths exist, Mermaid in human docs renders, OpenAPI lints, commands run or marked), commit the docs on the same branch, tell `qa` and the lead "docs done".
 These commits are documentation only: `qa` does not rerun the e2e for them (`qa` confirms nothing else changed). A documentation gap
 you find is reported to the owner, not left undocumented.
 
@@ -97,3 +97,10 @@ An agent that read good docs still skipped the e2e flows of a change because the
   strings in every language, tours, e2e in the project's order, release notes, docs, verification); read those sources and quote each mandatory step;
 - state that writing a test is part of the change even when running it is not possible or forbidden.
 When you find a step that a past change skipped, add it to the feature file and the checklist the same day.
+
+## AI docs are machine-first (human readability is irrelevant)
+
+Everything written for an AI (`docs/ai/`, `AGENTS.md`, any AI-facing file) is optimized only so that an AI orients itself fast and knows **what a change impacts**:
+no diagrams, no Mermaid, no prose, no formatting for the eye: YAML maps, edge lists (`a -> b`), dense tables, `path:line`. The humans have their own docs (README, guides), where diagrams and readable prose belong.
+- **Deliver `docs/ai/graph.yaml` (impact graph)** for every project and keep it current: changed path -> features -> routes, tables, unit tests, e2e scenario numbers, shared paths that impact everything (`documentation-ai`, "Impact graph"). It tells the AI what to edit, which tests and e2e to run first, and which twins to keep aligned; the project's gate (for example all e2e before a push) is never reduced by it.
+- Update `graph.yaml` in the end-of-development step with the other AI docs.

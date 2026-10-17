@@ -91,6 +91,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 - **Load only the skills of the stack you work in** ("Skill selection"): never the skills of other languages.
 - **Done means verified**: built, unit tested, e2e green on the deployed environment. Report what was not verified.
 - **Documentation is part of done**: every development ends with `documentalist` updating the AI and the human documentation after `qa`'s go and before the push or the PR (step 8). The AI documentation (`docs/ai/`, `AGENTS.md`) is kept cheap to read (token budget of `documentation-ai`); the human documentation is written for people and is not shortened.
+- **AI documentation is machine-first**: everything written for an AI (`docs/ai/`, `AGENTS.md`, AI-facing files) is built only so that an AI orients itself and knows what a change impacts (maps, edge lists, tables; no diagrams or prose for the eye; `docs/ai/graph.yaml` maps changed paths to features, tests and e2e). Human documentation (README, guides) keeps diagrams and readable prose.
 - `docs/team/<feature>/` is the shared memory of the team: keep it short and up to date.
 
 ## Skill selection

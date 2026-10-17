@@ -17,7 +17,7 @@ description: Use to document the architecture of a project: C4 model levels (con
 Plus a **deployment view** (environments, hosts, images, network, secrets store) and a **dynamic view** (a numbered journey, as a
 `sequenceDiagram`, see `documentation-ai` flows).
 
-- Draw with Mermaid (`doc-mermaid`): a `flowchart` with subgraphs styled as C4 renders everywhere; `C4Context`/`C4Container` syntax is
+- Draw with Mermaid (`doc-mermaid`) in the HUMAN architecture doc; the AI version (`docs/ai/architecture.md`) is an edge list `a -> b (protocol)` plus a table, no diagram.
   experimental, check the viewer. Use Structurizr DSL when the model is large and needs several views from one source.
 - Each box: name (as in the repository), technology, one-line responsibility; each arrow: protocol and payload.
 - Put the folder next to each container (`web/`, `server/`, `android/`) so the diagram maps to the tree.

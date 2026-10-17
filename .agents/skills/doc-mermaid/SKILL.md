@@ -3,7 +3,9 @@ name: doc-mermaid
 description: Use to draw any diagram as text in Markdown (flowchart, sequenceDiagram, erDiagram, classDiagram, stateDiagram-v2, architecture-beta, C4, gantt): which type for which question, syntax pitfalls, size limits, rendering and validation with mermaid-cli, and when to use another tool.
 ---
 
-# Mermaid diagrams (default diagram technology)
+# Mermaid diagrams (default diagram technology, HUMAN docs only)
+
+> AI-facing docs (`docs/ai/`, `AGENTS.md`) use no diagrams: maps and edge lists are cheaper and easier for an AI to parse (`documentation-ai`). Use Mermaid in READMEs, architecture overviews and guides for people.
 
 Mermaid is text: an AI reads and edits it directly, git diffs it, GitHub, GitLab, Docusaurus, VitePress, Starlight and MkDocs render
 it. It is the default; mermaid v11 supports 20+ diagram types. Fenced block with the `mermaid` language tag.
