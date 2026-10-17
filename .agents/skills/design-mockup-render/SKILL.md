@@ -7,7 +7,7 @@ description: designer: self-contained HTML mockups rendered to PNG screenshots (
 
 ## HTML mockup
 
-- One **self-contained** file per proposal: `docs/team/<feature>/design/proposal-<n>-<idea>.html`, inline CSS (custom properties as
+- One **self-contained** file per proposal: `.agents/docs/team/<feature>/design/proposal-<n>-<idea>.html`, inline CSS (custom properties as
   tokens: colors, type, spacing), no build, no network except an optional system-safe font; relative units; mobile first with media
   queries; `prefers-color-scheme` and `prefers-reduced-motion` handled.
 - Real labels and realistic data (the product language), all states reachable: a small state switcher (`?state=empty|loading|error|success|long`)

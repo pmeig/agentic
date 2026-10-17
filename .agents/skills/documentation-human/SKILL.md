@@ -33,7 +33,7 @@ Every README has the architecture: a diagram, the annotated folder tree and a ta
 1. Title, one-sentence purpose, status badges only if they are real and maintained.
 2. **What it does**: 3 to 6 lines, the main features.
 3. **Architecture**: a Mermaid diagram of the modules and flows (`doc-mermaid`), the annotated folder tree, and a table of layers
-   (layer | folder | responsibility). Link to `docs/ai/structure.md` rather than duplicating it.
+   (layer | folder | responsibility). Link to `.agents/docs/structure.md` rather than duplicating it.
 4. **Quick start**: prerequisites with versions, install, run, test; commands copy-pasteable and checked.
 5. **Configuration**: environment variables and secrets by name (never values), where they live.
 6. **Features / modules**: table with a link to each module README or feature doc.
@@ -63,7 +63,7 @@ A module README repeats only 3, 4 and 7 for that module and links up to the root
 
 ## Procedure
 
-1. Read the code, `docs/ai/` (create it first when missing: it is the cheapest source of truth), existing README and docs.
+1. Read the code, `.agents/docs/` (create it first when missing: it is the cheapest source of truth), existing README and docs.
 2. Pick the reader and the Diátaxis kind of each page; list the pages to create or update.
 3. Write, then **verify**: links resolve, commands run, versions match the build files, Mermaid renders.
 4. Report what changed and what could not be verified.

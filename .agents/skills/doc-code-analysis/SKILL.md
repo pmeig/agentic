@@ -6,7 +6,7 @@ description: Use to extract facts from a codebase before documenting it: annotat
 # Code analysis for documentation
 
 Never document from memory. Extract, then write. Prefer the dedicated tools (Glob, Grep) in a session; the shell commands below are
-the portable equivalents to put in `docs/ai/commands.md` so they can be rerun.
+the portable equivalents to put in `.agents/docs/commands.md` so they can be rerun.
 
 ## 1. Tree and modules
 

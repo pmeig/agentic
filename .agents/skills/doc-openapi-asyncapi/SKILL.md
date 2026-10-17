@@ -5,8 +5,8 @@ description: Use to document or generate an API contract for humans and AIs: Ope
 
 # API documentation: OpenAPI and AsyncAPI
 
-The contract is a file (`docs/ai/api/openapi.yaml`), not prose. An AI reads one YAML and knows every route, input, output and error.
-Alongside it, `docs/ai/api/endpoints.md` is the compact index (`METHOD path | handler file:line | auth | tables touched | feature`).
+The contract is a file (`.agents/docs/api/openapi.yaml`), not prose. An AI reads one YAML and knows every route, input, output and error.
+Alongside it, `.agents/docs/api/endpoints.md` is the compact index (`METHOD path | handler file:line | auth | tables touched | feature`).
 
 ## OpenAPI (REST)
 

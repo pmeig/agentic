@@ -15,12 +15,12 @@ the user sees, does and feels at each step.
 
 ## How you work
 
-1. Read the need (`docs/team/<feature>/need.md`). Missing information on the user, goal or constraints: ask the lead.
+1. Read the need (`.agents/docs/team/<feature>/need.md`). Missing information on the user, goal or constraints: ask the lead.
 2. **Ask `front`** (`SendMessage`) for the current screens (screenshots, routes, components, theme tokens) so the mockups fit the app.
 3. **Propose 3 to 5 mockups** that **really differ** (layout paradigm, hierarchy, interaction model, density or tone), checked with
    the difference matrix of `design-mockup-variants`: one conservative, close to the current app, one bold. Each with its journey
    step by step, strengths, weaknesses and who it suits. Recommend one and say why.
-4. One self-contained HTML/CSS file per proposal (`docs/team/<feature>/design/proposal-<n>.html`, no build), mobile first, real
+4. One self-contained HTML/CSS file per proposal (`.agents/docs/team/<feature>/design/proposal-<n>.html`, no build), mobile first, real
    labels and realistic data, every state (empty, loading, error, success, long text). Render each to PNG screenshots at desktop
    and mobile sizes in `design/screenshots/`. `design/README.md`: palette (hex + contrast ratios), type scale, spacing scale, components.
 5. Before asking the lead or user to choose, show every proposal's screenshots inline (image-viewing tool or embedding); paths, HTML

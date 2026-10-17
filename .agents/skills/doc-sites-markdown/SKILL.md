@@ -40,7 +40,7 @@ lead did not approve.
 ## Site rules
 
 - Source in the repo (`docs/`), build in CI, output not committed. Navigation file (`mkdocs.yml`, `sidebars.ts`, `astro.config.mjs`) lists pages by Diátaxis kind.
-- Reference pages generated: OpenAPI rendered by the site (Redoc/Scalar plugin) from `docs/ai/api/openapi.yaml`, so there is one source.
+- Reference pages generated: OpenAPI rendered by the site (Redoc/Scalar plugin) from `.agents/docs/api/openapi.yaml`, so there is one source.
 - Mermaid enabled; diagrams stay as text.
 - Search on, dark mode on, mobile layout checked; headings in order; alt text on images; language switch if the docs are translated.
 - Deploy: GitHub Pages workflow or the project's CI/CD; the docs build is a CI check (broken links fail it).

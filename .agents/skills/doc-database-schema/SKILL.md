@@ -8,7 +8,7 @@ description: Use to document a database for humans and AIs (SQL, NoSQL, Room/SQL
 An AI fixing a bug needs: tables and columns, keys, indexes, relations, enums and which feature owns each table. Source of
 truth order: **live database > migrations > ORM models > guesses** (mark guesses `(unverified)`).
 
-## Outputs (`docs/ai/data/`)
+## Outputs (`.agents/docs/data/`)
 
 1. `schema.dbml`: full structure in DBML (compact, diffable, one read). Tables, column types, `pk`, `not null`, `unique`, `default`,
    `note:`, `Ref:` for every foreign key, `Enum`, `indexes { }`, `Note:` on each table saying the owning feature.
@@ -35,7 +35,7 @@ use a copy; never print credentials.
 ## Convert and generate
 
 - **DBML from SQL**: the package ships several binaries, so name the binary: `npx -y -p @dbml/cli sql2dbml schema.sql --postgres -o schema.dbml` (also `--mysql`, `--mssql`; `dbml2sql` for the reverse). Seen on Windows: the CLI crashed on Windows paths; run it in WSL, or validate/convert with the `@dbml/core` API (`Parser.parse(sql, "postgres")` then `ModelExporter`). Always parse the final file to check it.
-- **Browsable docs**: `tbls doc <dsn> docs/ai/data/tbls` (Markdown + Mermaid ER per table, checks with `tbls lint`, `tbls diff`);
+- **Browsable docs**: `tbls doc <dsn> .agents/docs/data/tbls` (Markdown + Mermaid ER per table, checks with `tbls lint`, `tbls diff`);
   SchemaSpy (Java, JDBC, 12+ databases) for interactive HTML; dbdocs.io for a shared web view of DBML. Pick one generator per project
   and put the command in `commands.md`.
 - **Prisma/Drizzle/TypeORM**: use the tool's own export (`prisma-dbml-generator`, `drizzle-kit`) rather than rewriting by hand.

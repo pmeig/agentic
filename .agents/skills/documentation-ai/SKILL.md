@@ -1,14 +1,15 @@
 ---
 name: documentation-ai
-description: MANDATORY for the documentalist when documenting a project FOR AN AI (fix a bug or add a feature fast): the docs/ai/ layout, the impact graph, machine-first formats, token budget, completeness and the end-of-development update. AI docs are always in English.
+description: MANDATORY for the documentalist when documenting a project FOR AN AI (fix a bug or add a feature fast): the .agents/docs/ layout, the impact graph, machine-first formats, token budget, completeness and the end-of-development update. AI docs are always in English.
 ---
 
-# AI documentation (`docs/ai/`)
+# AI documentation (`.agents/docs/`, same path in every project)
 
 Goal: an AI that has never seen the project finds **where things are, how they connect, what a change touches and which tests to run** in a few reads. Optimize retrieval, not prose. Human docs: `documentation-human`.
 
 ## Principles
-1. **All AI-facing documents are in English** (skill `ai-docs-in-english`), whatever the user's or the product's language (`docs/ai/`, `AGENTS.md`, `docs/team/`, skills, memory, prompts). Domain words keep their original spelling next to the English name (glossary).
+1. **All AI-facing documents are in English** (skill `ai-docs-in-english`), whatever the user's or the product's language (`.agents/docs/`, `AGENTS.md`, `.agents/docs/team/`, skills, memory, prompts). Domain words keep their original spelling next to the English name (glossary).
+1b. **Location: `<project>/.agents/docs/`** in every project (same path for all agents and projects; team workspace in `.agents/docs/team/<feature>/`). Never `docs/ai`.
 2. **Machine-first formats; human readability is irrelevant**: YAML/JSON maps, edge lists (`a -> b`, `a = b`), dense tables, `path:line`. No Mermaid, ASCII art, diagrams, prose or layout for the eye (Mermaid stays in human docs). Contracts keep their native format (OpenAPI, AsyncAPI, DBML, SQL).
 3. **Index first**: `INDEX.md` routes to everything else; an AI loads it, then only what it needs.
 4. **Exact paths**: every claim points at `path:line` or a folder; a route without its handler is useless.
@@ -19,7 +20,7 @@ Goal: an AI that has never seen the project finds **where things are, how they c
 
 ## Layout (create only what exists)
 ```
-docs/ai/
+.agents/docs/
   INDEX.md          product in 3 lines, stack, modules, reading budget with cost per file, first moves per task, names of the skills that run/connect
   graph.yaml        IMPACT GRAPH (required, below)
   structure.md      annotated tree (depth 2-3) + module table (module | purpose | stack | entry point | owns data)
@@ -79,7 +80,7 @@ Reference: a 590-file monorepo, whole folder ~50k tokens, a typical task reads 3
 - A step found skipped in a past change is added to the checklist and the affected feature files at once.
 
 ## Procedure
-1. Scope (project, feature, update); read `AGENTS.md`/`CLAUDE.md`, README, build files. If `docs/ai/` exists compare its `commit` with `git log` and update only the diff, never rewrite.
+1. Scope (project, feature, update); read `AGENTS.md`/`CLAUDE.md`, README, build files. If `.agents/docs/` exists compare its `commit` with `git log` and update only the diff, never rewrite.
 2. Extract (`doc-code-analysis`); write in order: structure, data, api, features, `graph.yaml`, flows, architecture, conventions, glossary, gotchas, INDEX last.
 3. Verify: paths exist, OpenAPI lints, commands run or `(not run)`; wire the pointer in the root `AGENTS.md` (`doc-ai-context-files`); report created, unverified, stale.
 

@@ -28,15 +28,15 @@ into a working, responsive, accessible screen.
    merged local branch (never `develop`, `release`, `main`). Before every new feature, update the default branch and create the
    feature branch from it.
 1. **Answer the designer** when asked for the current screens: routes, screenshots, components, theme tokens.
-2. Read the chosen mockup and spec (`docs/team/<feature>/design/`). An element that cannot be built (platform limit, cost far above
+2. Read the chosen mockup and spec (`.agents/docs/team/<feature>/design/`). An element that cannot be built (platform limit, cost far above
    its value, accessibility issue): **ask `designer`** with the reason and a proposal; wait for the updated spec.
 3. **Agree the interface contract with `back`**: from the screen, list the data read and written, actions, errors to show,
-   pagination, offline needs. Write `docs/team/<feature>/contract.md` together (endpoints or messages, request/response shapes with
+   pagination, offline needs. Write `.agents/docs/team/<feature>/contract.md` together (endpoints or messages, request/response shapes with
    examples, status and error codes, auth, versioning; OpenAPI or a schema when relevant). Never code against an assumption: a
    change goes into the contract first, agreed by both.
 4. Build the screen against the contract (mock the API until the back end is ready), with unit tests of every behavior, every state
    of the spec, responsive from small phone to desktop, accessible names, keyboard and screen reader.
-5. **Hand over to `qa`**: write `docs/team/<feature>/gesture.md`: the business gesture step by step from the user's point of view,
+5. **Hand over to `qa`**: write `.agents/docs/team/<feature>/gesture.md`: the business gesture step by step from the user's point of view,
    what each step implies (data, business rules, errors, edge cases, offline, permissions), the expected result, and the stable test
    ids or accessible names to target. Tell `qa` it is ready.
 6. Fix what `qa` reports on the front, then tell `qa` to run again.

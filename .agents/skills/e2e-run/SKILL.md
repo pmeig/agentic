@@ -18,7 +18,7 @@ Before any local e2e run, test build, push, PR creation or CI rerun (runners and
 
 ## Selecting the e2e to run (local gate)
 
-Locally run **only the scenarios the change impacts**; once they are green the push or the PR may happen, and the CI then runs **every** e2e. This skill is self-contained: the selection input is the project's impact graph, `docs/ai/graph.yaml`, kept by `documentalist`.
+Locally run **only the scenarios the change impacts**; once they are green the push or the PR may happen, and the CI then runs **every** e2e. This skill is self-contained: the selection input is the project's impact graph, `.agents/docs/graph.yaml`, kept by `documentalist`.
 1. Changed files: `git diff --name-only <base>...HEAD` plus uncommitted files.
 2. For each file, take the longest matching prefix in `paths` of the graph -> features -> their `e2e` scenario numbers. Add the scenarios created or edited in this change, and the cross-screen scenarios (`tours` key: guided tours, every-page walks) when a screen, an element id/anchor or a text changed.
 3. **Run all instead** when: a file is under `shared`, no prefix matches, the graph is missing or older than the code (its `commit` stamp against `git log`), the change is a merge bringing unknown content, or you doubt. A selection is never a guess.
@@ -60,7 +60,7 @@ Two failed fixes on the same flaky test: report to the lead with what was tried 
 2. Recommend the most adequate tool **per kind of module** with short pros and cons (modules' technologies, need, hosting/CI, speed,
    maintainability), e.g. Playwright for a web front, Maestro or Espresso/XCUITest for mobile, API tests for a back end alone, one
    tool for a journey crossing modules.
-3. Write options and recommendation in `docs/team/<feature>/qa.md` (or `need.md`); the lead decides.
+3. Write options and recommendation in `.agents/docs/team/<feature>/qa.md` (or `need.md`); the lead decides.
 4. Then write the e2e from `gesture.md` and calibrate the tool with `e2e-parallelism-init`.
 
 No PR go on an empty suite: zero tests is "nothing verified", not green.

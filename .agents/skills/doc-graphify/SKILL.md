@@ -7,15 +7,15 @@ description: Use to give an AI a queryable knowledge graph of a codebase with Gr
 
 Graphify turns a project (code, docs, PDFs, images, optionally video/audio transcripts) into a persistent graph an AI traverses instead
 of grepping flat files; the vendors report large token savings on structure questions (figures are theirs, not verified here). It
-**complements** `docs/ai/` (`documentation-ai`): the graph answers "what is connected to what" automatically and stays cheap to
+**complements** `.agents/docs/` (`documentation-ai`): the graph answers "what is connected to what" automatically and stays cheap to
 rebuild; the hand-checked docs carry meaning (business rules, traps, conventions, decisions) that a graph cannot infer.
 
 ## When to use it
 
 | Situation | Use |
 |---|---|
-| Big or unknown codebase, many modules, cross-feature impact questions ("what breaks if I change X") | yes: build the graph, then write `docs/ai/` from `GRAPH_REPORT.md` |
-| Small project (a few dozen files) | no: `docs/ai/` alone is enough |
+| Big or unknown codebase, many modules, cross-feature impact questions ("what breaks if I change X") | yes: build the graph, then write `.agents/docs/` from `GRAPH_REPORT.md` |
+| Small project (a few dozen files) | no: `.agents/docs/` alone is enough |
 | Needs business meaning, API contract, DB schema, conventions | no: use `documentation-ai`, `doc-openapi-asyncapi`, `doc-database-schema` |
 | Memory of conversations / user facts for an agent | not this tool (that is agent memory, e.g. Graphiti/Zep, a different product) |
 
@@ -52,11 +52,11 @@ graphify .                       # run from the project root (in an assistant se
 
 1. Build the graph (after the checks above). Read `GRAPH_REPORT.md`: modules (communities), central files (god nodes), unexpected coupling.
 2. Use it to find the **change set** of a feature and cross-feature dependencies faster; verify each claim in the code before writing it
-   into `docs/ai/` (a graph can contain stale or duplicated nodes after heavy refactors: rebuild before trusting).
-3. Put in `docs/ai/INDEX.md` and `commands.md`: that the graph exists, the rebuild command, when it was built (commit stamp), and
+   into `.agents/docs/` (a graph can contain stale or duplicated nodes after heavy refactors: rebuild before trusting).
+3. Put in `.agents/docs/INDEX.md` and `commands.md`: that the graph exists, the rebuild command, when it was built (commit stamp), and
    `graphify query/path/explain` as the first move for impact questions.
 4. Add one line to the root `AGENTS.md` project-map block (`doc-ai-context-files`): "dependency questions: `graphify query` / `graph.json`".
-5. Never replace `docs/ai/` by the graph, and never present graph output as verified business knowledge.
+5. Never replace `.agents/docs/` by the graph, and never present graph output as verified business knowledge.
 
 ## Other tools of the same family (compare when Graphify is not allowed)
 
