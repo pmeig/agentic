@@ -8,7 +8,7 @@ description: MANDATORY for the documentalist when documenting a project FOR AN A
 Goal: an AI that has never seen the project finds **where things are, how they connect, what a change touches and which tests to run** in a few reads. Optimize retrieval, not prose. Human docs: `documentation-human`.
 
 ## Principles
-1. **All AI-facing documents are in English**, whatever the user's or the product's language (`docs/ai/`, `AGENTS.md`, `docs/team/`, skills, memory, prompts). Domain words keep their original spelling next to the English name (glossary).
+1. **All AI-facing documents are in English** (skill `ai-docs-in-english`), whatever the user's or the product's language (`docs/ai/`, `AGENTS.md`, `docs/team/`, skills, memory, prompts). Domain words keep their original spelling next to the English name (glossary).
 2. **Machine-first formats; human readability is irrelevant**: YAML/JSON maps, edge lists (`a -> b`, `a = b`), dense tables, `path:line`. No Mermaid, ASCII art, diagrams, prose or layout for the eye (Mermaid stays in human docs). Contracts keep their native format (OpenAPI, AsyncAPI, DBML, SQL).
 3. **Index first**: `INDEX.md` routes to everything else; an AI loads it, then only what it needs.
 4. **Exact paths**: every claim points at `path:line` or a folder; a route without its handler is useless.

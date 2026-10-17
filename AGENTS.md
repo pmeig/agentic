@@ -36,7 +36,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ code + un
 
 ## Rules for every agent
 
-- **All AI-facing documents are in English**, whatever the language of the user or the product: `AGENTS.md`/`CLAUDE.md`, agent and skill files, `docs/ai/`, `docs/team/`, memory files, prompts, tool descriptions, messages between agents. Only text people read (UI, README, guides, store listings, replies to the user) follows the product/user language.
+- **All AI-facing documents are in English** (`AGENTS.md`, agents, skills, `docs/ai/`, `docs/team/`, memory, prompts, messages between agents), whatever the user's or product's language; text people read follows the product language. Skill `ai-docs-in-english`.
 - **Ask instead of guessing.** Questions go to the owner of the answer (table above) by `SendMessage` (`to: "<agent>"`), short with context; the answer is written back into the feature folder. Only what no agent can answer (business choice, budget, credentials) goes to the user, grouped.
 - **Words go through `translator`.** Any text a person will read (UI labels, errors, empty states, store listings, emails, release notes, scripts, captions, slogans, copy, business or legal wording) is written or reviewed by `translator` with tone, sentence type, audience and length limit; a first draft only shows intent and is never shipped unreviewed. It also translates into the other languages and returns what does not fit. Code comments, logs and AI-facing files are out of scope.
 - **Empty-directory cleanup**: before handing off, remove directories left empty by your own adds/moves/deletes; leave unrelated ones unless a repository-wide cleanup is asked.
@@ -84,6 +84,7 @@ Before writing or reviewing code, each agent finds its stack and loads **only** 
 | shell / PowerShell scripts, CI `run:` steps | `shell-bash-best-practices` |
 
 Role skills, whatever the language:
+- every agent: `ai-docs-in-english` before writing or editing any document an AI reads.
 - every agent: `run-and-access-skills` as soon as it is blocked on how to run a command or connect to a service (global skill for generic tools, repo skill for repo-specific things).
 - the lead and `qa`: `pr-and-ci-follow` (push, PR, CI followed until green, reds sent back to `qa`/`front`/`back`, flaky tests fixed, merge only on the user's yes); `qa` also the "Flaky tests" procedure of `e2e-run`.
 - `front`: also `git-branch-sync` (branch cleanup after a merge, new feature branch).

@@ -33,7 +33,7 @@ After the `qa` go and **before** any push or PR (nobody pushes until you report 
 4. Verify, commit docs only on the same branch, tell `qa` and the lead "docs done". `qa` does not rerun e2e for docs-only commits. A gap found is reported to its owner, never left undocumented.
 
 ## Rules (details in `documentation-ai`)
-- **AI docs are in English and machine-first**: YAML maps, edge lists, dense tables, `path:line`; no Mermaid, diagrams, prose or layout for the eye. Human docs follow the product language and keep diagrams and readable prose.
+- **AI docs are in English (`ai-docs-in-english`) and machine-first**: YAML maps, edge lists, dense tables, `path:line`; no Mermaid, diagrams, prose or layout for the eye. Human docs follow the product language and keep diagrams and readable prose.
 - **Token economy, AI docs only**: one entry file with a reading budget, one fact in one place, small files read by section, no duplicated tables; measure (`wc -c` / 3.6) and report the typical read path. Never trade accuracy for size; human docs are not shortened.
 - **Completeness**: each feature's Change set names, per layer, every test to update (unit, e2e scenarios and their twins on every platform, tour flows, test doubles, persisted stores); `conventions.md` holds the project's definition of done, quoted from its own rules; writing a test is part of the change even when running it is postponed. When a past change skipped a step, add it the same day.
 - **Impact graph** `docs/ai/graph.yaml` for every project, kept exact: it defines the local gate (impacted e2e only; the CI runs all).
