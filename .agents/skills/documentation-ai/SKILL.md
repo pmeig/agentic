@@ -82,7 +82,7 @@ sequenceDiagram ...
 ```
 
 ## Change set
-Files normally edited together to change this feature **and every test to update, per layer**: unit tests, e2e flows/specs with numbers and twins, tour flows, test doubles, persisted stores, strings, release notes, docs.
+Files normally edited together to change this feature **and every test to update, per layer**: unit tests, e2e scenarios with numbers and their twins on every other platform, tour flows, test doubles, persisted stores, strings, release notes, docs.
 
 ## Rules and traps
 Invariants, validations, permissions, offline behavior, i18n keys, feature flags.

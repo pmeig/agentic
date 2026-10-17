@@ -92,7 +92,7 @@ cheap to read. **This rule is for the AI docs only; human docs (README, guides, 
 ## Completeness: what a change must name (lesson from a benchmark)
 
 An agent that read good docs still skipped the e2e flows of a change because the docs did not name them. So the docs must name, never imply:
-- each `features/<feature>.md` "Change set" lists the exact tests to update **per layer**: unit tests, e2e flows/specs and their twins, tour flows, test doubles, persisted stores;
+- each `features/<feature>.md` "Change set" lists the exact tests to update **per layer**: unit tests, e2e scenarios and their twins on every other platform (twin e2e: same number, name, steps and ids), tour flows, test doubles, persisted stores;
 - `conventions.md` holds the project's **definition of done**, built from the project's own skills, CI workflows and README rules (migration,
   strings in every language, tours, e2e in the project's order, release notes, docs, verification); read those sources and quote each mandatory step;
 - state that writing a test is part of the change even when running it is not possible or forbidden.

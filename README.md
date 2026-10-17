@@ -32,7 +32,7 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - **front** : reproduit la maquette, établit le contrat avec `back`, écrit ses tests unitaires, remet à `qa` le geste métier (`gesture.md`).
 - **back** : API, règles métier, SQL/NoSQL derrière le contrat ; écrit ses tests unitaires.
 - **qa** : écrit et lance les e2e, exécute les TU et le rapport Sonar (100 % de couverture, 0 issue, les corrections reviennent au
-  propriétaire du code) ; **lui seul donne le feu vert de la PR** ; reteste toute la feature après déploiement.
+  propriétaire du code) ; **lui seul donne le feu vert de la PR** ; reteste toute la feature après déploiement. Si le projet a des e2e sur plusieurs plateformes, ils doivent être **jumeaux** (mêmes scénarios, numéros, noms, étapes, résultats attendus et identifiants d'éléments) ; pas de feu vert tant qu'un scénario n'a pas son jumeau.
 - **sales** : positionnement, idées de promotion, canaux de diffusion, scripts, textes et vidéos promotionnelles (montage) ; demande
   maquettes et visuels au `designer`, écrans de démo à `front` ; ne publie rien, le lead valide.
 - Les agents se posent leurs questions par `SendMessage` et partagent leur travail dans `docs/team/<feature>/` du projet.

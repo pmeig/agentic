@@ -41,6 +41,7 @@ need ─▶ designer ⇄ front ─▶ front ⇄ back (contract) ─▶ front + b
 7. **E2E gate before the pull request**: `qa` writes the e2e from `gesture.md` and runs **every e2e test of the project** against
    the build of the branch. A failure goes to its owner (`front` or `back`) with the steps to reproduce, and the loop restarts.
    **Only `qa` decides that the pull request can be opened**, and only when every e2e is green; nobody pushes for a PR or opens one before that go, and not before the documentation of step 8 is done.
+**Several platforms, twin e2e**: when the project has e2e on different platforms they must be twins (same scenarios, numbers, names, steps, expected values and element ids), written and kept aligned by `qa`; no go while a scenario lacks its twin.
 8. **Documentation, last step of every development (mandatory)**: once `qa` has given the go and **before** anything is pushed or the
    PR is opened, `front` and `back` give `documentalist` the summary of the change (files, routes, tables, screens, keys, tours, e2e flows
    touched) and `documentalist` updates the AI documentation (`docs/ai/`) **and** the human documentation (READMEs, guides, changelog),

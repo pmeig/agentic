@@ -36,6 +36,7 @@ when available.
   never a fixed sleep; never weaken an assertion.
 - Ports, data and output folders unique per worker and different from the application defaults; secrets from Vault or the
   environment, never in the repo.
+- **Several platforms, twin e2e.** When the project has e2e for different platforms (for example an Android app and a web app, or mobile, desktop and web) the suites must be **twins**: the same scenarios with the same number and name, the same business steps and expected values, and the same stable element ids (test tag, `data-testid`, accessible name). One platform is written and green first (the project's order, usually the reference client), then its twins; a scenario added, changed or removed on one platform is added, changed or removed on every other platform in the same change. A behavior one platform cannot do (airplane mode in a browser, a browser-only page) keeps the scenario and its expected result and changes only the steps, or is declared platform-only in the test and in the README. Make the CI fail when a scenario has no twin.
 
 ## No e2e in the project
 

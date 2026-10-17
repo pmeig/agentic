@@ -28,7 +28,7 @@ seen it work end to end on the deployed environment.
    directory only when several features reuse them. Use the project's existing E2E tool; when it has none, propose the best one per
    module stack (`e2e-run`). Name each scenario after the gesture and make sure the CI runs them (the lead or the user owns the
    CI/CD, there is no `devops` agent).
-4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar
+4. **Gate of the pull request: you alone give the go.** `front` and `back` write the unit tests; **you run them and the Sonar **If the project has e2e on several platforms they must be twins** (same scenarios, numbers, names, steps, expected values and element ids; `e2e-run`): you write and keep them aligned, and you do not give the go while one platform lacks the twin of a scenario.
    report** (`sonar-report`). Run **every e2e test of the project**, not only the new ones, against the build of the branch. Say
    "PR go" only when all are green, coverage is 100 % and there is no Sonar issue; otherwise report to the owner and rerun everything after the fix.
 **After your go, do not open the PR yourself:** tell `documentalist` (and the lead) that the go is given and wait for "docs done" (AI and human documentation committed on the branch); the push or the PR happens only then.
