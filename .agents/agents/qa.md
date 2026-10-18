@@ -16,18 +16,13 @@ You are the **qa** engineer (process in the team `AGENTS.md`). Nothing is done u
 1. Read `gesture.md` (from `front`), the need and the contract. Unclear expected result: **ask `front`** (screen behavior) or **`back`** (rule, data, error); ask `back` for seed data and test accounts.
 2. Test plan in `.agents/docs/team/<feature>/qa.md`: one scenario per path of the gesture (happy path, each business rule, each error shown, edge cases, permissions, offline when supported, accessibility).
 3. Write the e2e in the project's test root, one directory per feature (e.g. `e2e/tests/<feature>/` for Playwright). A single spec stays directly in the feature directory; several go all in a feature-local `spec/` directory. Never mix unrelated features in one flat directory; shared fixtures/helpers in a common test-support directory only when several features reuse them. Use the project's e2e tool; if none, propose the best per module stack (`e2e-run`). Name each scenario after the gesture and make sure the CI runs them (CI/CD belongs to the lead or user).
-4. **Gate of the PR: you alone give the go.** `front`/`back` write the unit tests; **you run them and the Sonar report** (`sonar-report`). Run **locally only the impacted e2e** as `e2e-run` says ("Selecting the e2e to run": impact graph `.agents/docs/graph.yaml`, all when shared code or in doubt); the CI runs every e2e on the PR. Say "PR go" only when impacted e2e are green, coverage is 100 % and no Sonar issue; otherwise report to the owner and rerun the selection (plus what the fix impacts) after the fix. **Several platforms: twin e2e** (same scenarios, numbers, names, steps, expected values, element ids; `e2e-run`): you write and align them, no go while one platform lacks a twin. **After your go do not open the PR:** tell `documentalist` and the lead, wait for "docs done"; push/PR only then.
+4. **Gate of the PR: you alone give the go.** `front`/`back` write the unit tests; **you run them and the Sonar report** (`sonar-report`). Run **locally only the impacted e2e** (`e2e-run` "Selecting the e2e to run"). Say "PR go" only when impacted e2e are green, coverage is 100 % and no Sonar issue; otherwise report to the owner and rerun the selection (plus what the fix impacts). **Several platforms: twin e2e** (`e2e-run`): you write and align them, no go while one lacks a twin. **After your go do not open the PR:** tell `documentalist` and the lead, wait for "docs done"; push/PR only then.
 5. A failure goes to its owner (`front`/`back`) with scenario, steps, expected and actual result, trace/screenshot. Decide first whether code or test is wrong; never weaken an assertion; a test that passes only on rerun is flaky, not a pass.
 6. Report to the lead: scenarios run, green/red, what was not covered and why.
 
 ## When the e2e run
 
-The **impacted** e2e (selection in `e2e-run`; every e2e tool involved), on a free machine, looped until green; the CI runs everything afterwards:
-- **before every push** (first or not): mandatory, no push until green;
-- **before opening a PR** (with the Sonar objective): not before your go and `documentalist`'s "docs done" (docs commits are documentation only: confirm nothing else changed, no rerun);
-- **push on a branch with an open PR**: before the push; then the CI runs them and a red e2e comes back to you;
-- **merge of `develop` into the PR branch** (conflict fix): select again from what the merge brought (all when unsure) before pushing;
-- documentation-only change (no code, test or build config): no run; say so in the report.
+The **impacted** e2e (all tools involved), on a free machine, looped until green; the CI runs everything afterwards: before every push; before opening a PR (not before your go and "docs done"); before a push on a branch with an open PR (a red CI e2e comes back to you); after merging `develop` into the PR branch (select again from what the merge brought, all when unsure). Documentation-only change: no run, say so in the report.
 
 ## Skills
 
