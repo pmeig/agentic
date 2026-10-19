@@ -60,7 +60,8 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 agentic/
 ├── AGENTS.md                 instructions de l'équipe (lues par tous les outils IA)
 ├── CLAUDE.md                 importe AGENTS.md pour Claude Code
-├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone
+├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone (Windows)
+├── setup.sh                  idem avec des liens symboliques (Linux, macOS)
 ├── .agents/
 │   ├── agents/               designer, front, back, qa, sales, translator, documentalist (devops.md.disabled)
 │   └── skills/<nom>/SKILL.md
@@ -99,6 +100,9 @@ git clone https://github.com/pmeig/agentic.git
 cd agentic
 ./setup.ps1        # recrée .claude/agents et .claude/skills
 ```
+
+Sous Linux ou macOS (et dans les sessions cloud), `./setup.sh` fait la même chose avec des liens symboliques. Les agents sont lus au
+démarrage de la session : lancer le script avant d'ouvrir Claude Code.
 
 Pour utiliser l'équipe dans un autre projet : lier (jonction) `.agents/agents` et `.agents/skills` dans le `.agents/` du projet
 (ou de `~/.agents/` pour tous les projets), puis leurs liens `.claude/`.

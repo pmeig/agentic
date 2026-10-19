@@ -1,4 +1,4 @@
-# Windows junctions to .agents/, recreated by setup.ps1
+# Links to .agents/, recreated by setup.ps1 (Windows) or setup.sh (Linux, macOS)
 .claude/agents
 .claude/skills
 
