@@ -3,7 +3,7 @@
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
 New-Item -ItemType Directory -Force (Join-Path $root '.claude') | Out-Null
-foreach ($name in 'agents', 'skills') {
+foreach ($name in 'agents', 'skills', 'hooks') {
     $link = Join-Path $root ".claude\$name"
     if (-not (Test-Path $link)) {
         New-Item -ItemType Junction -Path $link -Target (Join-Path $root ".agents\$name") | Out-Null

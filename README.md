@@ -98,12 +98,12 @@ agentic/
 ```powershell
 git clone https://github.com/pmeig/agentic.git
 cd agentic
-./setup.ps1        # recrée .claude/agents et .claude/skills
+./setup.ps1        # recrée .claude/agents, .claude/skills et .claude/hooks
 ```
 
 Sous Linux ou macOS (et dans les sessions cloud), `./setup.sh` fait la même chose avec des liens symboliques. Les agents sont lus au
 démarrage de la session : lancer le script avant d'ouvrir Claude Code.
-Dans une session cloud ouverte sur ce dépôt, le hook `.claude/hooks/session-start.sh` (déclaré dans `.claude/settings.json`) le lance
+Dans une session cloud ouverte sur ce dépôt, le hook `.agents/hooks` (déclaré dans `.claude/settings.json`) le lance
 automatiquement.
 
 Pour utiliser l'équipe dans un autre projet : lier (jonction) `.agents/agents` et `.agents/skills` dans le `.agents/` du projet

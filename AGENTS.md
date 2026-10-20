@@ -128,3 +128,7 @@ Role skills:
 | `sales` | `promo-communication` always, `promo-video` when a video is involved |
 | `translator` | `translation-craft`, `language-<target>`, `language-<source>`, `translation-<source>-<target>`; missing ones via `translation-skill-factory`. Languages: `en`, `fr`, `ro`, `it`, `es`, `de` |
 | `documentalist` | `documentation-ai`, `documentation-human`, only the needed `doc-*` (see its agent file); all refresh monthly |
+
+## Sync of this file
+
+- D:/projects/ia/team/AGENTS.md is the source. ~/.agents/AGENTS.md is a copy (no symlink without admin rights, no hardlink across drives) loaded by ~/.claude/CLAUDE.md. Whenever the source is modified, replace the copy with it in the same turn (Copy-Item D:\projects\ia\team\AGENTS.md ~/.agents/AGENTS.md) and check both hashes are equal.

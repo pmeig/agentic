@@ -4,7 +4,7 @@
 set -eu
 root=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$root/.claude"
-for name in agents skills; do
+for name in agents skills hooks; do
   link="$root/.claude/$name"
   [ -e "$link" ] || [ -L "$link" ] || ln -s "../.agents/$name" "$link"
   echo ".claude/$name -> .agents/$name"
