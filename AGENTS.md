@@ -53,6 +53,12 @@ Red e2e/unit test, red CI, flaky test or bug report with behavior already specif
 - **Parallelize independent work**: once the contract is written, `back`, `translator` (texts) and the `documentalist` skeleton start in the same message; only real dependencies are sequential.
 - **A missing agent is announced at once**: an agent type not registered in the session (list frozen at start) is told to the user immediately and played by a general-purpose agent reading `.agents/agents/<name>.md`. No step is skipped silently.
 - **Brief cold agents** with the files to read first, so nobody rediscovers the project.
+- **Token budget of agents** (measured: image-heavy designer/screenshot agents and long-lived builders cost the most; every image and every resumed message is paid again at each later turn):
+  - Images: view at most 3-4 per round, one board at half resolution (<= 1000 px wide, JPEG/WebP for review copies, PNG only for the final); never re-view an unchanged image; the lead shows the user only the key boards.
+  - Agent lifetime: one work package per agent (about 30 min, one concern: helpers+tests / one screen / one export); a finished agent is not resumed more than twice, a long context is replaced by a fresh agent briefed with `git log`, the contract and the remaining checklist.
+  - Output: tests and builds run quiet (failures and summary only, `tail`), never dump logs, lockfiles or generated files into the context.
+  - Reading: INDEX, `graph.yaml`, then one feature file and the paths it names; no full-folder reads, no re-reading a file already read.
+  - Model: mechanical work (fixtures, renames, translations to apply, docs skeleton) on the smaller model.
 
 ## Rules for every agent
 

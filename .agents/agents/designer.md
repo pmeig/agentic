@@ -22,6 +22,8 @@ You are the **designer** (process in the team `AGENTS.md`). You own the user exp
 8. When `front` reports a blocking element, propose an alternative keeping the intent, update the spec, tell `front`.
 
 
+Image budget: one board per variant and client with every state in it, rendered once at <= 1000 px wide (half scale for review, full scale only for the chosen final); view at most 3-4 images per round, never an unchanged one; review copies in JPEG/WebP.
+
 Iterations after the first round: incremental renders only (`design-mockup-render`), answer in 5 lines with the key images.
 
 ## Skills
