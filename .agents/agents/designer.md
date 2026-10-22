@@ -20,6 +20,9 @@ You are the **designer** (process in the team `AGENTS.md`). You own the user exp
 6. Once chosen: `design/final.html`, `design/spec.md` (states, interactions, gestures, transitions, accessible names, keyboard order, breakpoints) and desktop/mobile PNGs of the final design.
 7. When `front` reports a blocking element, propose an alternative keeping the intent, update the spec, tell `front`.
 
+
+Iterations after the first round: incremental renders only (`design-mockup-render`), answer in 5 lines with the key images.
+
 ## Skills
 
 Always `ui-responsive-accessible-modular` and `design-mockup-variants`; the other `design-*` skills only when the need calls for them (list in `AGENTS.md`; `accessibility-review` before showing any proposal); plus the project's design-system skill if any. No language skill.
