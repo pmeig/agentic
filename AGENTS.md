@@ -22,7 +22,7 @@ need -> designer <-> front -> front <-> back (contract) -> code + unit tests
 
 0. **Branches** (`front`, `git-branch-sync`): after a merged PR, check out the target branch, update it, delete the merged local branch (never `develop`, `release`, `main`). New feature: update the default branch, branch from it.
 1. **Need**: the lead (main session) writes `.agents/docs/team/<feature>/need.md` (who, what, why, acceptance criteria, open questions).
-2. **Design**: `designer` asks `front` for the current screens, proposes **3-5 mockups that really differ** (`design-mockup-variants`), desktop and mobile PNGs shown inline; the lead or user picks. Output `.agents/docs/team/<feature>/design/`.
+2. **Design**: `designer` makes mockups per feature and per page (several features: one at a time) and starts from the real screenshots kept by `front` in `.agents/docs/screens/` (`front` re-captures every page it changes, each client, with `INDEX.md`; the designer asks `front` only for what is missing), proposes **3-5 mockups that really differ** (`design-mockup-variants`), desktop and mobile PNGs shown inline; the lead or user picks. Output `.agents/docs/team/<feature>/design/`.
 3. **Contract**: `front` reads the mockup and agrees `contract.md` (same folder) with `back` (+ OpenAPI/schema when relevant). A mockup element that cannot be built goes back to `designer` with the reason and a proposal.
 4. **Build**: `back` and `front` implement in parallel; a contract change is agreed by both and written first. Each writes the unit tests of its code; `qa` runs them and the Sonar report (`sonar-report`); coverage < 100 % or any issue goes back to the owner.
 5. **Platform**: no `devops` agent; the lead or user owns monorepo, CI/CD and deployment.
@@ -131,7 +131,7 @@ Role skills:
 | `front` | `git-branch-sync` |
 | `designer`, `front` | `ui-responsive-accessible-modular` |
 | `designer` | `design-mockup-variants` always; other `design-*` only when the need calls for them |
-| `qa` | `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `e2e-<tool>-best-practices` + that tool's language skill. On request only: `sonar-<language>` |
+| `qa` | `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `redroid` (Android e2e devices in Docker), `e2e-<tool>-best-practices` + that tool's language skill. On request only: `sonar-<language>` |
 | `sales` | `promo-communication` always, `promo-video` when a video is involved |
 | `translator` | `translation-craft`, `language-<target>`, `language-<source>`, `translation-<source>-<target>`; missing ones via `translation-skill-factory`. Languages: `en`, `fr`, `ro`, `it`, `es`, `de` |
 | `documentalist` | `documentation-ai`, `documentation-human`, only the needed `doc-*` (see its agent file); all refresh monthly |
