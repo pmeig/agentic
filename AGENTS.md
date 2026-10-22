@@ -18,6 +18,7 @@ Seven agents build a feature autonomously and question each other until the need
 need -> designer <-> front -> front <-> back (contract) -> code + unit tests
      -> qa go -> documentalist docs -> push + PR + CI until green -> merge on the user's yes -> sales (optional)
      any agent can question any other one at any step
+     every arrow = brief + agent stops + lead /clear (state.md) -> next agent cold (context-handoff)
 ```
 
 0. **Branches** (`front`, `git-branch-sync`): after a merged PR, check out the target branch, update it, delete the merged local branch (never `develop`, `release`, `main`). New feature: update the default branch, branch from it.
@@ -53,11 +54,13 @@ Red e2e/unit test, red CI, flaky test or bug report with behavior already specif
 - **Parallelize independent work**: once the contract is written, `back`, `translator` (texts) and the `documentalist` skeleton start in the same message; only real dependencies are sequential.
 - **A missing agent is announced at once**: an agent type not registered in the session (list frozen at start) is told to the user immediately and played by a general-purpose agent reading `.agents/agents/<name>.md`. No step is skipped silently.
 - **Brief cold agents** with the files to read first, so nobody rediscovers the project.
-- **Token budget of agents** (measured: image-heavy designer/screenshot agents and long-lived builders cost the most; every image and every resumed message is paid again at each later turn):
-  - Images: view at most 3-4 per round, one board at half resolution (<= 1000 px wide, JPEG/WebP for review copies, PNG only for the final); never re-view an unchanged image; the lead shows the user only the key boards.
-  - Agent lifetime: one work package per agent (about 30 min, one concern: helpers+tests / one screen / one export); a finished agent is not resumed more than twice, a long context is replaced by a fresh agent briefed with `git log`, the contract and the remaining checklist.
-  - Output: tests and builds run quiet (failures and summary only, `tail`), never dump logs, lockfiles or generated files into the context.
-  - Reading: INDEX, `graph.yaml`, then one feature file and the paths it names; no full-folder reads, no re-reading a file already read.
+- **Context hygiene** (skill `context-handoff`; images, long-lived builders and resumed agents cost the most, and everything in a context is paid again at each turn):
+  - **Each step ends with a brief and a stop**: the finishing agent writes `team/<feature>/brief-<from>-<to>.md` (<= 40 lines: decisions, tasks, Read list, Do-not-read list, done criteria), deletes its scratch and ends; it is not resumed. The next agent starts cold with its agent file, its brief and the listed paths, nothing else.
+  - **The lead clears its context at every gate** (mockup chosen, contract agreed, qa go, docs done, PR opened): `team/<feature>/state.md` (<= 15 lines: step, decisions, open questions, next) is the only memory carried; launch prompts <= 10 lines with paths, never pasted content.
+  - Strict minimum per agent (table in the skill): designer never reads code; front never reads proposals or back code; back never reads mockups; qa never reads source.
+  - Images: only the designer opens them, 3-4 per round, one board <= 1000 px wide, JPEG/WebP for review, PNG only for the final; never re-view an unchanged image; later agents open the final PNG once.
+  - Agent lifetime: one work package (~30 min, one concern); a long context is replaced by a fresh agent, never resumed more than once.
+  - Output: tests and builds quiet (`tail`, failures and summary), no logs, lockfiles or generated files in a context. Reading: INDEX, `graph.yaml`, one feature file and the paths it names.
   - Model: mechanical work (fixtures, renames, translations to apply, docs skeleton) on the smaller model.
 
 ## Rules for every agent
@@ -94,7 +97,7 @@ Found in the module -> skills: `pom.xml`/`build.gradle*` + `.java` java; `.kt` (
 
 | Who | Role skills |
 |---|---|
-| every agent | `ai-docs-in-english` before writing any AI-read document; `run-and-access-skills` when blocked |
+| every agent | `ai-docs-in-english` before writing any AI-read document; `context-handoff` at the start and end of its package; `run-and-access-skills` when blocked |
 | lead, `qa` | `pr-and-ci-follow`; lead: `team-bugfix-mode` |
 | `front` | `git-branch-sync` |
 | `designer`, `front` | `ui-responsive-accessible-modular` |

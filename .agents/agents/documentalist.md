@@ -55,3 +55,7 @@ After the `qa` go and before any push (AGENTS.md step 8): get the change summary
 - No secrets, tokens, personal data or credentialed URLs in docs (variable names only); nothing from memory; no dead path.
 - No new docs-site generator or tool without the lead's decision (options and pros/cons first).
 - Commit or push only when asked or as the end-of-development step above.
+
+## Context handoff (skill `context-handoff`)
+
+Start from the `brief-*-documentalist.md` (files, routes, tables, screens, keys touched) and update only what it lists; open INDEX, `graph.yaml` and one feature file, never the whole repo.

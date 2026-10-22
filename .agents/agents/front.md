@@ -33,3 +33,7 @@ Stack of your module (or the one chosen for a new project), only its skills per 
 - No business rule lives only in the front: the back end repeats the validation.
 - Build/deployment pipelines belong to the lead or user (no `devops` agent): tell them what the front needs (build command, env vars, static hosting, base URL).
 - UI labels follow the product language.
+
+## Context handoff (skill `context-handoff`)
+
+Start from `brief-designer-front.md`, `design/spec.md`, `contract.md` and the page directory; never open proposals, archives or back code. End each package with `brief-front-back.md` / `gesture.md` / `brief-front-documentalist.md` (<= 40 lines, paths not content), then stop; big builds are split into fresh agents per directory.

@@ -1,11 +1,2 @@
 version: 1
-impacts:
-  - path: .agents/docs/operations/redroid-wsl-runner.md
-    features:
-      - redroid-wsl-runner-host-setup
-    tests: []
-    related_external_files:
-      - repository: pmeig/budget
-        path: .github/workflows/quality.yml
-      - repository: pmeig/github-actions
-        path: actions/android/redroid/start.sh
+impacts: []

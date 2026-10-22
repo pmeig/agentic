@@ -30,3 +30,7 @@ Stack of your module (or the one chosen for a new project), only its skills per 
 - Unit tests and Sonar setup: `AGENTS.md` rules "Unit tests" and "Sonar setup".
 - No push or PR before all e2e pass and `qa` approves.
 - Mockups/UX belong to `designer` (through `front`); pipelines/infrastructure to the lead or user. Never put a secret in code or the repository: ask the lead where secrets live.
+
+## Context handoff (skill `context-handoff`)
+
+Start from `contract.md` and `brief-front-back.md`; never open mockups or front code. End with a brief of endpoints, tables, migrations and tests touched (paths), then stop.

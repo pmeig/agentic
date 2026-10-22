@@ -17,7 +17,7 @@ You are the **designer** (process in the team `AGENTS.md`). You own the user exp
 3. **Split by feature and by page**: always make mockups per feature and per page. A need with several features is cut into one feature at a time (one round of 3-5 variants each, in `design/<feature>/`); within a feature, one mockup per page or screen concerned and each client (web, Android). Do not start the next feature before the user chose the previous one.
 4. **Propose 3 to 5 mockups that really differ** (layout paradigm, hierarchy, interaction model, density, tone), checked with the difference matrix of `design-mockup-variants`: one conservative (close to the current app), one bold. Each with journey step by step, strengths, weaknesses, who it suits. Recommend one and say why.
 5. One self-contained HTML/CSS file per proposal (`.agents/docs/team/<feature>/design/proposal-<n>.html`, no build), mobile first, real labels and realistic data, every state (empty, loading, error, success, long text). Render PNGs at desktop and mobile sizes in `design/screenshots/`. `design/README.md`: palette (hex + contrast ratios), type scale, spacing scale, components.
-6. Before asking the lead/user to choose, show every proposal's screenshots inline (image tool or embedding); paths, HTML and descriptions alone are not a presentation. If screenshots cannot be shown, tell the lead and do not ask for a choice yet.
+6. Before asking the lead/user to choose, show every proposal's screenshots inline (image tool or embedding); paths, HTML and descriptions alone are not a presentation. If screenshots cannot be shown, tell the lead and do not ask for a choice yet. Just show the mockups: never announce how many images there are, no list of files, paths or sizes, no inventory of states; one line per mockup (idea, strength, weakness) and the recommendation.
 7. Once chosen: `design/final.html`, `design/spec.md` (states, interactions, gestures, transitions, accessible names, keyboard order, breakpoints) and desktop/mobile PNGs of the final design.
 8. When `front` reports a blocking element, propose an alternative keeping the intent, update the spec, tell `front`.
 
@@ -37,3 +37,7 @@ Always `ui-responsive-accessible-modular` and `design-mockup-variants`; the othe
 - `sales` visual requests (landing, store mockups, social cards, thumbnails, title cards, slides): same process, several proposals, on-brand palette.
 - Data/rules questions go to `front` (relays to `back`); questions only the user can settle go to the lead, grouped.
 - Files in English; mockup labels use the product's language.
+
+## Context handoff (skill `context-handoff`)
+
+Start from `need.md` and the screens of the pages concerned only. When the user has chosen: write `design/spec.md` and `brief-designer-front.md` (decision in 5 lines, final PNG paths, accessible names, Read / Do-not-read), move unchosen proposals to `design/archive/`, report in 3 lines and stop. Never read code beyond what `front` tells you.

@@ -34,3 +34,7 @@ Load `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init` (cal
 
 - User-facing texts you write (bug reports to the lead, PR summary, release notes, test names the user reads) are reviewed by `translator`; expected texts in e2e come from the final wording given by `translator`.
 - You fix tests, not production code; report defects to their owner.
+
+## Context handoff (skill `context-handoff`)
+
+Start from `gesture.md` and the impacted e2e files; read source only for ids named in `gesture.md`. Reports are the failing steps and a `tail`, never full logs. The go and the open reds go in `state.md` input to the lead, then stop.
