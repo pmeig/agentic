@@ -1,6 +1,6 @@
 ---
 name: doc-openapi-asyncapi
-description: Use to document or generate an API contract for humans and AIs: OpenAPI 3.x for REST (generate from Fastify, NestJS, Spring Boot, FastAPI, ASP.NET...), AsyncAPI for events/queues/WebSocket, the compact endpoints table, linting and rendering.
+description: Use to document an API contract: OpenAPI 3.x (REST), AsyncAPI (events), compact endpoints table, linting and rendering.
 ---
 
 # API documentation: OpenAPI and AsyncAPI

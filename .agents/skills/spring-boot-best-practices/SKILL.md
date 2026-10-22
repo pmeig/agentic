@@ -1,6 +1,6 @@
 ---
 name: spring-boot-best-practices
-description: MANDATORY for any Spring Boot code (Java or Kotlin, apps or starters): Spring Boot 4, auto-configuration, @ConfigurationProperties, constructor injection, ProblemDetail, JPA auditing.
+description: MANDATORY for any Spring Boot code (Java/Kotlin): Spring Boot 4, @ConfigurationProperties, constructor injection, ProblemDetail, JPA auditing.
 ---
 
 # Spring Boot best practices

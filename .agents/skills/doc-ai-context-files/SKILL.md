@@ -1,6 +1,6 @@
 ---
 name: doc-ai-context-files
-description: Use to write or update the files AI agents read first in a repository: AGENTS.md (real) with CLAUDE.md as a link, llms.txt for public docs, pointers to .agents/docs/, size and content rules, what to put and what to leave out.
+description: Use to write the files AI agents read first: AGENTS.md (CLAUDE.md as a link), llms.txt, pointers to .agents/docs/, size rules.
 ---
 
 # Context files for AI agents

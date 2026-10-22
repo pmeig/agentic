@@ -1,6 +1,6 @@
 ---
 name: sonar
-description: Use when you must read or run SonarQube analyses on this PC: reach the local server, read its token from Vault (docker) without printing it, scan a module, read the quality gate and measures.
+description: Use to read or run SonarQube on this PC: local server, token from Vault (never printed), scan a module, quality gate and measures.
 ---
 # SonarQube on this PC (and the Vault token behind it)
 ## Connect

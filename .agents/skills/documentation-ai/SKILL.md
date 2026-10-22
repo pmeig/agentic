@@ -1,6 +1,6 @@
 ---
 name: documentation-ai
-description: MANDATORY for the documentalist when documenting a project FOR AN AI (fix a bug or add a feature fast): the .agents/docs/ layout, the impact graph, machine-first formats, token budget, completeness and the end-of-development update. AI docs are always in English.
+description: MANDATORY for the documentalist writing docs FOR AN AI: .agents/docs/ layout, impact graph, machine-first formats, token budget, end-of-development update.
 ---
 
 # AI documentation (`.agents/docs/`, same path in every project)

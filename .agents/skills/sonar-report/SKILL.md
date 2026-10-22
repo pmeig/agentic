@@ -1,6 +1,6 @@
 ---
 name: sonar-report
-description: qa only: run the unit tests with coverage, check Sonar for the language, write the Sonar report, send coverage below 100 % or any issue to the code owner until fixed.
+description: qa only: unit tests with coverage, Sonar check, report, send gaps below 100 % or any issue to the code owner.
 ---
 
 # Sonar report (run by `qa`)

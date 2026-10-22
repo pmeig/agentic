@@ -1,6 +1,6 @@
 ---
 name: sonar-cpp
-description: Only when asked (qa, front, back): SonarQube setup, coverage and exclusions of a C / C++ module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a C / C++ module.
 ---
 
 # Sonar for C / C++ (on request only)

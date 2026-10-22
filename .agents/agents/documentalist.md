@@ -32,11 +32,7 @@ Write the AI docs first (source of truth), then the human docs from them (link, 
 
 ## Last step of every development (mandatory)
 
-After the `qa` go and **before** any push/PR (nobody pushes until you report "docs done"):
-1. Get the change summary from `front`/`back` (files, routes, tables, screens, keys, tours, e2e touched); read `git diff <base>...HEAD`.
-2. AI docs: feature file and its Change set, **`graph.yaml`** (new prefix, route, table, scenario), API files, schema and migrations, structure, glossary, commit stamp of each touched file.
-3. Human docs: README of each touched module (root one if a route, screen or architecture changed), guide, changelog, diagrams.
-4. Verify, commit docs only on the same branch, tell `qa` and the lead "docs done" (`qa` does not rerun e2e for docs-only commits). A gap found goes to its owner, never left undocumented.
+After the `qa` go and before any push (AGENTS.md step 8): get the change summary from `front`/`back`, read `git diff <base>...HEAD`, update feature file + Change set, **`graph.yaml`**, API, schema/migrations, structure, glossary, commit stamps, then READMEs, guide, changelog of each touched module; verify; commit docs only on the same branch; tell `qa` and the lead "docs done". A gap goes to its owner, never undocumented.
 
 ## Rules (details in `documentation-ai`)
 

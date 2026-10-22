@@ -1,6 +1,6 @@
 ---
 name: translation-fr-en
-description: Use when translating from French into English, as a native English speaker: pair-specific contrasts, false friends, idioms, formats and frequent decisions.
+description: Use when translating from French into English: contrasts, false friends, idioms, formats.
 ---
 
 # French → English

@@ -90,29 +90,7 @@ Load **only** the skills of your stack (`.agents/skills/`) before writing or rev
 
 Names are `<x>-best-practices` unless noted.
 
-| Found in the module | Skills |
-|---|---|
-| `pom.xml` / `build.gradle*` + `.java` | `java` |
-| `.kt` (JVM) | `kotlin` |
-| `spring-boot` dependency | `spring-boot` |
-| Android (`com.android.application`, Compose) | `kotlin`, `ui-responsive-accessible-modular` |
-| `package.json` (Node server, CLI, library) | `typescript` |
-| `@nestjs/core` | + `nestjs` |
-| `angular.json` / `@angular/core` | `typescript`, `angular` |
-| `react` / `next` | `typescript`, `react` |
-| `vue` / `nuxt` | `typescript`, `vue` |
-| `svelte` / `@sveltejs/kit` | `typescript`, `svelte` |
-| `pyproject.toml` / `requirements*.txt` | `python` |
-| `go.mod` | `go` |
-| `Cargo.toml` | `rust` |
-| `*.csproj` / `*.sln` | `csharp-dotnet` |
-| `composer.json` | `php` |
-| `Gemfile` | `ruby-rails` |
-| `CMakeLists.txt` / `*.pro` / `*.uproject` | `cpp` |
-| `Package.swift` / `*.xcodeproj` | `swift` |
-| `pubspec.yaml` | `dart-flutter` |
-| SQL migrations, schema, queries | `sql` |
-| shell / PowerShell scripts, CI `run:` steps | `shell-bash` |
+Found in the module -> skills: `pom.xml`/`build.gradle*` + `.java` java; `.kt` (JVM) kotlin; `spring-boot` dependency spring-boot; Android (`com.android.application`, Compose) kotlin + ui-responsive-accessible-modular; `package.json` (Node, CLI, library) typescript; `@nestjs/core` + nestjs; `angular.json`/`@angular/core` typescript + angular; `react`/`next` typescript + react; `vue`/`nuxt` typescript + vue; `svelte`/`@sveltejs/kit` typescript + svelte; `pyproject.toml`/`requirements*.txt` python; `go.mod` go; `Cargo.toml` rust; `*.csproj`/`*.sln` csharp-dotnet; `composer.json` php; `Gemfile` ruby-rails; `CMakeLists.txt`/`*.pro`/`*.uproject` cpp; `Package.swift`/`*.xcodeproj` swift; `pubspec.yaml` dart-flutter; SQL migrations, schema, queries sql; shell/PowerShell scripts, CI `run:` steps shell-bash.
 
 | Who | Role skills |
 |---|---|

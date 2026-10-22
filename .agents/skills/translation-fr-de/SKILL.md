@@ -1,6 +1,6 @@
 ---
 name: translation-fr-de
-description: Use when translating from French into German, as a native German speaker: pair-specific contrasts, false friends, idioms, formats and frequent decisions.
+description: Use when translating from French into German: contrasts, false friends, idioms, formats.
 ---
 
 # French → German

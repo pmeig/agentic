@@ -1,6 +1,6 @@
 ---
 name: sonar-csharp
-description: Only when asked (qa, back): SonarQube setup, coverage and exclusions of a C# / .NET module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a C# / .NET module.
 ---
 
 # Sonar for C# / .NET (on request only)

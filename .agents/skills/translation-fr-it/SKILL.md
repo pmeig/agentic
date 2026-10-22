@@ -1,6 +1,6 @@
 ---
 name: translation-fr-it
-description: Use when translating from French into Italian, as a native Italian speaker: pair-specific contrasts, false friends, idioms, formats and frequent decisions.
+description: Use when translating from French into Italian: contrasts, false friends, idioms, formats.
 ---
 
 # French → Italian

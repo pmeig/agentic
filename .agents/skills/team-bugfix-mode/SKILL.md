@@ -1,6 +1,6 @@
 ---
 name: team-bugfix-mode
-description: Use (lead) for a red e2e/unit test, a red CI, a flaky test or a bug report whose expected behavior is already specified; also when tests are red locally during a feature, or green locally but red in the CI. Triage, owners, flaky-test repair, stop conditions.
+description: Use (lead) for a red test, red CI, flaky test or bug with behavior already specified: triage, owners, flaky repair, stop conditions.
 ---
 
 # Bugfix mode (failing test or bug, behavior unchanged)

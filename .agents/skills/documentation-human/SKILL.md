@@ -1,6 +1,6 @@
 ---
 name: documentation-human
-description: MANDATORY for the documentalist when writing documentation for HUMANS (README.md, architecture overview, CONTRIBUTING, user guide, changelog, ADR summaries, docs site): structure by reader need (Diátaxis), README skeleton with the architecture, language and tone rules, update rules.
+description: MANDATORY for the documentalist writing docs for HUMANS (README, architecture, guides, changelog, ADR): Diátaxis, README skeleton, tone, update rules.
 ---
 
 # Documentation for humans

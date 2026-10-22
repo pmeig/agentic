@@ -1,6 +1,6 @@
 ---
 name: translation-craft
-description: Use for any translation between two languages, to translate like a native of the target language: ask tone and sentence type, stay faithful yet natural and sometimes creative, and offer several different renderings.
+description: Use for any translation: native target-language rendering, ask tone and sentence type, faithful yet natural, several renderings.
 ---
 
 # Translation craft

@@ -1,6 +1,6 @@
 ---
 name: sonar-python
-description: Only when asked (qa, front, back): SonarQube setup, coverage and exclusions of a Python module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a Python module.
 ---
 
 # Sonar for Python (on request only)

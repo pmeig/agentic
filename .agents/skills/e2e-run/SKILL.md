@@ -1,6 +1,6 @@
 ---
 name: e2e-run
-description: Whenever e2e tests are about to run (before push or PR, after merging the base branch): wait for a free machine, loop until every e2e is green, treat a rerun-only pass as flaky.
+description: Whenever e2e are about to run: wait for a free machine, loop until all green, a rerun-only pass is flaky.
 ---
 
 # E2E run

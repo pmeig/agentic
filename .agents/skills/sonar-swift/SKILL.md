@@ -1,6 +1,6 @@
 ---
 name: sonar-swift
-description: Only when asked (qa, front): SonarQube setup, coverage and exclusions of a Swift module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a Swift module.
 ---
 
 # Sonar for Swift (on request only)

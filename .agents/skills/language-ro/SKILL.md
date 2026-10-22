@@ -1,6 +1,6 @@
 ---
 name: language-ro
-description: Use when reading, writing, translating or reviewing Romanian text, to apply how Romanian really works: diacritics, cases, enclitic articles, verbs, register, UI conventions and everyday speech.
+description: Use when reading, writing, translating or reviewing Romanian text: grammar, spelling, register, UI conventions.
 ---
 
 # Romanian (ro)

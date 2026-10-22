@@ -1,6 +1,6 @@
 ---
 name: restore-budget-ai-config
-description: Use ONLY when the user wants to go back to the former AI configuration of pmeig/budget (AGENTS.md, CLAUDE.md, the five project skills, the local e2e run.sh scripts) or to the former global setup that agentic replaced: gives the commit to revert, the backups and the exact steps.
+description: Use ONLY to go back to the former AI configuration of pmeig/budget and the old global setup: commit to revert, backups, steps.
 ---
 
 # Restore the former AI configuration (pmeig/budget and the old global)

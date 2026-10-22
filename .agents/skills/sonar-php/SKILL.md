@@ -1,6 +1,6 @@
 ---
 name: sonar-php
-description: Only when asked (qa, back): SonarQube setup, coverage and exclusions of a PHP module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a PHP module.
 ---
 
 # Sonar for PHP (on request only)

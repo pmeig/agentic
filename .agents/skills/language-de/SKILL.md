@@ -1,6 +1,6 @@
 ---
 name: language-de
-description: Use when reading, writing, translating or reviewing German text, to apply how German really works: cases, word order, compounds, punctuation, register, UI conventions and everyday speech.
+description: Use when reading, writing, translating or reviewing German text: grammar, spelling, register, UI conventions.
 ---
 
 # German (de)

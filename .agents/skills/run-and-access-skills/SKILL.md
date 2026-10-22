@@ -1,6 +1,6 @@
 ---
 name: run-and-access-skills
-description: Use whenever you are blocked on, or about to ask, how to run a command or how to connect to a service (mvn, gradle, java/node versions, vault, sonarqube, docker, a CI client, a repo script, a deploy): look for the skill first, otherwise ask once and write the skill (global for generic tools, inside the repo for repo-specific things). Never write run/connect instructions in AGENTS.md or CLAUDE.md.
+description: Use when blocked on how to run a command or connect to a service: look for the skill first, else ask once and write the skill.
 ---
 
 # How to run and how to connect: always a skill

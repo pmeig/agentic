@@ -1,6 +1,6 @@
 ---
 name: doc-graphify
-description: Use to give an AI a queryable knowledge graph of a codebase with Graphify (tree-sitter AST extraction, graphify-out/ with GRAPH_REPORT.md, graph.json, graph.html; query, path, explain; git hook updates): when it helps, install, build, query, commit rules, license and privacy checks.
+description: Use for a queryable code knowledge graph with Graphify: when it helps, install, build, query, commit rules, license and privacy checks.
 ---
 
 # Graphify: knowledge graph of the codebase

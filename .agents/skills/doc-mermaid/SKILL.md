@@ -1,6 +1,6 @@
 ---
 name: doc-mermaid
-description: Use to draw any diagram as text in Markdown (flowchart, sequenceDiagram, erDiagram, classDiagram, stateDiagram-v2, architecture-beta, C4, gantt): which type for which question, syntax pitfalls, size limits, rendering and validation with mermaid-cli, and when to use another tool.
+description: Use to draw diagrams as text in Markdown (HUMAN docs): type per question, syntax pitfalls, size limits, mermaid-cli validation.
 ---
 
 # Mermaid diagrams (default diagram technology, HUMAN docs only)

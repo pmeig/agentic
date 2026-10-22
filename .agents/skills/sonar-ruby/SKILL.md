@@ -1,6 +1,6 @@
 ---
 name: sonar-ruby
-description: Only when asked (qa, back): SonarQube setup, coverage and exclusions of a Ruby / Rails module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a Ruby / Rails module.
 ---
 
 # Sonar for Ruby (on request only)

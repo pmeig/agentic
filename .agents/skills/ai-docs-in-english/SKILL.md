@@ -1,6 +1,6 @@
 ---
 name: ai-docs-in-english
-description: MANDATORY before creating or editing any document that an AI reads or that instructs an AI (AGENTS.md, CLAUDE.md, agent and skill files, .agents/docs, .agents/docs/team, memory files, prompts, tool descriptions, messages between agents): write it in English whatever the language of the user or the product. Human-facing text keeps the product language.
+description: MANDATORY before writing any file an AI reads (AGENTS.md, agents, skills, .agents/docs, memory, prompts, agent messages): English only.
 ---
 
 # AI-facing documents are written in English

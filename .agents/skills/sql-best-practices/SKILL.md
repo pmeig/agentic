@@ -1,6 +1,6 @@
 ---
 name: sql-best-practices
-description: MANDATORY for any schema, migration or query (PostgreSQL first, also MySQL/SQL Server/Oracle) and SQL vs NoSQL choices: numbered immutable migrations, naming, constraints, indexes, transactions.
+description: MANDATORY for any schema, migration or query (PostgreSQL first) and SQL vs NoSQL choices: numbered migrations, constraints, indexes, transactions.
 ---
 
 # SQL and NoSQL best practices

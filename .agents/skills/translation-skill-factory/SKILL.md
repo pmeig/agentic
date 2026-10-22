@@ -1,6 +1,6 @@
 ---
 name: translation-skill-factory
-description: Use when the user asks for a new language or a translation pair that has no skill yet, to generate language-<code> or translation-<source>-<target> skills in the same format as the existing ones.
+description: Use to create a missing language-<code> or translation-<source>-<target> skill in the existing format.
 ---
 
 # Translation skill factory

@@ -1,6 +1,6 @@
 ---
 name: sonar-go
-description: Only when asked (qa, back): SonarQube setup, coverage and exclusions of a Go module. Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a Go module.
 ---
 
 # Sonar for Go (on request only)

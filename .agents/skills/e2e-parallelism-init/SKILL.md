@@ -1,6 +1,6 @@
 ---
 name: e2e-parallelism-init
-description: Before e2e on a PC with no parallelism entry for the e2e tool: time the suite with 1, 2, 3... workers, stop when slower, record the best count.
+description: Before e2e on a PC with no parallelism entry: time the suite with 1, 2, 3... workers, record the best.
 ---
 
 # E2E parallelism initialisation

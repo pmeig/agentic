@@ -1,6 +1,6 @@
 ---
 name: translation-en-it
-description: Use when translating from English into Italian, as a native Italian speaker: pair-specific contrasts, false friends, idioms, formats and frequent decisions.
+description: Use when translating from English into Italian: contrasts, false friends, idioms, formats.
 ---
 
 # English → Italian

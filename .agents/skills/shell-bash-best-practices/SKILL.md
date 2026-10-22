@@ -1,6 +1,6 @@
 ---
 name: shell-bash-best-practices
-description: MANDATORY for any shell or PowerShell script (bash, CI run steps, Docker entrypoints): strict mode, quoting, until-loops, no echoed secrets, traps, ShellCheck, WSL specifics.
+description: MANDATORY for any shell/PowerShell script (CI run steps, entrypoints): strict mode, quoting, no echoed secrets, traps, ShellCheck.
 ---
 
 # Shell scripting best practices

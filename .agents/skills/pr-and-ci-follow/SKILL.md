@@ -1,6 +1,6 @@
 ---
 name: pr-and-ci-follow
-description: Use after the documentation is done ("docs done"): push the branch, open the pull request and follow the CI of the pushed commit until every check is green, sending each red back to its owner (qa for tests and e2e, front or back for code, the owner of the code for Sonar), fixing flaky tests instead of rerunning them, then ask the user before merging.
+description: Use after "docs done": push, open the PR, follow the CI until green, send reds to their owner, fix flaky tests, ask before merging.
 ---
 
 # Push, pull request and CI until green

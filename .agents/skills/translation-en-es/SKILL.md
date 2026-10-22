@@ -1,6 +1,6 @@
 ---
 name: translation-en-es
-description: Use when translating from English into Spanish, as a native Spanish speaker: pair-specific contrasts, false friends, idioms, formats and frequent decisions.
+description: Use when translating from English into Spanish: contrasts, false friends, idioms, formats.
 ---
 
 # English → Spanish

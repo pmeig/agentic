@@ -1,6 +1,6 @@
 ---
 name: language-it
-description: Use when reading, writing, translating or reviewing Italian text, to apply how Italian really works: articles, agreement, verbs, punctuation, register, UI conventions and everyday speech.
+description: Use when reading, writing, translating or reviewing Italian text: grammar, spelling, register, UI conventions.
 ---
 
 # Italian (it)

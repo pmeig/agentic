@@ -1,6 +1,6 @@
 ---
 name: git-branch-sync
-description: Use (front agent) when a feature branch has been merged to clean up the local branch and update the PR target branch, and before every new feature to update the default branch and create the feature branch.
+description: Use (front) after a merged PR to clean the local branch and update the target, and before each new feature to branch from the default branch.
 ---
 
 # Git Branch Sync

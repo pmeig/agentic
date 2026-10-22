@@ -1,6 +1,6 @@
 ---
 name: typescript-best-practices
-description: MANDATORY for any .ts/.js file, tsconfig or package.json (Node, pnpm, scripts): strict ESM, no enums, satisfies/as const, undefined over null, dot-kind file names, Vitest, TypeScript 7.
+description: MANDATORY for any .ts/.js, tsconfig or package.json: strict ESM, no enums, satisfies, undefined over null, Vitest, TypeScript 7.
 ---
 
 # TypeScript / JavaScript best practices

@@ -1,6 +1,6 @@
 ---
 name: doc-code-analysis
-description: Use to extract facts from a codebase before documenting it: annotated tree, modules and their dependencies, routes and handlers, features by layer, tests per feature, per-language tools (tree, ripgrep, ctags, dependency-cruiser, madge, jdeps, pydeps, go list, cargo, dotnet), link checking.
+description: Use to extract facts from a codebase before documenting: tree, modules, routes, features by layer, tests per feature, per-language tools.
 ---
 
 # Code analysis for documentation

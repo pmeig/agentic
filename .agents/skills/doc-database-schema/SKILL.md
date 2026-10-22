@@ -1,6 +1,6 @@
 ---
 name: doc-database-schema
-description: Use to document a database for humans and AIs (SQL, NoSQL, Room/SQLite): extract the real schema from the database or migrations, write DBML + a Mermaid ER diagram + a table dictionary, generate browsable docs with tbls or SchemaSpy, and keep it in sync with migrations.
+description: Use to document a database: extract the real schema, DBML + ER diagram + table dictionary, tbls/SchemaSpy, keep in sync with migrations.
 ---
 
 # Database schema documentation

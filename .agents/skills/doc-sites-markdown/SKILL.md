@@ -1,6 +1,6 @@
 ---
 name: doc-sites-markdown
-description: Use when human documentation outgrows a few Markdown files or must be published: GitHub-flavored Markdown conventions, folder layout, choosing a docs site generator (Zensical/MkDocs Material, Docusaurus, Starlight, VitePress), Mermaid and OpenAPI integration, link checks, deployment to GitHub Pages.
+description: Use when human docs outgrow a few Markdown files or must be published: layout, docs site generator choice, link checks, deployment.
 ---
 
 # Markdown docs and docs sites

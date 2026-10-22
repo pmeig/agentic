@@ -1,6 +1,6 @@
 ---
 name: sonar-java
-description: Only when asked (qa, front, back): SonarQube setup, coverage and exclusions of a Java module (Maven, Gradle, Spring, Lombok). Never load on your own.
+description: Only when asked: Sonar setup, coverage, exclusions of a Java module (Maven, Gradle, Spring, Lombok).
 ---
 
 # Sonar for Java (on request only)

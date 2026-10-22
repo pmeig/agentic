@@ -1,6 +1,6 @@
 ---
 name: language-en
-description: Use when reading, writing, translating or reviewing English text, to apply how English really works: spelling variants, grammar, punctuation, register, UI conventions and everyday speech.
+description: Use when reading, writing, translating or reviewing English text: grammar, spelling, register, UI conventions.
 ---
 
 # English (en)

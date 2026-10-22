@@ -1,6 +1,6 @@
 ---
 name: doc-architecture-c4-adr
-description: Use to document the architecture of a project: C4 model levels (context, containers, components), deployment view, arc42 section map, and Architecture Decision Records (ADR) with the Markdown template; drawn as Mermaid text.
+description: Use to document architecture: C4 levels, deployment view, arc42 map, ADR template, as Mermaid text.
 ---
 
 # Architecture documentation: C4, arc42, ADR
