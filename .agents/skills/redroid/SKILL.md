@@ -7,8 +7,7 @@ description: Redroid (Android in Docker) for e2e: WSL2 prerequisites, devices, a
 
 Android runs as a Docker container sharing the host kernel: no VM, boot in about 30 s without snapshot. Used by `qa` as the
 Android device of the Maestro e2e (`e2e-maestro-best-practices`, `e2e-run`, `e2e-parallelism-init`). Project scripts, when the
-project has them: `e2e/android/redroid/{check-host,start,stop}.sh`. Host investigation notes:
-`.agents/docs/operations/redroid-wsl-runner.md`.
+project has them: `e2e/android/redroid/{check-host,start,stop}.sh`.
 
 ## Host prerequisites
 
