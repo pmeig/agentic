@@ -63,6 +63,7 @@ Found in the module -> skills: `pom.xml`/`build.gradle*` + `.java` java; `.kt` (
 | lead, `qa` | `pr-and-ci-follow`, `ci-parity-before-push`; lead: `team-lead` (at the start of any feature, bug or PR), `team-bugfix-mode` |
 | `front` | `git-branch-sync` |
 | `designer`, `front` | `ui-responsive-accessible-modular` |
+| `front`, `qa`, lead | `guided-tours` only if the project has guided tours (always complete for each new feature); new project: `front` asks the lead whether to add them |
 | `designer` | `design-mockup-variants` always; other `design-*` only when the need calls for them |
 | `qa` | `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `e2e-<tool>-best-practices` + that tool's language skill. On request only: `sonar-<language>` |
 | `sales` | `promo-communication` always, `promo-video` when a video is involved |
