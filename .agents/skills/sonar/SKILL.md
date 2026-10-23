@@ -21,3 +21,6 @@ budget server: `budget-server` (CI, branch `develop`). Only `server/` is scanned
 ## Pitfalls
 `wsl.exe ... bash -ic` prints the shell banner: always extract between markers. A scan of an unpushed branch warns about missing blame information: harmless. Delete throwaway projects only when the user asks.
 Deleting a project (`POST api/projects/delete`) answers 403 with the Vault CI token (scan + read only): use the Sonar UI or an admin token.
+## Cleanup after a local scan (always)
+The scanner leaves `.scannerwork/` (task id, lock) in the directory it ran from. Once the quality gate is validated (or the scan is over, whatever the result), delete it in the same command chain:
+`rm -rf <module>/.scannerwork` (budget: `server/.scannerwork`). Never commit it; if the project has no ignore rule for it, add `.scannerwork/` to its `.gitignore`. Also remove the coverage output only if the project does not already ignore it.
