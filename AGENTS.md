@@ -64,7 +64,7 @@ Found in the module -> skills: `pom.xml`/`build.gradle*` + `.java` java; `.kt` (
 | `front` | `git-branch-sync` |
 | `designer`, `front` | `ui-responsive-accessible-modular` |
 | `designer` | `design-mockup-variants` always; other `design-*` only when the need calls for them |
-| `qa` | `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `redroid` (Android e2e devices in Docker), `e2e-<tool>-best-practices` + that tool's language skill. On request only: `sonar-<language>` |
+| `qa` | `sonar-report`, `e2e-run`, `e2e-live-progress`, `e2e-parallelism-init`, `e2e-<tool>-best-practices` + that tool's language skill. On request only: `sonar-<language>` |
 | `sales` | `promo-communication` always, `promo-video` when a video is involved |
 | `translator` | `translation-craft`, `language-<target>`, `language-<source>`, `translation-<source>-<target>`; missing ones via `translation-skill-factory`. Languages: `en`, `fr`, `ro`, `it`, `es`, `de` |
 | `documentalist` | `documentation-ai`, `documentation-human`, only the needed `doc-*` (see its agent file); all refresh monthly |
