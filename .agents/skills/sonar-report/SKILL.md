@@ -79,7 +79,7 @@ each refreshes monthly), and only the module concerned: `sonar-java`, `sonar-kot
 | Module | Language | Sonar | Tests | Coverage | Issues | Vulnerabilities | Hotspots | Gate |
 |---|---|---|---|---|---|---|---|---|
 
-After a local Sonar scan, delete `.scannerwork/` of the scanned module (skill `sonar`, "Cleanup after a local scan").
+After `qa` has validated the tests, delete `.scannerwork/` of the scanned module (skill `sonar`, "Cleanup after a local scan").
 
 Under it, what is not clean: uncovered files with their lines, each issue (rule, `file:line`, message), each hotspot, and what was
 not verified (language without Sonar, token limits).
