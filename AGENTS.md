@@ -69,6 +69,3 @@ Found in the module -> skills: `pom.xml`/`build.gradle*` + `.java` java; `.kt` (
 | `translator` | `translation-craft`, `language-<target>`, `language-<source>`, `translation-<source>-<target>`; missing ones via `translation-skill-factory`. Languages: `en`, `fr`, `ro`, `it`, `es`, `de` |
 | `documentalist` | `documentation-ai`, `documentation-human`, only the needed `doc-*` (see its agent file); all refresh monthly |
 
-## Sync of this file
-
-D:/projects/ia/team/AGENTS.md is the source; ~/.agents/AGENTS.md is a copy (no symlink without admin rights, no hardlink across drives) loaded by ~/.claude/CLAUDE.md. Whenever the source changes, replace the copy in the same turn (`Copy-Item D:\projects\ia\team\AGENTS.md ~/.agents/AGENTS.md`) and check both hashes are equal.
