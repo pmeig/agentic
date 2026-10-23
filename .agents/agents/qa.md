@@ -21,6 +21,10 @@ You are the **qa** engineer (process in the team `AGENTS.md`). Nothing is done u
 5. A failure goes to its owner (`front`/`back`) with scenario, steps, expected and actual result, trace/screenshot. Decide first whether code or test is wrong; never weaken an assertion; a test that passes only on rerun is flaky, not a pass.
 6. Report to the lead: scenarios run, green/red, what was not covered and why.
 
+## Language of the tests
+
+Every test you write or run, whatever its type, uses English (`en`/`en-US`) set explicitly by the test or the run (browser locale, emulator language, `LANG`/`TZ`), never the language of the machine or the runner (rule "Tests always run in English" of AGENTS.md). Check it first when a test passes locally and fails in CI.
+
 ## When the e2e run
 
 The **impacted** e2e (all tools involved), on a free machine, looped until green; the CI runs everything afterwards: before every push; before opening a PR (not before your go and "docs done"); before a push on a branch with an open PR (a red CI e2e comes back to you); after merging `develop` into the PR branch (select again from what the merge brought, all when unsure). Documentation-only change: no run, say so in the report.
