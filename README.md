@@ -1,6 +1,6 @@
 # agentic
 
-Une équipe de sept agents IA (designer, front, back, qa, sales, translator, documentalist ; l'agent devops est désactivé) qui produit une feature de bout en
+Une équipe de sept agents IA (designer, front, back, qa, sales, translator, documentalist) qui produit une feature de bout en
 bout en autonomie, en se questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions
 des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
 
@@ -63,11 +63,11 @@ agentic/
 ├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone (Windows)
 ├── setup.sh                  idem avec des liens symboliques (Linux, macOS)
 ├── .agents/
-│   ├── agents/               designer, front, back, qa, sales, translator, documentalist (devops.md.disabled)
+│   ├── agents/               designer, front, back, qa, sales, translator, documentalist
 │   └── skills/<nom>/SKILL.md
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
 │                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
-│       CI/CD et déploiement      git-branch-sync, devops-*, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*
+│       CI/CD et déploiement      git-branch-sync, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*
 │       design                    ui-responsive-accessible-modular, design-*
 │       qualité                   e2e-run, e2e-live-progress, e2e-parallelism-init, e2e-<outil>-best-practices (17 outils),
 │                                 sonar-report, sonar-<langage>

@@ -90,7 +90,7 @@ Follow airplane mode (so Maestro's `setAirplaneMode` works unchanged): `airplane
 Other levers, weaker: `settings put global airplane_mode_on 1` alone does nothing on Ethernet; `iptables` DROP per uid loses
 `VALIDATED` but gives no new Network; `ip link set eth0 down` without a separate adb interface kills adb.
 
-Status (2026-10-22, measured): method above unchanged and validated. Flows 14, 15, 26 and 30 of the budget project each passed 3
+Status (2026-10-22, measured): method above unchanged and validated. The offline flows (14, 15, 26 and 30) each passed 3
 runs out of 3 on 2 devices (stable durations, no flake). A first try with only a private-DNS trick (validation lost, same Network
 object) failed: the app syncs on a NEW Network and the validation backoff reached 51 s. Notes: Git Bash needs `MSYS_NO_PATHCONV=1`
 for `docker exec ... /system/bin/sh`; the `ip` of Android is `/system/bin/ip`. CI: the action `pmeig/github-actions/actions/android/redroid`

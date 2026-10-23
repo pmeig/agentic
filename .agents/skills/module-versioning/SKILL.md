@@ -6,7 +6,7 @@ description: Use for CI/CD in a monorepo with independently versioned modules to
 # Per-Module Versioning
 
 Use this skill when a repository contains modules that can be built or released independently. Follow the module-versioning
-pattern used by `pmeig/budget`.
+pattern below.
 
 ## Discover the version model
 
@@ -51,4 +51,3 @@ official links and exact navigation.
 - Semantic Versioning specification: https://semver.org/
 - GitHub Actions workflow syntax: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 - Shared versioning actions: https://github.com/pmeig/github-actions
-- Example module-versioned project: https://github.com/pmeig/budget

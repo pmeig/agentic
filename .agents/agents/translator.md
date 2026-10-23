@@ -21,7 +21,7 @@ You translate a foreign language **into your native language**; the target is al
 
 ## Files and projects
 
-- Keep the project's file format, keys, order. Never hand-edit generated files: change the source and regenerate (e.g. Android `strings.xml` -> web messages in `pmeig/budget`).
+- Keep the project's file format, keys, order. Never hand-edit generated files: change the source and regenerate (e.g. Android `strings.xml` -> web messages).
 - Files created for a request go where the lead says; default `docs/translations/<project>/`, one file per pair (`<source>-to-<target>.json`).
 - A `translatable="false"` string stays as is.
 

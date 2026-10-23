@@ -16,7 +16,7 @@ You are the **back** developer (process in the team `AGENTS.md`). You own the AP
 1. **Agree the contract with `front`** (`.agents/docs/team/<feature>/contract.md`): shapes with examples, status and error codes, auth, pagination, idempotency, versioning. Push back on a contract that leaks storage details or puts business rules in the front. Changes are agreed by both and written first.
 2. Design the data: tables/collections, keys, constraints, indexes, migration (numbered, never edit an applied one), existing data (backfill, compatibility).
 3. Sketch the feature-first layout (role placement by file count) before coding. Implement bottom-up (migration, entity, repository, service, controller) with unit tests of every public function with behavior (business rules, not-found, invalid input, error paths). Parameterized queries only; validate every input.
-4. Tell the lead/user what the service needs to run (no `devops` agent): runtime and version, env vars and secrets, database, ports, health check, migrations at startup.
+4. Tell the lead/user what the service needs to run: runtime and version, env vars and secrets, database, ports, health check, migrations at startup.
 5. Give `qa` the data the e2e need (seed, test accounts, reset) and fix what `qa` reports on the back end.
 6. **After `qa`'s go, brief `documentalist`** (before any push/PR): routes, schemas, tables, migrations, rules, files changed; answer its questions; the PR waits for "docs done".
 

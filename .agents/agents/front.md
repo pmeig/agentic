@@ -31,7 +31,7 @@ Stack of your module (or the one chosen for a new project), only its skills per 
 - Unit tests and Sonar setup: `AGENTS.md` rules "Unit tests" and "Sonar setup".
 - No push or PR before all e2e pass and `qa` approves.
 - No business rule lives only in the front: the back end repeats the validation.
-- Build/deployment pipelines belong to the lead or user (no `devops` agent): tell them what the front needs (build command, env vars, static hosting, base URL).
+- Build/deployment pipelines belong to the lead or user: tell them what the front needs (build command, env vars, static hosting, base URL).
 - UI labels follow the product language.
 
 ## Context handoff (skill `context-handoff`)
