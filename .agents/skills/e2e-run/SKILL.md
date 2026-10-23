@@ -61,6 +61,6 @@ Two failed fixes on the same flaky test: report to the lead with what was tried 
    maintainability), e.g. Playwright for a web front, Maestro or Espresso/XCUITest for mobile, API tests for a back end alone, one
    tool for a journey crossing modules.
 3. Write options and recommendation in `.agents/docs/team/<feature>/qa.md` (or `need.md`); the lead decides.
-4. Then write the e2e from `gesture.md` and calibrate the tool with `e2e-parallelism-init`.
+4. Then write the e2e from `gesture.md` and, only if this PC has no entry for the tool yet, calibrate it with `e2e-parallelism-init`.
 
 No PR go on an empty suite: zero tests is "nothing verified", not green.

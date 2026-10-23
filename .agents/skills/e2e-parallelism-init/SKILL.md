@@ -1,6 +1,6 @@
 ---
 name: e2e-parallelism-init
-description: Before e2e on a PC with no parallelism entry: time the suite with 1, 2, 3... workers, record the best.
+description: Only when this PC has no parallelism entry for the e2e tool (analysis never done): time the suite with 1, 2, 3... workers, record the best. Never otherwise.
 ---
 
 # E2E parallelism initialisation
@@ -14,7 +14,7 @@ The key is the tool, not the module: the limit is what the tool costs on this ma
    `(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Cryptography').MachineGuid`; Linux/WSL `/etc/machine-id`; macOS `IOPlatformUUID`).
 2. Config file: `<e2e root>/parallelism/<pc-id>.json` (e.g. `e2e/parallelism/`).
 3. Calibrate when **the file does not exist** (create it) **or has no entry for the tool** about to run (add it, keep the others).
-   An existing entry: read it and use it. Recalibrate only when asked or when `cpu`/`memoryGb` no longer match the machine.
+   An existing entry: read it and use it, never run the analysis again (only if the user explicitly asks for a recalibration).
 
 ## Procedure
 
