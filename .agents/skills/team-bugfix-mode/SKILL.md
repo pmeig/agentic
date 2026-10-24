@@ -24,3 +24,5 @@ For a red e2e/unit test, a CI red or a bug report whose expected behavior is alr
 - **Infrastructure** (runner, secret, network, same failure on unrelated PRs): lead/user, never looped.
 - **Flaky** (red then green, or red only in the CI): not a pass, not an infrastructure excuse; repaired as above and proven stable in the CI.
 
+
+**A red CI that passes locally**: before any fix, apply `ci-parity-before-push` "Fixing a red CI without extra round trips": read the CI's real environment from its artifacts, reproduce RED locally in it, fix every occurrence of the pattern, prove red-before / green-after, push once. A test that passes both before and after the fix proves nothing.
