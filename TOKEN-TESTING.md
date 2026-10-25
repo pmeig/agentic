@@ -128,6 +128,17 @@ Les résultats se trouvent dans `token-comparison-results/copilot-<horodatage>/`
 - `base.otel.jsonl` et `compare.otel.jsonl` : télémétrie brute propre à chaque variante ;
 - `base.stdout.log`, `base.stderr.log`, et les équivalents `compare.*` : sorties brutes du CLI.
 
+### Test initial et solution de repli
+
+Avant le benchmark, le script effectue un appel minimal à Copilot (réponse demandée : `OK`) et enregistre `preflight.json`. Ce test vérifie si les tokens sont accessibles par télémétrie OpenTelemetry, par champs structurés de la sortie CLI, ou seulement par interprétation. **Cet appel consomme potentiellement des crédits** ; le test `--dry-run` ne lance aucun appel.
+
+Ordre de priorité :
+1. **Mesure directe** : OpenTelemetry local JSONL, avec tokens par appel modèle.
+2. **Repli structuré** : champs de consommation JSON explicitement émis par la CLI.
+3. **Interprétation estimative** : estimation grossière à partir du nombre de caractères visibles du prompt et de la réponse (environ 4 caractères par token). Le rapport la marque `source: interpretive_estimate` et `is_estimate: true`.
+
+L'estimation interprétative **n'est pas une mesure réelle** : elle ne comprend pas le contexte système caché, les appels intermédiaires, les outils, ni les effets de cache. Ne l'utilise pas pour comparer précisément la facturation ; elle sert uniquement de signal de secours. Les fichiers `preflight.stdout.log` et `preflight.stderr.log` permettent d'examiner la réponse du test initial.
+
 ### Métriques disponibles via OpenTelemetry
 
 Quand la version installée de Copilot CLI les émet, le script mesure :
