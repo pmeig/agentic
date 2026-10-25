@@ -155,6 +155,87 @@ def parse_cli_usage(text):
     return max(found, key=len) if found else None
 
 
+def interpret_usage(prompt, stdout, stderr):
+    """Explicitly approximate visible text only; never present it as actual model usage."""
+    prompt_chars = len(prompt)
+    response_chars = len(stdout or "")
+    stderr_chars = len(stderr or "")
+    return {
+        "source": "interpretive_estimate",
+        "is_estimate": True,
+        "method": "visible character count divided by 4; rough heuristic only",
+        "estimated_prompt_tokens": round(prompt_chars / 4),
+        "estimated_visible_response_tokens": round(response_chars / 4),
+        "estimated_visible_total_tokens": round((prompt_chars + response_chars) / 4),
+        "prompt_characters": prompt_chars,
+        "stdout_characters": response_chars,
+        "stderr_characters": stderr_chars,
+        "limitations": [
+            "Not actual token counts and not suitable for billing comparisons.",
+            "Does not include hidden system context, tool traffic, intermediate model calls, or cache behavior.",
+            "CLI stdout may contain only the final response.",
+        ],
+    }
+
+
+def collect_usage(otel_path, prompt, stdout, stderr):
+    usage = read_otel_usage(otel_path)
+    if usage is not None:
+        return usage
+    usage = parse_cli_usage((stdout or "") + "\\n" + (stderr or ""))
+    if usage is not None:
+        return {
+            "source": "copilot_cli_structured_output_fallback",
+            "is_estimate": False,
+            "fields": usage,
+            "note": "Structured CLI fields; verify which calls and token categories they cover.",
+        }
+    return interpret_usage(prompt, stdout, stderr)
+
+
+def run_preflight(command, output_dir, timeout):
+    """Make one minimal Copilot request before the benchmark and test telemetry capture."""
+    telemetry_path = (output_dir / "preflight.otel.jsonl").resolve()
+    env = os.environ.copy()
+    env["COPILOT_OTEL_ENABLED"] = "true"
+    env["COPILOT_OTEL_EXPORTER_TYPE"] = "file"
+    env["COPILOT_OTEL_FILE_EXPORTER_PATH"] = str(telemetry_path)
+    env["OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT"] = "false"
+    probe_prompt = "Réponds uniquement par OK. N'utilise aucun outil et ne modifie aucun fichier."
+    start = time.monotonic()
+    try:
+        result = run(shlex.split(command) + ["-p", probe_prompt], output_dir, timeout=timeout, env=env)
+        elapsed = round(time.monotonic() - start, 2)
+        telemetry = read_otel_usage(telemetry_path)
+        structured = parse_cli_usage(result.stdout + "\\n" + result.stderr)
+        if result.returncode != 0:
+            status = "failed"
+        elif telemetry is not None:
+            status = "direct_telemetry_available"
+        elif structured is not None:
+            status = "structured_cli_metrics_available"
+        else:
+            status = "interpretive_fallback_only"
+        (output_dir / "preflight.stdout.log").write_text(result.stdout, encoding="utf-8")
+        (output_dir / "preflight.stderr.log").write_text(result.stderr, encoding="utf-8")
+        return {
+            "status": status,
+            "return_code": result.returncode,
+            "duration_seconds": elapsed,
+            "telemetry_file": str(telemetry_path),
+            "telemetry_usage": telemetry,
+            "structured_cli_metrics_found": structured is not None,
+            "note": "Preflight performs one small Copilot request and may consume usage/credits.",
+        }
+    except (subprocess.TimeoutExpired, OSError) as error:
+        return {
+            "status": "failed",
+            "error": str(error),
+            "telemetry_file": str(telemetry_path),
+            "note": "Copilot CLI could not complete the initial capability test.",
+        }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prompt", default="prompts/token-test-copilot.md")
@@ -177,6 +258,28 @@ def main():
     output_dir = output_root / ("copilot-" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
     output_dir.mkdir(parents=True, exist_ok=False)
     records, worktrees = [], []
+    preflight = {"status": "skipped", "reason": "dry-run"} if args.dry_run else run_preflight(
+        args.copilot_command, output_dir, min(args.timeout, 120)
+    )
+    (output_dir / "preflight.json").write_text(
+        json.dumps(preflight, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8"
+    )
+    if not args.dry_run and preflight.get("status") == "failed":
+        report = {
+            "tool": "GitHub Copilot CLI",
+            "created_at": datetime.datetime.now().astimezone().isoformat(),
+            "base_ref": args.base,
+            "compare_ref": args.compare,
+            "prompt": str(prompt_path),
+            "preflight": preflight,
+            "runs": [],
+            "notes": ["Initial Copilot CLI test failed; benchmark was not started."],
+        }
+        (output_dir / "comparison.json").write_text(
+            json.dumps(report, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8"
+        )
+        print("Preflight failed; see", output_dir / "preflight.json", file=sys.stderr)
+        return 2
 
     try:
         for label, ref in (("base", args.base), ("compare", args.compare)):
@@ -231,7 +334,7 @@ def main():
                     record.update(
                         status="timeout",
                         duration_seconds=round(time.monotonic() - start, 2),
-                        usage=read_otel_usage(otel_path),
+                        usage=read_otel_usage(otel_path) or interpret_usage(prompt, str(exc.stdout or ""), str(exc.stderr or "")),
                     )
                     stdout = exc.stdout or ""
                     stderr = exc.stderr or ""
@@ -255,11 +358,13 @@ def main():
         "base_ref": args.base,
         "compare_ref": args.compare,
         "prompt": str(prompt_path),
-        "measurement_method": "OpenTelemetry local JSONL export, with structured CLI-output fallback",
+        "measurement_method": "preflight capability test; prefer OpenTelemetry, then structured CLI fields, then labeled interpretive estimate",
+        "preflight": preflight,
         "notes": [
             "Token totals are summed from per-request chat spans to avoid double-counting parent invoke_agent spans.",
             "Cache counters are reported separately and are not added again to input/output totals.",
-            "Missing metrics mean unavailable, not zero.",
+            "Missing direct metrics trigger a clearly labeled interpretive estimate; estimates are not actual token counts.",
+            "Preflight makes one small Copilot request and may consume usage/credits.",
             "github.copilot.cost is a model billing multiplier, not a monetary amount.",
             "Prompt/response content capture is disabled by this script.",
         ],
@@ -275,10 +380,13 @@ def main():
             "duration=", record.get("duration_seconds"),
             "usage=", json.dumps(record.get("usage"), ensure_ascii=False),
         )
-    if not args.dry_run and any(record.get("usage") is None for record in records):
+    if not args.dry_run and any(
+        isinstance(record.get("usage"), dict) and record["usage"].get("is_estimate")
+        for record in records
+    ):
         print(
-            "No token usage metrics found. Check the .otel.jsonl file and Copilot CLI version; "
-            "null does not mean zero.",
+            "WARNING: at least one run uses an interpretive estimate, not actual token counts. "
+            "See comparison.json and the raw logs.",
             file=sys.stderr,
         )
     return 0 if args.dry_run or all(record["status"] == "completed" for record in records) else 1
