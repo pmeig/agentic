@@ -107,3 +107,12 @@ python scripts/compare-claude-tokens.py --branches main chore/optimisation --pro
 Les résultats sont écrits dans \`token-comparison-results/\` (ou le dossier passé à \`--output-dir\`). Le script ne pousse aucun changement vers GitHub : il crée des worktrees détachés temporaires et les supprime après chaque exécution. Le dépôt de départ doit être propre pour éviter toute confusion sur le code testé.
 
 Le rapport dépend des champs d'usage renvoyés par la version installée de Claude Code. Vérifie les transcriptions des sous-agents si elles sont utilisées : ne conclus pas qu'un total inclut les sous-agents à moins que les compteurs le confirment. Pour une décision solide, répète plusieurs fois chaque variante et vérifie la qualité du résultat.
+
+
+## Comparaison A/B avec GitHub Copilot CLI
+
+```bash
+python scripts/compare-copilot-tokens.py --prompt prompts/token-test-copilot.md --base main --compare chore/optimisation
+```
+
+Prérequis : Git, Python 3, Copilot CLI installé et authentifié. `--dry-run` vérifie les refs sans lancer Copilot. Les logs et `comparison.json` sont dans `token-comparison-results/copilot-<horodatage>/`. Le script mesure la durée et n’affiche tokens/coûts que si la CLI fournit des champs reconnaissables ; `usage: null` signifie métrique non exposée, pas zéro. Consulte l’interface d’utilisation Copilot pour les chiffres de facturation faisant autorité.
