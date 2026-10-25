@@ -63,7 +63,7 @@ python scripts/compare-claude-tokens.py --branches main chore/optimisation --pro
 
 Le script enregistre `comparison.json`, un JSON par variante et les sorties brutes dans `token-comparison-results/` (ou le dossier indiqué). Il rapporte les métriques présentes dans la réponse JSON de Claude Code, par exemple usage, durée, nombre de tours et coût en USD si disponibles.
 
-## 4. Test GitHub Copilot CLI (automatisé)
+## 4. Test GitHub Copilot CLI (mesure des tokens via OpenTelemetry)
 
 Depuis la racine du dépôt :
 
@@ -77,9 +77,19 @@ Pour vérifier la préparation sans lancer de modèle :
 python scripts/compare-copilot-tokens.py --prompt .\prompts\token-test-copilot.md --base main --compare chore/optimisation --dry-run
 ```
 
-Le script crée un worktree par référence, appelle la commande Copilot CLI en mode prompt, enregistre les journaux stdout/stderr et un `comparison.json`, puis retire les worktrees temporaires. Les résultats sont placés dans `token-comparison-results/copilot-<horodatage>/`.
+Le script crée un worktree par commit, lance le même prompt et active l'export OpenTelemetry local dans un fichier JSONL distinct pour chaque variante. Il conserve les journaux stdout/stderr, les fichiers `base.otel.jsonl` et `compare.otel.jsonl`, ainsi que `comparison.json`, dans `token-comparison-results/copilot-<horodatage>/`.
 
-**Limite importante :** selon la version et la configuration de Copilot CLI, la sortie peut ne pas exposer de champs d'utilisation. Dans ce cas, le rapport indique `usage: null`. Cela ne veut pas dire zéro token ; cela veut dire que le script n'a pas trouvé de métrique exploitable. Utilise les informations d'utilisation/facturation disponibles dans ton compte Copilot pour les chiffres officiels. Le temps d'exécution reste mesuré.
+**Mesures à privilégier :**
+- tokens d'entrée et de sortie par requête modèle, à partir des spans `chat` ;
+- tokens de cache lus et créés, rapportés séparément ;
+- modèles utilisés, nombre de requêtes mesurées et durée totale ;
+- `github.copilot.nano_aiu` lorsqu'il est émis.
+
+Le script somme les spans `chat`, et ne somme pas leurs spans parents `invoke_agent`, afin d'éviter le double comptage. La capture du contenu des prompts et réponses est désactivée. Les métriques manquantes restent `null`, elles ne sont jamais considérées comme égales à zéro.
+
+**Ce qui n'est pas garanti :** toutes les versions ou configurations du CLI n'exposent pas nécessairement tous les attributs. Si aucune télémétrie exploitable n'est émise, le script tente les champs structurés de sortie CLI puis laisse les métriques absentes comme indisponibles. `github.copilot.cost` est un multiplicateur de facturation, pas un coût en euros. Les rapports globaux d'utilisation Copilot ne sont pas forcément assez fins pour attribuer la consommation à un commit individuel.
+
+Référence officielle : [Copilot CLI — OpenTelemetry monitoring](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference#opentelemetry-monitoring).
 
 ## 5. Lire les résultats
 
