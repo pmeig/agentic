@@ -111,8 +111,40 @@ Le rapport dépend des champs d'usage renvoyés par la version installée de Cla
 
 ## Comparaison A/B avec GitHub Copilot CLI
 
-```bash
-python scripts/compare-copilot-tokens.py --prompt prompts/token-test-copilot.md --base main --compare chore/optimisation
+Le script active la télémétrie OpenTelemetry locale pour chaque exécution, dans un fichier JSONL distinct. Il additionne les compteurs des spans `chat` (un span par requête au modèle), sans additionner les totaux des spans parents `invoke_agent`, ce qui évite de compter deux fois les tokens.
+
+```powershell
+python scripts/compare-copilot-tokens.py --prompt .\prompts\token-test-copilot.md --base main --compare chore/optimisation
 ```
 
-Prérequis : Git, Python 3, Copilot CLI installé et authentifié. `--dry-run` vérifie les refs sans lancer Copilot. Les logs et `comparison.json` sont dans `token-comparison-results/copilot-<horodatage>/`. Le script mesure la durée et n’affiche tokens/coûts que si la CLI fournit des champs reconnaissables ; `usage: null` signifie métrique non exposée, pas zéro. Consulte l’interface d’utilisation Copilot pour les chiffres de facturation faisant autorité.
+Pour vérifier les worktrees sans lancer de modèle :
+
+```powershell
+python scripts/compare-copilot-tokens.py --prompt .\prompts\token-test-copilot.md --base main --compare chore/optimisation --dry-run
+```
+
+Les résultats se trouvent dans `token-comparison-results/copilot-<horodatage>/` :
+- `comparison.json` : commits testés, durée et métriques résumées ;
+- `base.otel.jsonl` et `compare.otel.jsonl` : télémétrie brute propre à chaque variante ;
+- `base.stdout.log`, `base.stderr.log`, et les équivalents `compare.*` : sorties brutes du CLI.
+
+### Métriques disponibles via OpenTelemetry
+
+Quand la version installée de Copilot CLI les émet, le script mesure :
+- `gen_ai.usage.input_tokens` : tokens d'entrée par appel modèle ;
+- `gen_ai.usage.output_tokens` : tokens de sortie par appel modèle ;
+- `gen_ai.usage.cache_read.input_tokens` et `gen_ai.usage.cache_creation.input_tokens` : compteurs de cache séparés ;
+- le modèle et le nombre de requêtes ayant fourni des compteurs ;
+- `github.copilot.nano_aiu`, si présent, comme unité de consommation IA rapportée par le CLI.
+
+Les totaux d'entrée/sortie sont calculés en sommant les spans `chat`. Les tokens de cache restent des colonnes séparées : ne les additionne pas une seconde fois au total entrée/sortie.
+
+### Limites importantes
+
+- Si une version du CLI ne produit pas ces spans ou attributs, la métrique reste indisponible (`null`), jamais remplacée par zéro. Le script conserve alors les métriques structurées de la sortie CLI comme solution de repli, si elles existent.
+- `github.copilot.cost` est un multiplicateur de facturation par modèle, **pas un montant en euros** ; le script ne le traite pas comme un coût monétaire.
+- Les rapports d'utilisation GitHub au niveau du compte ou de l'organisation sont utiles comme contrôle global, mais ne permettent pas nécessairement d'attribuer exactement chaque token à un commit ou à un prompt isolé.
+- Le script désactive la capture du contenu des prompts et réponses dans OpenTelemetry ; les compteurs de tokens n'exigent pas de conserver ces contenus.
+- Cette mesure correspond aux appels réellement observés dans les spans exportés. Vérifie la présence des fichiers `.otel.jsonl` et répète chaque variante au moins trois fois pour réduire les effets de variabilité. Compare aussi les commits, les résultats des tests et la qualité.
+
+Référence officielle : [commande Copilot CLI — OpenTelemetry monitoring](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference#opentelemetry-monitoring).
