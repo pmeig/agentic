@@ -76,7 +76,7 @@ def main() -> int:
             except ValueError:
                 label = str(path)
             rows.append({"transcript": label, **usage,
-                         "total_reported_tokens": usage["input_tokens"] + usage["output_tokens"]})
+                         "total_reported_tokens": usage["input_tokens"] + usage["output_tokens"] + usage["cache_creation_input_tokens"] + usage["cache_read_input_tokens"]})
 
     if args.json:
         print(json.dumps(rows, indent=2))
