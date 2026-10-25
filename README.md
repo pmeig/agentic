@@ -110,6 +110,20 @@ démarrage de la session : lancer le script avant d'ouvrir Claude Code.
 Dans une session cloud ouverte sur ce dépôt, le hook `.agents/hooks` (déclaré dans `.claude/settings.json`) le lance
 automatiquement.
 
+### Installer GitHub Copilot CLI sur macOS
+
+Après avoir installé les outils de base Git/GitHub nécessaires, exécute le script du dépôt :
+
+```bash
+bash scripts/install-copilot-cli-macos.sh
+```
+
+Le script télécharge l'installateur officiel GitHub, installe ou met à jour Copilot CLI dans `~/.local/bin` par défaut,
+ajoute ce répertoire au PATH de `~/.zprofile`, puis vérifie la commande. Il n'installe pas Homebrew ni Node.js.
+Ouvre un nouveau terminal, lance `copilot`, puis saisis `/login` pour authentifier ton compte GitHub.
+L'accès nécessite un abonnement Copilot actif et peut être désactivé par la politique de ton organisation.
+Documentation officielle : https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli.
+
 Pour utiliser l'équipe dans un autre projet : lier (jonction) `.agents/agents` et `.agents/skills` dans le `.agents/` du projet
 (ou de `~/.agents/` pour tous les projets), puis leurs liens `.claude/`.
 
