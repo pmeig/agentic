@@ -182,7 +182,7 @@ def collect_usage(otel_path, prompt, stdout, stderr):
     usage = read_otel_usage(otel_path)
     if usage is not None:
         return usage
-    usage = parse_cli_usage((stdout or "") + "\\n" + (stderr or ""))
+    usage = parse_cli_usage((stdout or "") + "\n" + (stderr or ""))
     if usage is not None:
         return {
             "source": "copilot_cli_structured_output_fallback",
@@ -207,7 +207,7 @@ def run_preflight(command, output_dir, timeout):
         result = run(shlex.split(command) + ["-p", probe_prompt], output_dir, timeout=timeout, env=env)
         elapsed = round(time.monotonic() - start, 2)
         telemetry = read_otel_usage(telemetry_path)
-        structured = parse_cli_usage(result.stdout + "\\n" + result.stderr)
+        structured = parse_cli_usage(result.stdout + "\n" + result.stderr)
         if result.returncode != 0:
             status = "failed"
         elif telemetry is not None:
@@ -262,7 +262,7 @@ def main():
         args.copilot_command, output_dir, min(args.timeout, 120)
     )
     (output_dir / "preflight.json").write_text(
-        json.dumps(preflight, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8"
+        json.dumps(preflight, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     if not args.dry_run and preflight.get("status") == "failed":
         report = {
@@ -276,7 +276,7 @@ def main():
             "notes": ["Initial Copilot CLI test failed; benchmark was not started."],
         }
         (output_dir / "comparison.json").write_text(
-            json.dumps(report, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8"
+            json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
         )
         print("Preflight failed; see", output_dir / "preflight.json", file=sys.stderr)
         return 2
@@ -321,20 +321,16 @@ def main():
                     (output_dir / (label + ".stdout.log")).write_text(result.stdout, encoding="utf-8")
                     (output_dir / (label + ".stderr.log")).write_text(result.stderr, encoding="utf-8")
                     usage = read_otel_usage(otel_path)
-                    if usage is None:
-                        usage = parse_cli_usage(result.stdout + "\n" + result.stderr)
-                        if usage is not None:
-                            usage = {
-                                "source": "copilot_cli_structured_output_fallback",
-                                "fields": usage,
-                                "note": "Fallback metrics are only as complete as the CLI output; verify against OTel when possible.",
-                            }
-                    record["usage"] = usage
+                    record["usage"] = collect_usage(otel_path, prompt, result.stdout, result.stderr)
                 except subprocess.TimeoutExpired as exc:
                     record.update(
                         status="timeout",
                         duration_seconds=round(time.monotonic() - start, 2),
-                        usage=read_otel_usage(otel_path) or interpret_usage(prompt, str(exc.stdout or ""), str(exc.stderr or "")),
+                        usage=collect_usage(
+                            otel_path, prompt,
+                            exc.stdout.decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else str(exc.stdout or ""),
+                            exc.stderr.decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else str(exc.stderr or ""),
+                        ),
                     )
                     stdout = exc.stdout or ""
                     stderr = exc.stderr or ""
