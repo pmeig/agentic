@@ -112,7 +112,7 @@ Pour utiliser l'équipe dans un autre projet : lier (jonction) `.agents/agents` 
 
 ## Claude Code agent parallelism and token usage
 
-The team lead may split a large front-end or back-end task across agents only when their file ownership is disjoint and the expected time saved justifies the extra context and tool-call cost. Small tasks stay with one owner; shared contract decisions and sequential gates are not parallelized.
+The team lead may launch as many agents simultaneously as are useful across any role, including multiple agents of the same type (for example, several Front or Back agents). There is no fixed concurrency cap: each additional agent must own independent work, avoid overlapping file edits, and offer expected time/quality gains that justify the marginal token, context and tool-call cost. Shared decisions and genuinely sequential gates remain sequential.
 
 After a run, inspect locally recorded Claude Code usage per transcript (including subagent transcripts when Claude Code stores them under the project transcript directory):
 
