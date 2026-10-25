@@ -1,72 +1,86 @@
-# Tester et comparer la consommation de tokens Claude Code
+# Mesurer les tokens consommés par mes tests d'agents
 
-Ce guide permet de comparer **deux exécutions réelles** (par exemple agents en série vs agents en parallèle) à partir des transcriptions locales Claude Code. Le script mesure les champs d'usage présents dans les fichiers JSONL ; il ne mesure pas le temps et ne garantit pas le montant facturé.
+## But
 
-## 1. Préparer un test A/B comparable
+Ce guide sert à choisir la variante de workflow qui consomme le moins de tokens **pour un même travail et un résultat de qualité équivalente**. Il mesure l'usage observé dans les transcriptions Claude Code. Il ne lance pas les tests à ta place et ne fournit pas automatiquement le coût en euros.
 
-1. Mets le dépôt dans un état connu et note le commit avec `git rev-parse HEAD`.
-2. Choisis une tâche représentative, avec un résultat vérifiable et un périmètre limité.
-3. Lance deux sessions neuves avec le même modèle, les mêmes réglages, le même prompt et le même état initial :
-   - **A — référence** : demande explicitement une exécution séquentielle, sans agents parallèles.
-   - **B — parallèle** : demande d'appliquer la règle de parallélisme piloté par le coût et de lancer les agents indépendants utiles.
-4. Ne réutilise pas la même session entre A et B. Note pour chaque essai le commit, le prompt, le modèle, les réglages, le résultat, la durée et les éventuels échecs/reprises.
+## 1. Définir les variantes à comparer
 
-Les résultats ne sont comparables que si le travail livré et les critères de qualité sont équivalents. Pour une comparaison plus fiable, répète chaque variante plusieurs fois et compare la médiane ; une seule exécution peut être influencée par le cache, la variabilité du modèle ou des différences de travail.
+Pour comparer deux versions du workflow (par exemple `main` et `chore/optimisation`, ou séquentiel et parallèle) :
 
-## 2. Trouver les transcriptions
+1. Utilise la même tâche de test, le même prompt, le même modèle et les mêmes réglages.
+2. Pars d'un état de code équivalent et utilise une **nouvelle session Claude Code** pour chaque essai.
+3. Note la branche et le commit testé, puis lance exactement le même scénario.
+4. Vérifie que le résultat satisfait les mêmes tests/critères d'acceptation.
+5. Répète si possible chaque variante au moins trois fois : le cache et la variabilité des réponses peuvent modifier les chiffres.
 
-Claude Code conserve normalement ses transcriptions dans le dossier utilisateur Claude. Sur Windows, commence par :
+Ne compare pas seulement le total de tokens si une variante a fait moins de travail ou échoué plus tôt.
+
+## 2. Repérer les transcriptions de chaque exécution (Windows / PowerShell)
+
+Claude Code enregistre normalement ses transcriptions JSONL sous `$HOME\.claude\projects`. Liste les fichiers récemment modifiés :
 
 ```powershell
 Get-ChildItem "$HOME\.claude\projects" -Recurse -Filter *.jsonl |
   Sort-Object LastWriteTime -Descending |
-  Select-Object -First 30 LastWriteTime, Length, FullName
+  Select-Object -First 40 LastWriteTime, Length, FullName
 ```
 
-Repère les fichiers modifiés pendant chaque session. Les transcriptions des sous-agents peuvent être rangées dans des sous-dossiers (par exemple `subagents`) : inclus-les aussi, car elles comptent pour le travail parallèle.
+Repère les fichiers correspondant à la session que tu viens de terminer. Identifie aussi les transcriptions des sous-agents, souvent dans un sous-dossier `subagents`. Pour mesurer le workflow complet, inclus les transcriptions des agents lancés par cette session.
 
-## 3. Isoler les fichiers de chaque essai
+## 3. Séparer les données de chaque variante
 
-Le rapport additionne tous les JSONL trouvés sous `--root`. **Ne lance donc pas le rapport sur tout l'historique pour comparer une seule exécution** : copie les transcriptions de A dans un dossier dédié, et celles de B dans un autre. Préserve les sous-dossiers et noms de fichiers, notamment ceux des sous-agents.
-
-Exemple PowerShell (remplace les chemins par les fichiers/dossiers repérés à l'étape précédente) :
+Le script traite tous les fichiers `*.jsonl` sous le dossier fourni avec `--root`. Crée donc un dossier isolé par essai et copie-y **uniquement** les transcriptions de cette exécution, avec celles de ses sous-agents.
 
 ```powershell
-New-Item -ItemType Directory -Force .\token-test\A, .\token-test\B
-# Copie les fichiers JSONL de la session A et ses transcriptions de sous-agents dans token-test\A
-# Copie ceux de la session B et ses transcriptions de sous-agents dans token-test\B
+New-Item -ItemType Directory -Force .\token-tests\main-run1, .\token-tests\optimisation-run1
+# Copie les JSONL de la session testée sur main et ses sous-agents dans main-run1
+# Copie les JSONL de la session testée sur chore/optimisation et ses sous-agents dans optimisation-run1
 ```
 
-Évite de copier des transcriptions d'autres sessions dans ces dossiers. Les transcriptions peuvent contenir du code, des chemins et des échanges privés : garde les copies localement et ne les publie pas.
+Ne mets pas dans ces dossiers les transcriptions d'autres sessions. Les transcriptions peuvent contenir du code et des échanges privés : garde-les localement.
 
-## 4. Générer les rapports
+## 4. Calculer les tokens pour chaque essai
 
-Depuis la racine du dépôt :
+Depuis la racine du dépôt, exécute le script de la branche que tu testes :
 
 ```powershell
-python scripts/claude-token-usage.py --root .\token-test\A
-python scripts/claude-token-usage.py --root .\token-test\B
-python scripts/claude-token-usage.py --root .\token-test\A --json
-python scripts/claude-token-usage.py --root .\token-test\B --json
+python scripts/claude-token-usage.py --root .\token-tests\main-run1
+python scripts/claude-token-usage.py --root .\token-tests\optimisation-run1
 ```
 
-Le tableau donne, par fichier de transcription, les tokens d'entrée, de sortie, de création de cache et de lecture de cache, ainsi qu'un total calculé à partir de ces quatre colonnes. La ligne `-TOTAL-` additionne les fichiers du dossier ; veille à ne pas compter deux fois les transcriptions parent/sous-agent.
+Pour conserver les résultats en JSON :
 
-## 5. Calculer et interpréter l'écart
+```powershell
+python scripts/claude-token-usage.py --root .\token-tests\main-run1 --json > .\token-tests\main-run1-report.json
+python scripts/claude-token-usage.py --root .\token-tests\optimisation-run1 --json > .\token-tests\optimisation-run1-report.json
+```
 
-Pour chaque variante, relève le total et les colonnes séparées. Calcule :
+Le rapport affiche, par transcription et en total, `input_tokens`, `output_tokens`, `cache_creation_input_tokens`, `cache_read_input_tokens` et `total_reported_tokens`. Vérifie que le dossier ne contient que les fichiers de l'essai visé.
 
-- **Écart absolu** = total B − total A.
-- **Écart relatif (%)** = (total B − total A) / total A × 100.
-- Fais aussi la comparaison séparément pour entrée, sortie, cache créé et cache lu.
-- Compare la durée et la qualité : tests passés, critères d'acceptation, défauts, reprises et travail réellement livré.
+## 5. Comparer et décider
 
-Un écart relatif négatif signifie que B a consommé moins de tokens rapportés que A ; positif signifie plus. Le parallélisme peut accélérer le travail tout en consommant davantage de tokens à cause des contextes séparés et du travail de coordination. Décide sur le compromis qualité/durée/coût, pas sur le seul total.
+Reporte les totaux dans ce tableau (une ligne par essai) :
 
-## Limites à connaître
+| Variante | Commit | Total tokens rapportés | Entrée | Sortie | Cache créé | Cache lu | Durée | Tests/qualité |
+|---|---|---:|---:|---:|---:|---:|---|---|
+| `main` — essai 1 | à renseigner | à mesurer | à mesurer | à mesurer | à mesurer | à mesurer | à mesurer | à vérifier |
+| `chore/optimisation` — essai 1 | à renseigner | à mesurer | à mesurer | à mesurer | à mesurer | à mesurer | à mesurer | à vérifier |
 
-- Le script additionne les champs `usage` présents sur les enregistrements assistant et ignore les lignes JSON invalides ou les fichiers illisibles.
-- Les colonnes de cache sont affichées séparément et sont également incluses dans `total_reported_tokens` ; ne les ajoute pas une deuxième fois.
-- Les compteurs observés dans les transcriptions ne sont pas une garantie de facturation exacte. Selon le format des transcriptions et le fournisseur, certains compteurs peuvent se recouvrir ou représenter des notions différentes.
-- Si aucun résultat n'apparaît, vérifie le chemin `--root`, le format JSONL et la présence de champs `usage`.
-- Le script ne lance pas Claude Code et ne crée pas les transcriptions : exécute les tests dans Claude Code d'abord.
+Calculs :
+
+- **Écart de tokens** = total de la variante candidate − total de référence.
+- **Écart en %** = (total candidat − total référence) / total référence × 100.
+- Un pourcentage négatif signifie moins de tokens rapportés ; un pourcentage positif signifie plus.
+- Si tu fais plusieurs essais, compare aussi la médiane de chaque variante plutôt qu'un seul résultat.
+
+Choisis la variante la moins consommatrice seulement si elle passe les mêmes tests et produit un résultat équivalent. Prends en compte le temps gagné : le parallélisme peut utiliser plus de tokens mais terminer plus vite.
+
+## Limites et interprétation
+
+- Le script additionne les champs `usage` disponibles sur les enregistrements assistant dans les fichiers JSONL. Il n'infère pas les tokens absents.
+- Les tokens des sous-agents ne seront inclus que si leurs transcriptions sont présentes dans le dossier fourni.
+- `total_reported_tokens` est la somme des quatre colonnes affichées. Ne rajoute pas les colonnes de cache une seconde fois.
+- Ces compteurs sont des mesures de transcription, pas une garantie de facturation exacte. Le coût monétaire dépend aussi du modèle et de la tarification applicable.
+- Des tests unitaires classiques qui n'appellent pas un modèle ne consomment pas de tokens Claude. Pour mesurer le coût du workflow d'agents, lance réellement chaque scénario dans Claude Code, puis analyse ses transcriptions.
+- Si le rapport dit `No usage records found`, vérifie le chemin, les fichiers JSONL et qu'ils contiennent des enregistrements assistant avec `usage`.
