@@ -84,3 +84,26 @@ Choisis la variante la moins consommatrice seulement si elle passe les mêmes te
 - Ces compteurs sont des mesures de transcription, pas une garantie de facturation exacte. Le coût monétaire dépend aussi du modèle et de la tarification applicable.
 - Des tests unitaires classiques qui n'appellent pas un modèle ne consomment pas de tokens Claude. Pour mesurer le coût du workflow d'agents, lance réellement chaque scénario dans Claude Code, puis analyse ses transcriptions.
 - Si le rapport dit `No usage records found`, vérifie le chemin, les fichiers JSONL et qu'ils contiennent des enregistrements assistant avec `usage`.
+
+## 6. Lancer automatiquement le même scénario sur deux branches
+
+Le script \`scripts/compare-claude-tokens.py\` lance le même prompt avec Claude Code sur deux worktrees temporaires, par défaut \`main\` et \`chore/optimisation\`, puis sauvegarde les sorties JSON, la durée, le nombre de tours, le coût rapporté par le CLI et les champs d'usage disponibles.
+
+**Attention : cela déclenche de vrais appels potentiellement facturés.** Vérifie le prompt, le modèle et les limites avant de lancer. Il faut avoir \`git\`, Python et Claude Code (\`claude\`) installés, être authentifié, et lancer la commande depuis un clone local du dépôt.
+
+Crée un fichier \`test-prompt.md\` avec une tâche courte, représentative et identique pour les deux variantes, puis lance :
+
+\`\`\`powershell
+python scripts/compare-claude-tokens.py --prompt-file .\\test-prompt.md
+\`\`\`
+
+Options utiles :
+
+\`\`\`powershell
+python scripts/compare-claude-tokens.py --prompt-file .\\test-prompt.md --model <nom-du-modele> --max-turns 10
+python scripts/compare-claude-tokens.py --branches main chore/optimisation --prompt-file .\\test-prompt.md --output-dir .\\mesures
+\`\`\`
+
+Les résultats sont écrits dans \`token-comparison-results/\` (ou le dossier passé à \`--output-dir\`). Le script ne pousse aucun changement vers GitHub : il crée des worktrees détachés temporaires et les supprime après chaque exécution. Le dépôt de départ doit être propre pour éviter toute confusion sur le code testé.
+
+Le rapport dépend des champs d'usage renvoyés par la version installée de Claude Code. Vérifie les transcriptions des sous-agents si elles sont utilisées : ne conclus pas qu'un total inclut les sous-agents à moins que les compteurs le confirment. Pour une décision solide, répète plusieurs fois chaque variante et vérifie la qualité du résultat.
