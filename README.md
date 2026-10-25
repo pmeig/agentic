@@ -127,3 +127,8 @@ python scripts/claude-token-usage.py --root /path/to/claude-transcripts
 ```
 
 The report is based on usage fields in local JSONL transcripts; it is not a pre-run estimate, guaranteed billing total, or telemetry upload. Token counts are reported per transcript so agent/subagent work can be compared where separate transcripts exist.
+
+
+## Mode opératoire pour comparer les tokens
+
+Le guide [`MODE-OPERATOIRE-COMPARAISON.md`](MODE-OPERATOIRE-COMPARAISON.md) explique pas à pas comment comparer `main` et `chore/optimisation` avec Claude Code et GitHub Copilot CLI, lancer les scripts, lire les rapports et interpréter les limites des métriques.
