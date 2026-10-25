@@ -63,33 +63,30 @@ python scripts/compare-claude-tokens.py --branches main chore/optimisation --pro
 
 Le script enregistre `comparison.json`, un JSON par variante et les sorties brutes dans `token-comparison-results/` (ou le dossier indiqué). Il rapporte les métriques présentes dans la réponse JSON de Claude Code, par exemple usage, durée, nombre de tours et coût en USD si disponibles.
 
-## 4. Test GitHub Copilot CLI (mesure des tokens via OpenTelemetry)
+## 4. Test GitHub Copilot CLI (mesure des tokens)
 
-Depuis la racine du dépôt :
+Lance le benchmark :
 
 ```powershell
 python scripts/compare-copilot-tokens.py --prompt .\prompts\token-test-copilot.md --base main --compare chore/optimisation
 ```
 
-Pour vérifier la préparation sans lancer de modèle :
+Le script commence par un **test de capacité** : il effectue un petit appel Copilot demandant uniquement « OK ». Cet appel peut consommer des crédits. Il enregistre `preflight.json` et les journaux du test initial. Si Copilot n'est pas accessible ou si l'appel échoue, le benchmark s'arrête et indique l'erreur.
+
+Le script privilégie les données dans cet ordre :
+1. **OpenTelemetry** : tokens réels par appel modèle quand les spans de consommation sont émis ;
+2. **champs structurés du CLI** : solution de repli si des métriques JSON explicites sont disponibles ;
+3. **analyse par interprétation** : estimation indicative depuis les caractères du prompt et de la réponse visibles, étiquetée `interpretive_estimate` / `is_estimate: true`.
+
+L'interprétation n'est **pas** une mesure des tokens réels : elle ignore notamment le contexte caché, les appels intermédiaires, l'usage des outils et le cache. Elle est uniquement un secours lorsque les mesures directes sont absentes. Ne la présente pas comme une consommation exacte ou un coût de facturation.
+
+Pour vérifier la préparation sans appel Copilot :
 
 ```powershell
 python scripts/compare-copilot-tokens.py --prompt .\prompts\token-test-copilot.md --base main --compare chore/optimisation --dry-run
 ```
 
-Le script crée un worktree par commit, lance le même prompt et active l'export OpenTelemetry local dans un fichier JSONL distinct pour chaque variante. Il conserve les journaux stdout/stderr, les fichiers `base.otel.jsonl` et `compare.otel.jsonl`, ainsi que `comparison.json`, dans `token-comparison-results/copilot-<horodatage>/`.
-
-**Mesures à privilégier :**
-- tokens d'entrée et de sortie par requête modèle, à partir des spans `chat` ;
-- tokens de cache lus et créés, rapportés séparément ;
-- modèles utilisés, nombre de requêtes mesurées et durée totale ;
-- `github.copilot.nano_aiu` lorsqu'il est émis.
-
-Le script somme les spans `chat`, et ne somme pas leurs spans parents `invoke_agent`, afin d'éviter le double comptage. La capture du contenu des prompts et réponses est désactivée. Les métriques manquantes restent `null`, elles ne sont jamais considérées comme égales à zéro.
-
-**Ce qui n'est pas garanti :** toutes les versions ou configurations du CLI n'exposent pas nécessairement tous les attributs. Si aucune télémétrie exploitable n'est émise, le script tente les champs structurés de sortie CLI puis laisse les métriques absentes comme indisponibles. `github.copilot.cost` est un multiplicateur de facturation, pas un coût en euros. Les rapports globaux d'utilisation Copilot ne sont pas forcément assez fins pour attribuer la consommation à un commit individuel.
-
-Référence officielle : [Copilot CLI — OpenTelemetry monitoring](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference#opentelemetry-monitoring).
+Les résultats (rapport JSON, télémétrie et journaux) sont écrits dans `token-comparison-results/copilot-<horodatage>/`. Le benchmark utilise un worktree distinct pour chaque commit et ne fusionne pas les branches.
 
 ## 5. Lire les résultats
 
