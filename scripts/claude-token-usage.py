@@ -97,7 +97,7 @@ def main() -> int:
     grand = {key: sum(row[key] for row in rows) for key in headers[1:]}
     print("  ".join(("-TOTAL-").ljust(widths["transcript"]) if key == "transcript"
                     else str(grand[key]).ljust(widths[key]) for key in headers))
-    print("\nNote: input totals include separately reported cache tokens when present; "
+    print("\nNote: total_reported_tokens includes input, output, and both cache-token columns; "
           "do not add cache columns again to total_reported_tokens.")
     return 0
 
