@@ -108,3 +108,18 @@ automatiquement.
 
 Pour utiliser l'équipe dans un autre projet : lier (jonction) `.agents/agents` et `.agents/skills` dans le `.agents/` du projet
 (ou de `~/.agents/` pour tous les projets), puis leurs liens `.claude/`.
+
+
+## Claude Code agent parallelism and token usage
+
+The team lead may launch as many agents simultaneously as are useful across any role, including multiple agents of the same type (for example, several Front or Back agents). There is no fixed concurrency cap: each additional agent must own independent work, avoid overlapping file edits, and offer expected time/quality gains that justify the marginal token, context and tool-call cost. Shared decisions and genuinely sequential gates remain sequential.
+
+After a run, inspect locally recorded Claude Code usage per transcript (including subagent transcripts when Claude Code stores them under the project transcript directory):
+
+```bash
+python scripts/claude-token-usage.py
+python scripts/claude-token-usage.py --json
+python scripts/claude-token-usage.py --root /path/to/claude-transcripts
+```
+
+The report is based on usage fields in local JSONL transcripts; it is not a pre-run estimate, guaranteed billing total, or telemetry upload. Token counts are reported per transcript so agent/subagent work can be compared where separate transcripts exist.
