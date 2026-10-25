@@ -54,6 +54,10 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
   propres à un projet passent avant.
 
+## Mesurer les tokens après exécution
+
+Le guide [`TOKEN-TESTING.md`](TOKEN-TESTING.md) explique comment isoler les transcriptions Claude Code de deux essais, produire les rapports et comparer les tokens entre une exécution séquentielle et une exécution parallèle.
+
 ## Arborescence
 
 ```
