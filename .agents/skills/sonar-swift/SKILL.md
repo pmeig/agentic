@@ -5,7 +5,7 @@ description: Only when asked: Sonar setup, coverage, exclusions of a Swift modul
 
 # Sonar for Swift (on request only)
 
-Swift analysis depends on the SonarQube edition and version: confirm with `sonar-report` section 2 that Swift is analysed; if not,
+Swift analysis depends on the SonarQube edition and version: confirm with `sonar-report` (`references/sonar-check.md`) that Swift is analysed; if not,
 there is no Sonar check for this module (report it, keep the Xcode coverage figures).
 
 ## Properties

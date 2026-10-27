@@ -1,0 +1,3 @@
+# Team development rules: code layout
+
+- **Feature-first code and tests**: group production code by business feature, technical layers inside. Per module count files by architectural role (component, service, controller, helper, validator, repository, exception, DTO...): one file of a role stays in the module root; several move together into a role-named directory, never mixed. Page-specific front code stays in its page; front `core` holds only what every page shares. Unit tests mirror production directories; E2E specs sit in feature subdirectories under the runner's test root. Shared modules/helpers only for behavior reused by several features; dependencies point downward; never copy code.

@@ -1,0 +1,3 @@
+# Bugfix mode: feature in progress, tests red locally
+
+**Feature, tests red locally**: no mode switch; the failure goes to its owner in the current step's loop. Unit/coverage/Sonar (step 4): `qa` -> `front`/`back` with test, trace, report; contract wrong: both agree, write `contract.md` first, then fix. E2E (step 7): `qa` decides code or test; code -> owner with scenario, steps, expected/actual, trace; test -> `qa`; mockup not buildable or gesture wrong -> `front` -> `designer`/`gesture.md`. After each fix `qa` reruns the impacted e2e plus what the fix touches. No push and no `documentalist` until green; after two failed fixes or five rounds the lead reports to the user.

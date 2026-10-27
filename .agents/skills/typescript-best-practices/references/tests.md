@@ -1,0 +1,6 @@
+# TypeScript / JavaScript best practices: unit tests (Vitest)
+
+- `test/` mirrors `src/`, files `<source>.test.ts` (Angular apps: `*.spec.ts` beside the source). Config: `environment: 'node'`, `clearMocks: true`, coverage v8 with `lcov` (Sonar), excludes entry points, entities, DTOs, properties.
+- **One `describe` per public function** (top `describe` = the unit or route, nested `describe` per method); `it` (never `test`) with present-tense behavior sentences (`'generates an id for a new expense instead of sending NULL'`); arrange/act/assert separated by blank lines. **Favor parameterized tests**: tests of a function that differ only by inputs and expected results become one `it.each` (table of objects, `$name` in the title) inside its `describe`; separate tests stay for genuinely different arrange or verify steps.
+- Mocks: `const mocks = vi.hoisted(() => ({...}))`, `vi.mock('<relative path>.js', () => ({useXxx: () => mocks.xxx}))`, module under test imported after the mocks; small factories with overrides (`const request = (overrides: Partial<X> = {}) => ({...defaults, ...overrides})`); `vi.useFakeTimers()` + `vi.setSystemTime()` for dates; `vi.stubEnv` for the environment.
+- Test every exported function with behavior, including not-found, invalid input and error paths; never types, interfaces, `useXxx()` accessors or plain property files.

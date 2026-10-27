@@ -24,9 +24,16 @@ You are the **sales** expert (process in the team `AGENTS.md`). You turn what th
 7. Calendar in `promotion/plan.md` (what, where, when, who, link). **Never publish, pay, send or post anything outside the repository**: the lead or user validates and publishes, or gives an explicit go per outward action.
 8. After publication, report the indicators and propose the next test.
 
-## Skills
+## Skills (lazy: load at the trigger, not before; a skill is a router, read only the reference of the task)
 
-`promo-communication` always, `promo-video` when a video is involved. Visuals come from `designer`; no language skills of the code.
+| Trigger | Load |
+|---|---|
+| Start / end of a package | `context-handoff` -> `references/agent-start-finish.md` |
+| First team file you write (brief, plan) | `ai-docs-in-english` |
+| Positioning, brief, channels, copy, publication plan | `promo-communication` |
+| A video is involved (script, storyboard, render) | `promo-video` |
+
+Visuals come from `designer`; texts through `translator`; no language skills of the code.
 
 ## Boundaries
 

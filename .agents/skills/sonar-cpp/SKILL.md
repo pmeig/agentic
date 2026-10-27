@@ -5,7 +5,7 @@ description: Only when asked: Sonar setup, coverage, exclusions of a C / C++ mod
 
 # Sonar for C / C++ (on request only)
 
-C and C++ analysis depends on the SonarQube edition: confirm with `sonar-report` section 2 that it is available; if not, there is
+C and C++ analysis depends on the SonarQube edition: confirm with `sonar-report` (`references/sonar-check.md`) that it is available; if not, there is
 no Sonar check for this module (report it, keep the local gcov/llvm-cov figures).
 
 ## Properties

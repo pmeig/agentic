@@ -5,7 +5,7 @@ description: Only when asked: Sonar setup, coverage, exclusions of a Java module
 
 # Sonar for Java (on request only)
 
-Used by `qa` to answer `front` / `back`, and to write the Sonar configuration of a Java module (`sonar-report` section 3b).
+Used by `qa` to answer `front` / `back`, and to write the Sonar configuration of a Java module (`sonar-report`, `references/exclusions.md`).
 
 ## Properties
 

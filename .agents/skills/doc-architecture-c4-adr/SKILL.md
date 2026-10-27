@@ -15,7 +15,7 @@ description: Use to document architecture: C4 levels, deployment view, arc42 map
 | 4 Code | classes | rarely | never by hand; generated if needed |
 
 Plus a **deployment view** (environments, hosts, images, network, secrets store) and a **dynamic view** (a numbered journey, as a
-`sequenceDiagram`, see `documentation-ai` flows).
+`sequenceDiagram`, see `documentation-ai`, `references/feature-file.md`).
 
 - Draw with Mermaid (`doc-mermaid`) in the HUMAN architecture doc; the AI version (`.agents/docs/architecture.md`) is an edge list `a -> b (protocol)` plus a table, no diagram.
   experimental, check the viewer. Use Structurizr DSL when the model is large and needs several views from one source.

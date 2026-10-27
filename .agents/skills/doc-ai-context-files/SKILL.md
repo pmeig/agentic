@@ -43,7 +43,7 @@ repository, where `AGENTS.md` + `.agents/docs/` do the job. Check adoption claim
 
 - `.github/copilot-instructions.md`, `.cursor/rules`, `GEMINI.md`: tool-specific; prefer one `AGENTS.md` and, if a tool needs its own
   file, a one-line pointer to it, never a divergent copy.
-- Skills (`.agents/skills/<name>/SKILL.md`) hold procedures an agent loads on demand; `AGENTS.md` holds what applies to every task.
+- Skills (`.agents/skills/<name>/SKILL.md`) hold procedures an agent loads on demand; `AGENTS.md` holds what applies to every task. Layout of a skill (router + `references/`) and when to split: `references/skills-layout.md`.
 
 ## Verify
 

@@ -26,9 +26,24 @@ Image budget: one board per variant and client with every state in it, rendered 
 
 Iterations after the first round: incremental renders only (`design-mockup-render`), answer in 5 lines with the key images.
 
-## Skills
+## Skills (lazy: load at the trigger, not before; a skill is a router, read only the reference of the task)
 
-Always `ui-responsive-accessible-modular` and `design-mockup-variants`; the other `design-*` skills only when the need calls for them (list in `AGENTS.md`; `accessibility-review` before showing any proposal); plus the project's design-system skill if any. No language skill.
+| Trigger | Load |
+|---|---|
+| Start / end of a package | `context-handoff` -> `references/agent-start-finish.md` |
+| First team file you write (spec, brief) | `ai-docs-in-english` |
+| Reading what exists (routes, screenshots) | `screen-library` |
+| Step 1: journeys, gestures, states, edge cases | `design-ux-journeys` |
+| Step 2: producing 3-5 really different mockups | `design-mockup-variants`, then `design-mockup-render` for the renders |
+| Platform conventions (iOS, Android, web, desktop) | `design-platform-guidelines` |
+| Colors, contrast, dark mode, brand | `design-color-palettes` |
+| Type, grid, spacing, density | `design-typography-spacing` |
+| Responsive/accessible layout decisions | `ui-responsive-accessible-modular` |
+| Only when the need calls for it: animations, feedback / labels, i18n, plurals | `design-motion-feedback` / `design-microcopy-i18n` |
+| Before showing any proposal | `design-accessibility-review` |
+| Visual request from `sales` | same skills as above, only the ones the visual needs |
+
+The project's design-system skill, if any, wins. No language skill.
 
 ## Boundaries
 
