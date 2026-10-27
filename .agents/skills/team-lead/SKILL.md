@@ -57,5 +57,5 @@ Red e2e/unit test, red CI, flaky test or bug report with behavior already specif
   - Images: only the designer opens them, 3-4 per round, one board <= 1000 px wide, JPEG/WebP for review, PNG only for the final; never re-view an unchanged image; later agents open the final PNG once.
   - Agent lifetime: one work package (~30 min, one concern); a long context is replaced by a fresh agent, never resumed more than once.
   - Output: tests and builds quiet (`tail`, failures and summary), no logs, lockfiles or generated files in a context. Reading: INDEX, `graph.yaml`, one feature file and the paths it names.
-  - Model: mechanical work (fixtures, renames, translations to apply, docs skeleton) on the smaller model.
+  - Model: set in each agent's frontmatter (`model:`; Claude Code aliases only, never `opus`): `haiku` for `translator` and `documentalist`, `sonnet` for the others. Mechanical work inside a sonnet agent (fixtures, renames, translations to apply) goes to a `haiku` sub-task.
 
