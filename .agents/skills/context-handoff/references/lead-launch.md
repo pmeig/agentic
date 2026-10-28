@@ -8,8 +8,3 @@
 
 Prompt <= 10 lines? Brief <= 40 lines? Read list explicit? Do-not-read list explicit? Old agent ended? If one answer is no, fix it before launching.
 
-## Context hygiene (images, long-lived builders and resumed agents cost the most; everything in a context is paid again at each turn)
-
-- **Each step ends with a brief and a stop**: the finishing agent writes `team/<feature>/brief-<from>-<to>.md` (<= 40 lines: decisions, tasks, Read list, Do-not-read list, done criteria), deletes its scratch and ends; it is not resumed. The next agent starts cold with its agent file, its brief and the listed paths, nothing else.
-- **The lead clears its context at every gate** (mockup chosen, contract agreed, qa go, docs done, PR opened): `team/<feature>/state.md` (<= 15 lines: step, decisions, open questions, next) is the only memory carried; launch prompts <= 10 lines with paths, never pasted content.
-- Strict minimum per agent (`references/read-minimum.md`): designer never reads code; front never reads proposals or back code; back never reads mockups; qa never reads source.
