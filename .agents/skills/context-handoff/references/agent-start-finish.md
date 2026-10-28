@@ -6,4 +6,4 @@ The next agent reads: its agent file, the brief, the paths in **Read**. Nothing 
 
 ## Finishing (agent)
 
-The finishing agent writes `brief-<from>-<to>.md` (format: `references/files.md`), deletes its scratch (review boards, unchosen proposals go to `design/archive/`, never read again), reports in 3 lines to the lead with the brief path, and **stops**. It is not resumed (at most once, for a fix of its own deliverable).
+The finishing agent writes `brief-<from>-<to>.md` (format: `references/files.md`), deletes its scratch (unchosen proposals, render HTML, temporary boards; nothing is moved to an archive folder), reports in 3 lines to the lead with the brief path, and **stops**. It is not resumed (at most once, for a fix of its own deliverable).
