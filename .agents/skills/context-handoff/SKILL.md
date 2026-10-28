@@ -13,8 +13,6 @@ Principle: a decision is paid once (written in a brief), never carried. The cont
 |---|---|
 | Agent: starting a package, or ending it with a brief | `references/agent-start-finish.md` |
 | Writing `state.md` or a brief (format, size, existing deliverables) | `references/files.md` |
-| Writing gesture.md, contract.md, qa.md or brief-*-documentalist.md (template) | `references/brief-formats.md` |
 | Lead: launching the next agent, clearing context at a gate | `references/lead-launch.md` |
 | Which paths may my role read | `references/read-minimum.md` |
-| SendMessage: when, format, batch rules, failure reports, go/blocked format | `references/sendmessage-rules.md` |
 | Package too big, images, noisy output, agent lifetime, model choice | `references/limits.md` |
