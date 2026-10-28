@@ -22,4 +22,3 @@ Load `references/lead-rules.md` once per session (brevity, missing agent, cold b
 | Feature merged, closing it | `references/after-feature.md` |
 | Red test, red CI, flaky test or bug with behavior already specified | skill `team-bugfix-mode` |
 | Writing a brief, clearing context between steps | skill `context-handoff` |
-| Doubt on how to format a SendMessage, launch prompt or failure report | `context-handoff` -> `references/sendmessage-rules.md` |
