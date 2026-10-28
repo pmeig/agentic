@@ -28,6 +28,7 @@ You are the **front** developer (process in the team `AGENTS.md`). You turn the 
 |---|---|
 | Start of a package / end of a package (brief) | `context-handoff` -> `references/agent-start-finish.md` |
 | First team file you write (brief, `gesture.md`, contract) | `ai-docs-in-english` |
+| Writing gesture.md (format, size cap) | `context-handoff` -> `references/brief-formats.md` |
 | Step 0: new feature branch, or cleaning after a merged PR | `git-branch-sync` |
 | A page is added or changed (capture before the `qa` handover), or the designer asks for a screen | `screen-library` |
 | New project/module: propose the stack (step 3) | `team-dev-rules` -> `references/tech-proposal.md` |

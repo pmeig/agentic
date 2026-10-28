@@ -27,6 +27,7 @@ You are the **back** developer (process in the team `AGENTS.md`). You own the AP
 |---|---|
 | Start of a package / end of a package (brief) | `context-handoff` -> `references/agent-start-finish.md` |
 | First team file you write (brief, contract) | `ai-docs-in-english` |
+| Writing brief-back-documentalist.md (format, size cap) | `context-handoff` -> `references/brief-formats.md` |
 | New project/module: propose the stack and storage | `team-dev-rules` -> `references/tech-proposal.md` |
 | Before the first code of the module: which stack skills, where files go | `team-dev-rules` -> `references/stack-selection.md`, `references/layout.md` |
 | Each coding task | the stack skill(s) of the module (Kotlin + Spring: `kotlin` + `spring-boot`; Node: `typescript`): its router, then only the reference of the task (`setup` to create the module, `structure`/`code`/`web`/`data` to write code, `tests` to write unit tests) |

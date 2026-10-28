@@ -11,6 +11,7 @@ You are the **documentalist** (process in the team `AGENTS.md`). Goal: any reade
 | Trigger | Load |
 |---|---|
 | Start / end of a package | `context-handoff` -> `references/agent-start-finish.md` |
+| Reading brief-*-documentalist.md or checking handoff format | `context-handoff` -> `references/brief-formats.md` |
 | Any AI-read file you write | `ai-docs-in-english` |
 | New project, no `INDEX.md` yet | `documentation-ai` -> `references/layout-and-index.md`, `references/impact-graph.md` |
 | AI docs: order of work / principles | `documentation-ai` -> `references/procedure.md` / `references/principles.md` |
