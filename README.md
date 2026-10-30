@@ -1,6 +1,6 @@
 # agentic
 
-Une équipe de sept agents IA (designer, front, back, qa, sales, translator, documentalist) qui produit une feature de bout en
+Une équipe de huit agents IA (designer, front, back, qa, sales, translator, documentalist, ai-writer) qui produit une feature de bout en
 bout en autonomie, en se questionnant entre eux, avec des skills de bonnes pratiques par langage et framework. Les instructions
 des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la documentation humaine.
 
@@ -47,6 +47,12 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
   écrit la doc IA pour une machine (aucun souci de lisibilité humaine : cartes, listes de liens, pas de diagrammes) avec une **carte d'impact** `.agents/docs/graph.yaml` (chemin modifié → features → tests et e2e impactés : en local on ne lance que les e2e impactés, la CI lance tous les e2e) ; il met la doc à jour **en dernière étape de tout développement : après le feu vert de `qa` et avant le push ou la PR** (la PR embarque la doc ; un commit de documentation seule ne relance pas les e2e). Optimisation des tokens réservée à la doc IA (budget de lecture, un fait à un seul endroit, fichiers lus par section) ; la doc humaine n'est pas raccourcie. Les « Change set » des fiches nomment les tests à mettre à jour (flows e2e et jumeaux web, doubles de test, stores persistés) et `conventions.md` porte la liste « terminé quand… » du projet. Deux skills principaux (`documentation-ai`, `documentation-human`) et des skills
   de technologie mis à jour une fois par mois : `doc-code-analysis`, `doc-mermaid`, `doc-openapi-asyncapi`, `doc-database-schema`,
   `doc-architecture-c4-adr`, `doc-ai-context-files`, `doc-sites-markdown`, `doc-graphify` (licence à vérifier avant usage).
+- **ai-writer** : écrit et relit tous les fichiers qu'une IA lit ou exécute, toujours en anglais : définitions d'agents, skills, `AGENTS.md` /
+  `CLAUDE.md` / `llms.txt`, commandes slash, hooks et `settings.json`, prompts d'application et descriptions d'outils, fichiers de mémoire.
+  Un skill de bonnes pratiques par type de fichier (`ai-write-principles`, `ai-write-agent-definitions`, `ai-write-skills`,
+  `ai-write-commands`, `ai-write-hooks-settings`, `ai-write-prompts`, `ai-write-memory`, `ai-write-agentic` pour concevoir des agents, plus `doc-ai-context-files`), mis à jour une
+  fois par mois. Chaque skill est un routeur de quelques centaines d'octets avec une référence par besoin (chargement paresseux, tokens minimaux). Il teste chaque fichier sur un agent à froid avant de le livrer. La doc du projet (`.agents/docs/`, README) reste au
+  `documentalist`.
 - **PR et suivi de CI** (étape 9 d'`AGENTS.md`, skill `pr-and-ci-follow`, piloté par le lead) : après « docs done », push et PR, puis la CI du commit poussé est suivie jusqu'à ce que tout soit vert. Chaque rouge repart chez son propriétaire : test ou e2e → `qa` (qui décide si c'est le code ou le test qui a tort), code → `front` ou `back`, Sonar → propriétaire du code, infrastructure → lead (sans boucler). Un test instable (flaky) n'est pas vert : `qa` en trouve la cause et le corrige. Le merge n'a lieu que sur ton oui explicite. L'ancienne étape « après déploiement » est supprimée.
 - **Tout document destiné à l'IA est en anglais** (`AGENTS.md`, agents, skills, `.agents/docs/`, `.agents/docs/team/`, mémoire, prompts, messages entre agents), quelle que soit la langue de l'utilisateur ou du produit (skill `ai-docs-in-english`) ; les textes lus par des personnes (UI, README, guides) suivent la langue du produit.
 - **Toutes les docs IA d'un projet sont dans `<projet>/.agents/docs/`** (jamais `docs/ai`), au même chemin dans tous les projets : `INDEX.md`, `graph.yaml`, fiches de features, API, données, et l'espace de travail de l'équipe `.agents/docs/team/<feature>/`. Chaque agent (qa, front, back, designer, sales, translator, documentalist) et l'utilisateur les retrouvent sans consigne ; avant de toucher à un projet on lit `.agents/docs/INDEX.md` puis `graph.yaml`.
@@ -67,7 +73,7 @@ agentic/
 ├── setup.ps1                 recrée les jonctions .claude/ -> .agents/ après un clone (Windows)
 ├── setup.sh                  idem avec des liens symboliques (Linux, macOS)
 ├── .agents/
-│   ├── agents/               designer, front, back, qa, sales, translator, documentalist
+│   ├── agents/               designer, front, back, qa, sales, translator, documentalist, ai-writer
 │   └── skills/<nom>/SKILL.md   routeur (table « besoin → fichier »), contenu dans skills/<nom>/references/<besoin>.md
 │       équipe                    team-lead, team-dev-rules, team-bugfix-mode, context-handoff, screen-library, pr-and-ci-follow
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
@@ -103,7 +109,7 @@ agentic/
 ```powershell
 git clone https://github.com/pmeig/agentic.git
 cd agentic
-./setup.ps1        # recrée .claude/agents, .claude/skills et .claude/hooks
+./setup.ps1        # recrée les liens .claude/agents et .claude/skills (le hook SessionStart le fait seul pour Claude Code)
 ```
 
 Sous Linux ou macOS (et dans les sessions cloud), `./setup.sh` fait la même chose avec des liens symboliques. Les agents sont lus au

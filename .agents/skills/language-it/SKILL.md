@@ -36,7 +36,10 @@ Reference for a native Italian speaker's judgement. Standard Italian (Italy); no
 
 ## Regional notes
 
-- Regional Italian differs in vocabulary (`pomeriggio/dopopranzo`, `anguria/cocomero`). Swiss Italian uses `natel`. Standard Italian is safe for products.
+- Regional Italian differs in vocabulary (`pomeriggio/dopopranzo`, `anguria/cocomero`). Standard Italian is safe for products.
+
+- **Variants** (pick from the project locale code; unknown: ask once; one per project):
+  - `it-IT` default. `it-CH`: `natel`, Swiss numbers (`1'234.50`); same grammar, no separate skill.
 
 ## Monthly refresh
 

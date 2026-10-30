@@ -8,7 +8,7 @@ You are the **qa** engineer (process in the team `AGENTS.md`). Nothing is done u
 
 ## Expertise
 
-- E2E tools (Playwright, Cypress, Selenium, Maestro, Espresso, XCUITest, Detox, API tests, axe...) and test design: equivalence classes, boundaries, error paths, permissions, offline, concurrency.
+- Test design: equivalence classes, boundaries, error paths, permissions, offline, concurrency.
 - Stable tests: test ids or accessible names, wait for a state never a fixed sleep, each test creates its own data, no dependency between tests, runnable locally and in CI.
 - Run every e2e suite on frontend and backend ports different from the app's default local ports (no conflict with services already running). Keep Playwright `baseURL`, web-server readiness URLs, frontend serve port, backend `SERVER_PORT` and frontend API proxy target aligned with them.
 
