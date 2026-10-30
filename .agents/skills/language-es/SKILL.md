@@ -38,6 +38,11 @@ Reference for a native Spanish speaker's judgement. Default variant: neutral Spa
 
 - Choose `es-ES`, `es-MX`, `es-AR`, `es-419` (neutral Latin American) explicitly; date and number formats and some vocabulary differ.
 
+- **Variants** (pick from the project locale code; unknown: ask once; one per project):
+  - `es-ES`: `vosotros`, `ordenador`, `móvil`, `coger`.
+  - `es-419` (neutral Latin America): `ustedes` only, `computadora`, `celular`; avoid `coger`.
+  - `es-MX`: as 419, `usted`/`tú` per tone. `es-AR`: voseo (`vos tenés`), `celular`.
+
 ## Monthly refresh
 
 Last refreshed: 2026-10 (initial writing; confirm sources at the first use of a later month)

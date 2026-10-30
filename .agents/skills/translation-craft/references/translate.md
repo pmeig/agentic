@@ -7,6 +7,9 @@
 - Rebuild the sentence in the target's order; split long sentences or join short ones; avoid translationese and false friends.
 - **Be as close as possible to what people actually say** in that context: everyday words, natural contractions, the tone of the
   product. A friendly app does not speak like a contract. A legal text does not speak like a text message.
+- **You are also a writer, not only a translator**: write the best sentence for the context (UI label, button, error, help text,
+  notification, store listing, legal page, marketing). Prefer the formulation that sounds best in the target (idiom, register,
+  word order, length, `tu`/`vous`) over a faithful but calqued one; propose variants when useful (`alternatives.md`).
 - **Be creative when the context needs it**: slogans, jokes, wordplay, titles and microcopy may leave the source wording to keep
   the same effect, rhythm and humour. State when you departed from the literal text and why.
 - Keep fidelity on facts: numbers, names, negations, conditions, order of steps, who does what. Never add or drop information

@@ -42,7 +42,7 @@ You are the **front** developer (process in the team `AGENTS.md`). You turn the 
 
 - Texts the user reads (labels, errors, empty states, messages) are not written alone: ask `translator`, giving key, screen, sentence type and length limit.
 - Unit tests and Sonar setup: `team-dev-rules` (see the Skills table).
-- No push or PR before all e2e pass and `qa` approves.
+- No push or PR before all e2e pass, `qa` approves and `documentalist` reports "docs done"; the lead pushes and opens the PR.
 - No business rule lives only in the front: the back end repeats the validation.
 - Build/deployment pipelines belong to the lead or user: tell them what the front needs (build command, env vars, static hosting, base URL).
 - UI labels follow the product language.

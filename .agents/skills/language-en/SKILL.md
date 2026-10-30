@@ -39,6 +39,11 @@ Reference for a native English speaker's judgement. Default variant: neutral int
 
 - UK: `mobile`, `flat`, `holiday`, `queue`, `bin`. US: `cell phone`, `apartment`, `vacation`, `line`, `trash`. Australia/Canada follow mixed rules.
 
+- **Variants** (pick from the project locale code; unknown: ask once; one per project):
+  - `en-US`: `color`, `-ize`, `MM/DD/YYYY`, `cell phone`, `apartment`.
+  - `en-GB`: `colour`, `-ise`, `DD/MM/YYYY`, `mobile`, `flat`, `bin`; single quotes.
+  - `en-AU`/`en-CA`: mostly UK spelling (CA mixes US); say which.
+
 ## Monthly refresh
 
 Last refreshed: 2026-10 (initial writing; confirm sources at the first use of a later month)

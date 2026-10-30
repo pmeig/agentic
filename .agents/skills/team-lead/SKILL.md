@@ -16,7 +16,7 @@ Load `references/lead-rules.md` once per session (brevity, missing agent, cold b
 | Situation | Load |
 |---|---|
 | New project, no code yet | `references/new-project.md`, then `references/flow-overview.md` per feature |
-| New feature or change with new behavior in an existing project | `references/flow-overview.md`, then the step file it names, one step at a time |
+| New feature or change with new behavior in an existing project | `references/flow-overview.md`, then one step file: `step-design.md`, `step-build.md`, `step-qa-gate.md`, `step-docs.md`, `step-pr.md` (never several) |
 | Unknown project before a fix or feature | `references/step-optional.md` (step 12: `documentalist` first) |
 | Splitting `front`/`back`/other work across several agents | `references/parallelism.md` |
 | Feature merged, closing it | `references/after-feature.md` |
