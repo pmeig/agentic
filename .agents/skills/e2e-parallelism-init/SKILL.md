@@ -18,7 +18,7 @@ The key is the tool, not the module: the limit is what the tool costs on this ma
 
 ## Procedure
 
-The machine must be free (`e2e-run` rule 1) and nothing else heavy may run during the measures.
+The machine must be free (`e2e-run`, `references/free-machine.md`) and nothing else heavy may run during the measures.
 1. Take the **full e2e suite run with that tool** and its parallel option (Playwright `--workers=N`, Cypress parallel groups,
    Maestro shards / one emulator per shard...). Each worker has its own ports, data and output folders; if the suite cannot run in
    parallel as is, fix the isolation first (tests, not assertions).

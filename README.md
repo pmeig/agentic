@@ -6,9 +6,9 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 
 | Élément | Rôle |
 |---|---|
-| [`AGENTS.md`](AGENTS.md) | rôles, déroulé d'une feature, règles communes, sélection des skills par stack |
-| [`.agents/agents/`](.agents/agents) | définition de chaque agent |
-| [`.agents/skills/`](.agents/skills) | skills de bonnes pratiques, de stratégies CI/CD et de déploiement |
+| [`AGENTS.md`](AGENTS.md) | rôles, déroulé d'une feature ou d'un nouveau projet, règles communes, règle de chargement paresseux des skills |
+| [`.agents/agents/`](.agents/agents) | définition de chaque agent, avec sa table « Skills » (déclencheur → skill → référence) |
+| [`.agents/skills/`](.agents/skills) | skills de bonnes pratiques, de stratégies CI/CD et de déploiement, découpés en routeur + références |
 
 ## Architecture
 
@@ -51,8 +51,8 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - **Tout document destiné à l'IA est en anglais** (`AGENTS.md`, agents, skills, `.agents/docs/`, `.agents/docs/team/`, mémoire, prompts, messages entre agents), quelle que soit la langue de l'utilisateur ou du produit (skill `ai-docs-in-english`) ; les textes lus par des personnes (UI, README, guides) suivent la langue du produit.
 - **Toutes les docs IA d'un projet sont dans `<projet>/.agents/docs/`** (jamais `docs/ai`), au même chemin dans tous les projets : `INDEX.md`, `graph.yaml`, fiches de features, API, données, et l'espace de travail de l'équipe `.agents/docs/team/<feature>/`. Chaque agent (qa, front, back, designer, sales, translator, documentalist) et l'utilisateur les retrouvent sans consigne ; avant de toucher à un projet on lit `.agents/docs/INDEX.md` puis `graph.yaml`.
 - **Bloqué sur « comment lancer cette commande / me connecter à ce service » ?** Jamais dans `AGENTS.md` : un skill dédié (`run-and-access-skills`), global pour un outil générique (mvn, gradle, vault, sonar, docker, versions de node/java), dans le dépôt (`.agents/skills/`) pour ce qui est propre au dépôt ; l'agent le cherche d'abord, sinon demande une fois au lead puis l'écrit.
-- Chaque agent ne charge que les skills de la stack du module où il travaille (« Skill selection » de `AGENTS.md`) ; les règles
-  propres à un projet passent avant.
+- **Chargement paresseux des skills** : rien n'est chargé d'avance. Chaque agent a, dans son fichier, une table « Skills » (déclencheur → skill → référence) ; il ne charge un skill qu'à l'étape qui en a besoin, et seulement la référence utile (écrire des tests → `tests.md`, créer un module → `setup.md`). Un `SKILL.md` volumineux est un **routeur** d'environ 1 Ko (table « besoin → fichier ») et son contenu vit dans `references/<besoin>.md` ; les petits skills à besoin unique restent d'un seul fichier. Seule la stack du module où l'agent travaille est chargée (`team-dev-rules`, `references/stack-selection.md`) ; les règles propres à un projet passent avant. Mêmes règles pour **créer un projet** (`create-project`, besoin, choix de stack, docs `(planned)`) et pour **ajouter une feature** (étapes 0 à 12 d'`AGENTS.md`). Convention de découpage : `doc-ai-context-files`, `references/skills-layout.md`.
+- Les règles de développement communes à `front` et `back` (organisation du code, proposition de techno, tests unitaires, couverture, Sonar, langue des tests) sont dans le skill `team-dev-rules` ; la bibliothèque d'écrans, dans `screen-library`.
 
 ## Mesurer les tokens après exécution
 
@@ -68,7 +68,8 @@ agentic/
 ├── setup.sh                  idem avec des liens symboliques (Linux, macOS)
 ├── .agents/
 │   ├── agents/               designer, front, back, qa, sales, translator, documentalist
-│   └── skills/<nom>/SKILL.md
+│   └── skills/<nom>/SKILL.md   routeur (table « besoin → fichier »), contenu dans skills/<nom>/references/<besoin>.md
+│       équipe                    team-lead, team-dev-rules, team-bugfix-mode, context-handoff, screen-library, pr-and-ci-follow
 │       langages et frameworks   <langage>-best-practices (java, kotlin, typescript, python, go, rust, csharp-dotnet, php, cpp,
 │                               swift, dart-flutter, ruby-rails, shell-bash, sql), angular, react, vue, svelte, nestjs, spring-boot
 │       CI/CD et déploiement      git-branch-sync, deployment-*, terraform, docker, create-project, module-versioning, github-actions-*

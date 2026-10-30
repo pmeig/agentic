@@ -6,7 +6,7 @@ description: Only when asked: Sonar setup, coverage, exclusions of a Dart/Flutte
 # Sonar for Dart / Flutter and Rust (on request only)
 
 These languages are not analysed by every SonarQube: Dart needs a community plugin, Rust depends on the version. Confirm with
-`sonar-report` section 2 (language list of the server); **if the language is not listed there is no Sonar check** for the module:
+`sonar-report` (`references/sonar-check.md`) (language list of the server); **if the language is not listed there is no Sonar check** for the module:
 report it, keep the local coverage figures and the linter (`flutter analyze` / `dart analyze`, `cargo clippy`).
 
 ## When the language is analysed
