@@ -1,9 +1,10 @@
 #!/bin/bash
-# Cloud sessions only: recreate the .claude/agents and .claude/skills links so the team agents are registered at start.
+# Claude Code only, on any clone (local or cloud): make sure .claude/agents and .claude/skills link to .agents/ so the team agents are registered.
+# Idempotent and silent when the links exist.
 set -euo pipefail
 
-if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
+root="${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+if [ -e "$root/.claude/agents" ] && [ -e "$root/.claude/skills" ]; then
   exit 0
 fi
-
-"${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}/setup.sh"
+"$root/setup.sh"

@@ -109,7 +109,7 @@ agentic/
 ```powershell
 git clone https://github.com/pmeig/agentic.git
 cd agentic
-./setup.ps1        # recrée .claude/agents, .claude/skills et .claude/hooks
+./setup.ps1        # recrée les liens .claude/agents et .claude/skills (le hook SessionStart le fait seul pour Claude Code)
 ```
 
 Sous Linux ou macOS (et dans les sessions cloud), `./setup.sh` fait la même chose avec des liens symboliques. Les agents sont lus au

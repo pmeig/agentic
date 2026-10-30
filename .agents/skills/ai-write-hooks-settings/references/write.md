@@ -16,7 +16,7 @@ Merge, never overwrite: read the file, add the key, keep the rest, keep the JSON
 ## Hook wiring
 
 ```json
-{ "hooks": { "PreToolUse": [ { "matcher": "Bash", "hooks": [ { "type": "command", "command": ".claude/hooks/guard.sh" } ] } ] } }
+{ "hooks": { "PreToolUse": [ { "matcher": "Bash", "hooks": [ { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.agents/hooks/guard.sh" } ] } ] } }
 ```
 
 - Events (confirm the current list): `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop`, `SubagentStop`, `Notification`, `PreCompact`, `SessionEnd`.
@@ -26,7 +26,7 @@ Merge, never overwrite: read the file, add the key, keep the rest, keep the JSON
 
 ## Script rules
 
-- Source in `.agents/hooks/`, mirrored to `.claude/hooks/` like the existing `session-start.sh`; keep both identical.
+- One copy only, in `.agents/hooks/` (any AI platform can read it); `settings.json` points straight at it, never a mirrored copy.
 - POSIX shell, fast (< 1 s), idempotent, no network, never waits for input, quiet on success. Quote every variable; never `eval` stdin.
 - Parse JSON with `jq` when present, else a fallback; fail open (exit 0) on parse errors unless the hook is a security gate.
 

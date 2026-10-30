@@ -15,3 +15,10 @@ Eight agents create a project or add a feature and question each other until the
 
 ## Flow
 
+```
+need -> designer <-> front <-> back (contract) -> code + unit tests -> qa go -> documentalist docs
+     -> push + PR + CI until green -> merge on the user's yes -> sales (optional)
+```
+
+Any agent can question any other one. Each step ends with a brief and a stop (skill `context-handoff`). Details per step: `team-lead` -> `references/flow-overview.md`.
+
