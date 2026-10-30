@@ -50,8 +50,8 @@ des agents sont en anglais (`AGENTS.md`, `.agents/`), cette page est la document
 - **ai-writer** : écrit et relit tous les fichiers qu'une IA lit ou exécute, toujours en anglais : définitions d'agents, skills, `AGENTS.md` /
   `CLAUDE.md` / `llms.txt`, commandes slash, hooks et `settings.json`, prompts d'application et descriptions d'outils, fichiers de mémoire.
   Un skill de bonnes pratiques par type de fichier (`ai-write-principles`, `ai-write-agent-definitions`, `ai-write-skills`,
-  `ai-write-commands`, `ai-write-hooks-settings`, `ai-write-prompts`, `ai-write-memory`, plus `doc-ai-context-files`), mis à jour une
-  fois par mois. Il teste chaque fichier sur un agent à froid avant de le livrer. La doc du projet (`.agents/docs/`, README) reste au
+  `ai-write-commands`, `ai-write-hooks-settings`, `ai-write-prompts`, `ai-write-memory`, `ai-write-agentic` pour concevoir des agents, plus `doc-ai-context-files`), mis à jour une
+  fois par mois. Chaque skill est un routeur de quelques centaines d'octets avec une référence par besoin (chargement paresseux, tokens minimaux). Il teste chaque fichier sur un agent à froid avant de le livrer. La doc du projet (`.agents/docs/`, README) reste au
   `documentalist`.
 - **PR et suivi de CI** (étape 9 d'`AGENTS.md`, skill `pr-and-ci-follow`, piloté par le lead) : après « docs done », push et PR, puis la CI du commit poussé est suivie jusqu'à ce que tout soit vert. Chaque rouge repart chez son propriétaire : test ou e2e → `qa` (qui décide si c'est le code ou le test qui a tort), code → `front` ou `back`, Sonar → propriétaire du code, infrastructure → lead (sans boucler). Un test instable (flaky) n'est pas vert : `qa` en trouve la cause et le corrige. Le merge n'a lieu que sur ton oui explicite. L'ancienne étape « après déploiement » est supprimée.
 - **Tout document destiné à l'IA est en anglais** (`AGENTS.md`, agents, skills, `.agents/docs/`, `.agents/docs/team/`, mémoire, prompts, messages entre agents), quelle que soit la langue de l'utilisateur ou du produit (skill `ai-docs-in-english`) ; les textes lus par des personnes (UI, README, guides) suivent la langue du produit.

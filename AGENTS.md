@@ -11,7 +11,7 @@ Eight agents create a project or add a feature and question each other until the
 | `sales` | positioning, promotion, channels, copy, promo videos | brief, scripts, videos, publication plan (the lead publishes) |
 | `translator` | translation as a native; skill per language and pair, refreshed monthly | translated texts and files, alternatives on request |
 | `documentalist` | AI docs (`.agents/docs/`, impact graph) and human docs (README, guides, ADR) | docs in sync with the code (last step of every development); answers "how does X work" with paths |
-| `ai-writer` | every AI-read or AI-run file: agents, skills, AGENTS.md, commands, hooks, settings, prompts, memory; one skill per type, refreshed monthly | English files tested on a cold agent, wired in the team |
+| `ai-writer` | every AI-read or AI-run file: agents, skills, AGENTS.md, commands, hooks, settings, prompts, memory; lean lazy-loaded files, one skill per type refreshed monthly, agentic design | English files tested on a cold agent, wired in the team |
 
 ## Flow
 
