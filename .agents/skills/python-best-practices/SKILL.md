@@ -1,6 +1,6 @@
 ---
 name: python-best-practices
-description: MANDATORY for any .py file, pyproject.toml or Python test: Python 3.13, uv, type hints, ruff, pydantic, pytest, runs in WSL.
+description: "MANDATORY for any .py file, pyproject.toml or Python test: Python 3.13, uv, type hints, ruff, pydantic, pytest, runs in WSL."
 ---
 
 # Python best practices (router)

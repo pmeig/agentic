@@ -1,6 +1,6 @@
 ---
 name: language-en
-description: Use when reading, writing, translating or reviewing English text: grammar, spelling, register, UI conventions.
+description: "Use when reading, writing, translating or reviewing English text: grammar, spelling, register, UI conventions."
 ---
 
 # English (en)

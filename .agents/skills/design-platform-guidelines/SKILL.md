@@ -1,6 +1,6 @@
 ---
 name: design-platform-guidelines
-description: designer: native design language of the platform concerned (Material 3, iOS HIG, Fluent, web); load only that platform.
+description: "designer: native design language of the platform concerned (Material 3, iOS HIG, Fluent, web); load only that platform."
 ---
 
 # Platform design guidelines (load only the platform concerned) (router)

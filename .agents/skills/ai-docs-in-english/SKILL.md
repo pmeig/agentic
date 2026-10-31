@@ -1,6 +1,6 @@
 ---
 name: ai-docs-in-english
-description: MANDATORY before writing any file an AI reads (AGENTS.md, agents, skills, .agents/docs, memory, prompts, agent messages): English only.
+description: "MANDATORY before writing any file an AI reads (AGENTS.md, agents, skills, .agents/docs, memory, prompts, agent messages): English only."
 ---
 
 # AI-facing documents are written in English

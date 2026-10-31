@@ -1,6 +1,6 @@
 ---
 name: ruby-rails-best-practices
-description: MANDATORY for any Ruby or Rails code: thin controllers, service and query objects, strong params, RuboCop, RSpec, Rails 8.
+description: "MANDATORY for any Ruby or Rails code: thin controllers, service and query objects, strong params, RuboCop, RSpec, Rails 8."
 ---
 
 # Ruby / Rails best practices (router)

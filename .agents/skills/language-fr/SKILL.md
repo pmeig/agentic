@@ -1,6 +1,6 @@
 ---
 name: language-fr
-description: Use when reading, writing, translating or reviewing French text: grammar, spelling, register, UI conventions.
+description: "Use when reading, writing, translating or reviewing French text: grammar, spelling, register, UI conventions."
 ---
 
 # French (fr)

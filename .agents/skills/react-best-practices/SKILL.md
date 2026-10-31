@@ -1,6 +1,6 @@
 ---
 name: react-best-practices
-description: MANDATORY for any React code (Vite, Next.js, React Native): pages/ and core/, function components, React Compiler, server components, TanStack Query, Vitest, React 19.
+description: "MANDATORY for any React code (Vite, Next.js, React Native): pages/ and core/, function components, React Compiler, server components, TanStack Query, Vitest, React 19."
 ---
 
 # React best practices (router)

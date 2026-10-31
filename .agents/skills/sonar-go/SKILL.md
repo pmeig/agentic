@@ -1,6 +1,6 @@
 ---
 name: sonar-go
-description: Only when asked: Sonar setup, coverage, exclusions of a Go module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a Go module."
 ---
 
 # Sonar for Go (on request only)

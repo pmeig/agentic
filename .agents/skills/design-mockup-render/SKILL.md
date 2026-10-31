@@ -1,6 +1,6 @@
 ---
 name: design-mockup-render
-description: designer: self-contained HTML mockups rendered to PNG screenshots (phone, tablet, desktop, light/dark) shown inline.
+description: "designer: self-contained HTML mockups rendered to PNG screenshots (phone, tablet, desktop, light/dark) shown inline."
 ---
 
 # Mockup render (router)

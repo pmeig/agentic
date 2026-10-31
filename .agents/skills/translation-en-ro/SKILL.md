@@ -1,6 +1,6 @@
 ---
 name: translation-en-ro
-description: Use when translating from English into Romanian: contrasts, false friends, idioms, formats.
+description: "Use when translating from English into Romanian: contrasts, false friends, idioms, formats."
 ---
 
 # English → Romanian

@@ -1,6 +1,6 @@
 ---
 name: design-color-palettes
-description: designer: build and check accessible palettes, light/dark themes, WCAG contrast, tokens.
+description: "designer: build and check accessible palettes, light/dark themes, WCAG contrast, tokens."
 ---
 
 # Color palettes

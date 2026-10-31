@@ -1,6 +1,6 @@
 ---
 name: nestjs-best-practices
-description: MANDATORY for any NestJS code: module per feature, DTO validation, typed ConfigModule with Vault, exception filters.
+description: "MANDATORY for any NestJS code: module per feature, DTO validation, typed ConfigModule with Vault, exception filters."
 ---
 
 # NestJS best practices (router)

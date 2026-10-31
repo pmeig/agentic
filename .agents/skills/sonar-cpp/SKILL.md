@@ -1,6 +1,6 @@
 ---
 name: sonar-cpp
-description: Only when asked: Sonar setup, coverage, exclusions of a C / C++ module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a C / C++ module."
 ---
 
 # Sonar for C / C++ (on request only)

@@ -1,6 +1,6 @@
 ---
 name: shell-bash-best-practices
-description: MANDATORY for any shell/PowerShell script (CI run steps, entrypoints): strict mode, quoting, no echoed secrets, traps, ShellCheck.
+description: "MANDATORY for any shell/PowerShell script (CI run steps, entrypoints): strict mode, quoting, no echoed secrets, traps, ShellCheck."
 ---
 
 # Shell scripting best practices (router)

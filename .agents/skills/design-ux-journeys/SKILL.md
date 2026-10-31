@@ -1,6 +1,6 @@
 ---
 name: design-ux-journeys
-description: designer: model users, goals, business gestures, journeys, screen states and heuristics before drawing.
+description: "designer: model users, goals, business gestures, journeys, screen states and heuristics before drawing."
 ---
 
 # UX journeys (router)

@@ -1,6 +1,6 @@
 ---
 name: translation-en-de
-description: Use when translating from English into German: contrasts, false friends, idioms, formats.
+description: "Use when translating from English into German: contrasts, false friends, idioms, formats."
 ---
 
 # English → German

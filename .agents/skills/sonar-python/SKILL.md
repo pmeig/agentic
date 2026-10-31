@@ -1,6 +1,6 @@
 ---
 name: sonar-python
-description: Only when asked: Sonar setup, coverage, exclusions of a Python module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a Python module."
 ---
 
 # Sonar for Python (on request only)

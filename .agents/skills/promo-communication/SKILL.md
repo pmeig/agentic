@@ -1,6 +1,6 @@
 ---
 name: promo-communication
-description: sales: positioning, audience, ranked promotion ideas, channels, copy, calendar and indicators.
+description: "sales: positioning, audience, ranked promotion ideas, channels, copy, calendar and indicators."
 ---
 
 # Promotion and communication

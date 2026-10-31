@@ -1,6 +1,6 @@
 ---
 name: sonar-java
-description: Only when asked: Sonar setup, coverage, exclusions of a Java module (Maven, Gradle, Spring, Lombok).
+description: "Only when asked: Sonar setup, coverage, exclusions of a Java module (Maven, Gradle, Spring, Lombok)."
 ---
 
 # Sonar for Java (on request only)

@@ -1,6 +1,6 @@
 ---
 name: translation-fr-es
-description: Use when translating from French into Spanish: contrasts, false friends, idioms, formats.
+description: "Use when translating from French into Spanish: contrasts, false friends, idioms, formats."
 ---
 
 # French → Spanish

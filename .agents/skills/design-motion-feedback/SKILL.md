@@ -1,6 +1,6 @@
 ---
 name: design-motion-feedback
-description: designer: transitions, loading, feedback, optimistic updates, reduced motion.
+description: "designer: transitions, loading, feedback, optimistic updates, reduced motion."
 ---
 
 # Motion and feedback
