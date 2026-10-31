@@ -38,8 +38,7 @@ Reference for a native Italian speaker's judgement. Standard Italian (Italy); no
 
 - Regional Italian differs in vocabulary (`pomeriggio/dopopranzo`, `anguria/cocomero`). Standard Italian is safe for products.
 
-- **Variants** (pick from the project locale code; unknown: ask once; one per project):
-  - `it-IT` default. `it-CH`: `natel`, Swiss numbers (`1'234.50`); same grammar, no separate skill.
+- Variants (locale code, e.g. `it-CH`): load `references/variants.md` when the project locale has a region or is unknown.
 
 ## Monthly refresh
 
