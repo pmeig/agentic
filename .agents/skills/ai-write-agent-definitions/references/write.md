@@ -18,7 +18,7 @@ Other fields exist (`disallowedTools`, `skills`, `permissionMode`, `maxTurns`, `
 
 ## The description is the router
 
-The lead and the harness pick the agent from `description` alone. Order: who the agent is (one clause), what it owns, how it works (one clause), then **"Use to/when ..."** with the triggers. Third person, English, 300-600 characters, single line. Add the negative space when two agents are close ("not for X: use `back`").
+The lead and the harness pick the agent from `description` alone. Order: who the agent is (one clause), what it owns, how it works (one clause), then **"Use to/when ..."** with the triggers. Third person, English, 300-600 characters, single line, no `: ` or ` #` in the unquoted value (invalid YAML, the agent silently fails to load; reword or quote). Add the negative space when two agents are close ("not for X, use `back`").
 
 ## Body layout
 

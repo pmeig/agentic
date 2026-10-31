@@ -1,6 +1,6 @@
 ---
 name: e2e-parallelism-init
-description: Only when this PC has no parallelism entry for the e2e tool (analysis never done): time the suite with 1, 2, 3... workers, record the best. Never otherwise.
+description: "Only when this PC has no parallelism entry for the e2e tool (analysis never done): time the suite with 1, 2, 3... workers, record the best. Never otherwise."
 ---
 
 # E2E parallelism initialisation

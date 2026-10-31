@@ -1,6 +1,6 @@
 ---
 name: language-de
-description: Use when reading, writing, translating or reviewing German text: grammar, spelling, register, UI conventions.
+description: "Use when reading, writing, translating or reviewing German text: grammar, spelling, register, UI conventions."
 ---
 
 # German (de)

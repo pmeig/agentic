@@ -1,6 +1,6 @@
 ---
 name: svelte-best-practices
-description: MANDATORY for any Svelte or SvelteKit code: Svelte 5 runes, .svelte.ts state, snippets, load functions and form actions, Vitest.
+description: "MANDATORY for any Svelte or SvelteKit code: Svelte 5 runes, .svelte.ts state, snippets, load functions and form actions, Vitest."
 ---
 
 # Svelte best practices (router)

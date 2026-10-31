@@ -1,6 +1,6 @@
 ---
 name: translation-en-fr
-description: Use when translating from English into French: contrasts, false friends, idioms, formats.
+description: "Use when translating from English into French: contrasts, false friends, idioms, formats."
 ---
 
 # English → French

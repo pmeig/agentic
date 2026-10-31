@@ -1,6 +1,6 @@
 ---
 name: sonar-javascript-typescript
-description: Only when asked: Sonar setup, coverage, exclusions of a JavaScript/TypeScript module (Node, Angular, React, Vue, Svelte).
+description: "Only when asked: Sonar setup, coverage, exclusions of a JavaScript/TypeScript module (Node, Angular, React, Vue, Svelte)."
 ---
 
 # Sonar for JavaScript / TypeScript (on request only)

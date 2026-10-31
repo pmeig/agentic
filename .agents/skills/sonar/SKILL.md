@@ -1,6 +1,6 @@
 ---
 name: sonar
-description: Use to read or run SonarQube on this PC: local server, token from Vault (never printed), scan a module, quality gate and measures.
+description: "Use to read or run SonarQube on this PC: local server, token from Vault (never printed), scan a module, quality gate and measures."
 ---
 # SonarQube on this PC (and the Vault token behind it)
 ## Connect

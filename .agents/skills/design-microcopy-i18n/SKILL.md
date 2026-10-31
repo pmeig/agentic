@@ -1,6 +1,6 @@
 ---
 name: design-microcopy-i18n
-description: designer: texts of a mockup (labels, errors, empty states, tone) and design for translation.
+description: "designer: texts of a mockup (labels, errors, empty states, tone) and design for translation."
 ---
 
 # Microcopy and internationalization

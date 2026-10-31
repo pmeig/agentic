@@ -1,6 +1,6 @@
 ---
 name: vue-best-practices
-description: MANDATORY for any Vue code (Vue 3, Nuxt): pages/ and core/, script setup + TypeScript, composables, Pinia, typed API layer, Vitest, Vue 3.5+.
+description: "MANDATORY for any Vue code (Vue 3, Nuxt): pages/ and core/, script setup + TypeScript, composables, Pinia, typed API layer, Vitest, Vue 3.5+."
 ---
 
 # Vue best practices (router)

@@ -1,6 +1,6 @@
 ---
 name: translation-en-es
-description: Use when translating from English into Spanish: contrasts, false friends, idioms, formats.
+description: "Use when translating from English into Spanish: contrasts, false friends, idioms, formats."
 ---
 
 # English → Spanish

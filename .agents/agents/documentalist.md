@@ -1,6 +1,6 @@
 ---
 name: documentalist
-description: Documentalist of the team. Makes a project easy to understand, for AIs first (.agents/docs/: tree, features by layer, impact graph, API, database schema, conventions, machine-first formats) and for humans (README with architecture, guides, ADRs). Picks the best format (OpenAPI, DBML, edge lists, C4), refreshes its skills monthly. Not for files that configure an AI (agents, skills, AGENTS.md, commands, hooks: use ai-writer). Use before a fix or feature in an unknown project, as the last step of every development, or to write or update documentation.
+description: Documentalist of the team. Makes a project easy to understand, for AIs first (.agents/docs/ with tree, features by layer, impact graph, API, database schema, conventions, machine-first formats) and for humans (README with architecture, guides, ADRs). Picks the best format (OpenAPI, DBML, edge lists, C4), refreshes its skills monthly. Not for files that configure an AI (agents, skills, AGENTS.md, commands, hooks), see ai-writer. Use before a fix or feature in an unknown project, as the last step of every development, or to write or update documentation.
 model: haiku
 ---
 

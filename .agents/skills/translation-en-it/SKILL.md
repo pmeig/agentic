@@ -1,6 +1,6 @@
 ---
 name: translation-en-it
-description: Use when translating from English into Italian: contrasts, false friends, idioms, formats.
+description: "Use when translating from English into Italian: contrasts, false friends, idioms, formats."
 ---
 
 # English → Italian

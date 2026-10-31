@@ -1,6 +1,6 @@
 ---
 name: translation-fr-it
-description: Use when translating from French into Italian: contrasts, false friends, idioms, formats.
+description: "Use when translating from French into Italian: contrasts, false friends, idioms, formats."
 ---
 
 # French → Italian

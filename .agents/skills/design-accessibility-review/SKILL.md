@@ -1,6 +1,6 @@
 ---
 name: design-accessibility-review
-description: designer: check a mockup against WCAG 2.2 AA before presenting it.
+description: "designer: check a mockup against WCAG 2.2 AA before presenting it."
 ---
 
 # Accessibility review of a mockup (WCAG 2.2 AA)

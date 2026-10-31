@@ -1,6 +1,6 @@
 ---
 name: design-mockup-variants
-description: designer: propose 3 to 5 mockups that really differ, checked with a difference matrix, with a recommendation.
+description: "designer: propose 3 to 5 mockups that really differ, checked with a difference matrix, with a recommendation."
 ---
 
 # Mockup variants (3 to 5 truly different proposals)

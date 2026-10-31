@@ -1,6 +1,6 @@
 ---
 name: sonar-kotlin
-description: Only when asked: Sonar setup, coverage, exclusions of a Kotlin module (JVM, Spring, Android).
+description: "Only when asked: Sonar setup, coverage, exclusions of a Kotlin module (JVM, Spring, Android)."
 ---
 
 # Sonar for Kotlin (on request only)

@@ -1,6 +1,6 @@
 ---
 name: sonar-dart-rust
-description: Only when asked: Sonar setup, coverage, exclusions of a Dart/Flutter or Rust module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a Dart/Flutter or Rust module."
 ---
 
 # Sonar for Dart / Flutter and Rust (on request only)

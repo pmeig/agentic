@@ -1,6 +1,6 @@
 ---
 name: doc-sites-markdown
-description: Use when human docs outgrow a few Markdown files or must be published: layout, docs site generator choice, link checks, deployment.
+description: "Use when human docs outgrow a few Markdown files or must be published: layout, docs site generator choice, link checks, deployment."
 ---
 
 # Markdown docs and docs sites (router)

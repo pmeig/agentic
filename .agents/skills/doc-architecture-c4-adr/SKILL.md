@@ -1,6 +1,6 @@
 ---
 name: doc-architecture-c4-adr
-description: Use to document architecture: C4 levels, deployment view, arc42 map, ADR template, as Mermaid text.
+description: "Use to document architecture: C4 levels, deployment view, arc42 map, ADR template, as Mermaid text."
 ---
 
 # Architecture documentation: C4, arc42, ADR (router)

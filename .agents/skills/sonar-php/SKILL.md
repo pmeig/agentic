@@ -1,6 +1,6 @@
 ---
 name: sonar-php
-description: Only when asked: Sonar setup, coverage, exclusions of a PHP module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a PHP module."
 ---
 
 # Sonar for PHP (on request only)

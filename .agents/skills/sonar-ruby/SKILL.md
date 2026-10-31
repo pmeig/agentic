@@ -1,6 +1,6 @@
 ---
 name: sonar-ruby
-description: Only when asked: Sonar setup, coverage, exclusions of a Ruby / Rails module.
+description: "Only when asked: Sonar setup, coverage, exclusions of a Ruby / Rails module."
 ---
 
 # Sonar for Ruby (on request only)

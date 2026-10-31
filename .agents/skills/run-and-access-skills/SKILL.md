@@ -1,6 +1,6 @@
 ---
 name: run-and-access-skills
-description: Use when blocked on how to run a command or connect to a service: look for the skill first, else ask once and write the skill.
+description: "Use when blocked on how to run a command or connect to a service: look for the skill first, else ask once and write the skill."
 ---
 
 # Run and access: always a skill (router)

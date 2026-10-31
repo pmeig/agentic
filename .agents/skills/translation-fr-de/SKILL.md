@@ -1,6 +1,6 @@
 ---
 name: translation-fr-de
-description: Use when translating from French into German: contrasts, false friends, idioms, formats.
+description: "Use when translating from French into German: contrasts, false friends, idioms, formats."
 ---
 
 # French → German

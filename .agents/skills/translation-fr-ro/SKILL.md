@@ -1,6 +1,6 @@
 ---
 name: translation-fr-ro
-description: Use when translating from French into Romanian: contrasts, false friends, idioms, formats.
+description: "Use when translating from French into Romanian: contrasts, false friends, idioms, formats."
 ---
 
 # French → Romanian

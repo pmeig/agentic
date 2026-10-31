@@ -1,6 +1,6 @@
 ---
 name: dart-flutter-best-practices
-description: MANDATORY for any Dart or Flutter code: pages/ and core/ modules, MVVM view models, repositories, offline-first, flutter_test, Dart 3.
+description: "MANDATORY for any Dart or Flutter code: pages/ and core/ modules, MVVM view models, repositories, offline-first, flutter_test, Dart 3."
 ---
 
 # Dart / Flutter best practices (router)

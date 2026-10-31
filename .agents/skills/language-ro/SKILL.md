@@ -1,6 +1,6 @@
 ---
 name: language-ro
-description: Use when reading, writing, translating or reviewing Romanian text: grammar, spelling, register, UI conventions.
+description: "Use when reading, writing, translating or reviewing Romanian text: grammar, spelling, register, UI conventions."
 ---
 
 # Romanian (ro)

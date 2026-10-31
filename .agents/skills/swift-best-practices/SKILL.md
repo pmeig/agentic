@@ -1,6 +1,6 @@
 ---
 name: swift-best-practices
-description: MANDATORY for any Swift code (SwiftUI, server Swift, packages): MVVM with @Observable, repositories behind protocols, Swift 6 concurrency, Swift Testing.
+description: "MANDATORY for any Swift code (SwiftUI, server Swift, packages): MVVM with @Observable, repositories behind protocols, Swift 6 concurrency, Swift Testing."
 ---
 
 # Swift best practices (router)

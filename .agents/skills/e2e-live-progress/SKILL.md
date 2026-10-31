@@ -1,6 +1,6 @@
 ---
 name: e2e-live-progress
-description: On every e2e run: live step preview in the prompt (green, red, blinking grey dots).
+description: "On every e2e run: live step preview in the prompt (green, red, blinking grey dots)."
 ---
 
 # E2E live progress

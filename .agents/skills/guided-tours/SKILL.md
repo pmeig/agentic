@@ -1,6 +1,6 @@
 ---
 name: guided-tours
-description: front, qa, lead: ONLY when the project already has guided tours (then every new feature gets its tutorial page and full tour, windows included, and screen changes re-check the tours); on a new project front asks the lead whether to add tours.
+description: "front, qa, lead: ONLY when the project already has guided tours (then every new feature gets its tutorial page and full tour, windows included, and screen changes re-check the tours); on a new project front asks the lead whether to add tours."
 ---
 
 # Guided tours and first-launch tutorial (any app with a tour system)

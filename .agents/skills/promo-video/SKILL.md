@@ -1,6 +1,6 @@
 ---
 name: promo-video
-description: sales: promotional video script, storyboard, app recording, ffmpeg montage, captions, export.
+description: "sales: promotional video script, storyboard, app recording, ffmpeg montage, captions, export."
 ---
 
 # Promotional video (router)

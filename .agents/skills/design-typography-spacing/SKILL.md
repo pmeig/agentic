@@ -1,6 +1,6 @@
 ---
 name: design-typography-spacing
-description: designer: type scale, spacing, grid, density, breakpoints, touch targets.
+description: "designer: type scale, spacing, grid, density, breakpoints, touch targets."
 ---
 
 # Typography, spacing and layout

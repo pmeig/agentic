@@ -1,6 +1,6 @@
 ---
 name: language-es
-description: Use when reading, writing, translating or reviewing Spanish text: grammar, spelling, register, UI conventions.
+description: "Use when reading, writing, translating or reviewing Spanish text: grammar, spelling, register, UI conventions."
 ---
 
 # Spanish (es)
