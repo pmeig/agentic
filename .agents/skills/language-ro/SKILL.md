@@ -38,8 +38,7 @@ Reference for a native Romanian speaker's judgement. Standard Romanian (Romania)
 
 - Moldova (Republic of Moldova) uses the same norm with some Russian-origin vocabulary; Aromanian and Istro-Romanian are separate.
 
-- **Variants** (pick from the project locale code; unknown: ask once; one per project):
-  - `ro-RO` default (always comma-below `ș ț`, never cedilla `ş ţ`). `ro-MD`: same norm, some Russian-origin local terms; check them.
+- Variants (locale code, e.g. `ro-MD`): load `references/variants.md` when the project locale has a region or is unknown.
 
 ## Monthly refresh
 

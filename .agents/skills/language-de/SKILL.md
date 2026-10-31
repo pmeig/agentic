@@ -36,11 +36,9 @@ Reference for a native German speaker's judgement. Default variant: Germany; not
 
 ## Regional notes
 
-- Standard High German is safe for a product; regional variants: see Variants below.
+- Standard High German is safe for a product; regional variants: see `references/variants.md`.
 
-- **Variants** (pick from the project locale code; unknown: ask once; one per project):
-  - `de-DE` default: `ß`, `Handy`, `Sie`/`du` per product.
-  - `de-AT`: `Jänner`, `Sackerl`, `heuer`. `de-CH`: no `ß` (`ss`), `Velo`, `Billett`, `Natel`, quotes `«»`, `1'234.50`.
+- Variants (locale code, e.g. `de-AT`): load `references/variants.md` when the project locale has a region or is unknown.
 
 ## Monthly refresh
 
