@@ -24,6 +24,7 @@ Goal: the file changes the reader's behaviour for the fewest tokens, at creation
 7. **Output of work**: when creating files, write each once (no write-read-rewrite loops); read siblings with a header-only look (`head -20`, `grep -n '^#'`) before reading in full; quiet commands (`| tail`).
 8. **Cheapest model that works**: `haiku` for mechanical transformation and cold tests, `sonnet` for judgement.
 9. **Measure**: report size before and after (`wc -c`) for any file revised for brevity; a revision that grows a file needs a reason.
+10. **English for everything an AI reads**: files, prompts, agent-to-agent messages. Rough cost for the same meaning (English = 1x): fr/es/de/pt ~1.2-1.5x; zh/ja ~1-2x, rarely below 1x; ru/ar/hi/th ~2-4x. Other languages only in user-facing output and translation work (`translator`); the lead reports to the user in the user's language.
 
 ## Do not over-compress
 
